@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Times Tables Blast!</title>
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0c29;
+    --card: #1e1b4b;
+    --glow: #7c3aed;
+    --correct: #10b981;
+    --wrong: #ef4444;
+    --neutral: #334155;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px 40px;
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(124,58,237,0.25) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 90%, rgba(16,185,129,0.15) 0%, transparent 55%);
+    color: var(--text);
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: 'Boogaloo', cursive;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #a78bfa, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+
+  .subtitle { font-size: 0.88rem; color: var(--muted); margin-top: 4px; }
+
+  /* ── Table selector ── */
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .table-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    justify-content: center;
+    margin-bottom: 6px;
+    max-width: 520px;
+  }
+
+  .tbl-btn {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    color: var(--muted);
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .tbl-btn:hover { border-color: #a78bfa; color: #a78bfa; transform: translateY(-2px); }
+  .tbl-btn.active {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 14px rgba(124,58,237,0.5);
+  }
+
+  .quick-row {
+    display: flex; gap: 8px; justify-content: center;
+    margin-bottom: 18px;
+  }
+  .quick-btn {
+    padding: 6px 16px;
+    border-radius: 30px;
+    border: 1.5px solid rgba(255,255,255,0.15);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .quick-btn:hover { border-color: #34d399; color: #34d399; }
+
+  /* ── Stats bar ── */
+  .stats-bar {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 10px 24px;
+  }
+  .stat { text-align: center; }
+  .stat-val {
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+  .stat-lbl { font-size: 0.68rem; color: var(--muted); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .stat-val.green { color: #34d399; }
+  .stat-val.red { color: #f87171; }
+  .stat-val.gold { color: #fbbf24; }
+
+  /* ── Progress ── */
+  .progress-wrap { width: 100%; max-width: 480px; margin-bottom: 20px; }
+  .progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7c3aed, #34d399);
+    border-radius: 99px;
+    transition: width 0.5s ease;
+  }
+
+  /* ── Question card ── */
+  .q-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 28px;
+    padding: 36px 28px 28px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(124,58,237,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .q-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .question-text {
+    font-family: 'Boogaloo', cursive;
+    font-size: clamp(2.8rem, 10vw, 4.5rem);
+    text-align: center;
+    line-height: 1;
+    color: white;
+    text-shadow: 0 0 40px rgba(167,139,250,0.4);
+    letter-spacing: 2px;
+  }
+
+  /* ── Answer grid ── */
+  .answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .ans-btn {
+    padding: 18px 10px;
+    border-radius: 16px;
+    border: 2px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    color: white;
+    font-family: 'Boogaloo', cursive;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .ans-btn:hover:not(:disabled) {
+    border-color: #a78bfa;
+    background: rgba(124,58,237,0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(124,58,237,0.3);
+  }
+  .ans-btn:active:not(:disabled) { transform: scale(0.97); }
+  .ans-btn.correct {
+    background: rgba(16,185,129,0.25);
+    border-color: #10b981;
+    color: #34d399;
+    box-shadow: 0 0 20px rgba(16,185,129,0.3);
+  }
+  .ans-btn.wrong {
+    background: rgba(239,68,68,0.2);
+    border-color: #ef4444;
+    color: #f87171;
+  }
+  .ans-btn.reveal {
+    background: rgba(16,185,129,0.15);
+    border-color: rgba(16,185,129,0.4);
+    color: #34d399;
+  }
+  .ans-btn:disabled { cursor: default; }
+
+  /* ── Feedback overlay ── */
+  .feedback-msg {
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.3rem;
+    min-height: 32px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .feedback-msg.correct { color: #34d399; }
+  .feedback-msg.wrong { color: #f87171; }
+
+  /* ── Next button ── */
+  .next-btn {
+    padding: 14px 40px;
+    border-radius: 99px;
+    border: none;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: white;
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(124,58,237,0.4);
+    transition: all 0.2s;
+    display: none;
+    letter-spacing: 1px;
+  }
+  .next-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(124,58,237,0.5); }
+  .next-btn.visible { display: block; }
+
+  /* ── Streak badge ── */
+  .streak-badge {
+    position: fixed;
+    top: 20px; right: 20px;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    border-radius: 16px;
+    padding: 8px 14px;
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 16px rgba(245,158,11,0.4);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+  .streak-badge.show { opacity: 1; transform: scale(1); }
+
+  /* ── Round complete screen ── */
+  .complete-screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 28px;
+    padding: 40px 28px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .complete-screen.show { display: flex; }
+
+  .trophy { font-size: 4rem; animation: bounce 0.6s ease infinite alternate; }
+  @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-12px); } }
+
+  .complete-title {
+    font-family: 'Boogaloo', cursive;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .score-summary {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .score-summary strong { color: white; }
+
+  .restart-btn {
+    padding: 14px 40px;
+    border-radius: 99px;
+    border: none;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(16,185,129,0.4);
+    transition: all 0.2s;
+    letter-spacing: 1px;
+  }
+  .restart-btn:hover { transform: translateY(-3px); }
+
+  /* ── Confetti ── */
+  .confetti-piece {
+    position: fixed;
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    pointer-events: none;
+    animation: confettiFall linear forwards;
+    z-index: 999;
+  }
+  @keyframes confettiFall {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  @keyframes pop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.18); }
+    100% { transform: scale(1); }
+  }
+  .pop { animation: pop 0.25s ease; }
+
+  @media (max-width: 400px) {
+    .answers { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .ans-btn { padding: 14px 6px; font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="streak-badge" id="streakBadge">🔥 <span id="streakNum">0</span> streak!</div>
+
+<header>
+  <h1>✖️ Times Tables Blast!</h1>
+  <p class="subtitle">Choose your tables and go!</p>
+</header>
+
+<!-- Table selector -->
+<div class="section-label">Choose tables to practise</div>
+<div class="table-grid" id="tableGrid"></div>
+<div class="quick-row">
+  <button class="quick-btn" onclick="selectAll()">✅ All (0–5)</button>
+  <button class="quick-btn" onclick="selectNone()">❌ Clear</button>
+</div>
+
+<!-- Stats -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-val green" id="statCorrect">0</div><div class="stat-lbl">Correct</div></div>
+  <div class="stat"><div class="stat-val red" id="statWrong">0</div><div class="stat-lbl">Wrong</div></div>
+  <div class="stat"><div class="stat-val gold" id="statStreak">0</div><div class="stat-lbl">🔥 Streak</div></div>
+  <div class="stat"><div class="stat-val" id="statTotal" style="color:#a78bfa">0</div><div class="stat-lbl">Total</div></div>
+</div>
+
+<!-- Progress -->
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+</div>
+
+<!-- Question card -->
+<div class="q-card" id="qCard">
+  <div class="question-text" id="questionText">Pick a table above ☝️</div>
+  <div class="answers" id="answersGrid"></div>
+  <div class="feedback-msg" id="feedbackMsg"></div>
+  <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next ➜</button>
+</div>
+
+<!-- Complete screen -->
+<div class="complete-screen" id="completeScreen">
+  <div class="trophy">🏆</div>
+  <div class="complete-title">Round Complete!</div>
+  <div class="score-summary" id="completeSummary"></div>
+  <button class="restart-btn" onclick="restartRound()">🔄 Play Again</button>
+</div>
+
+<script>
+  const ROUND_SIZE = 15;
+  let selectedTables = [1, 2, 3, 4, 5];
+  let correct = 0, wrong = 0, streak = 0, total = 0;
+  let roundCount = 0;
+  let answered = false;
+  let currentA, currentB, currentAnswer;
+
+  // Build table selector (0–5)
+  const grid = document.getElementById('tableGrid');
+  for (let i = 0; i <= 5; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'tbl-btn' + (selectedTables.includes(i) ? ' active' : '');
+    btn.textContent = i;
+    btn.onclick = () => toggleTable(i, btn);
+    grid.appendChild(btn);
+  }
+
+  function toggleTable(n, btn) {
+    const idx = selectedTables.indexOf(n);
+    if (idx === -1) { selectedTables.push(n); btn.classList.add('active'); }
+    else { selectedTables.splice(idx, 1); btn.classList.remove('active'); }
+    if (selectedTables.length > 0) nextQuestion();
+  }
+
+  function selectAll() {
+    selectedTables = [0,1,2,3,4,5];
+    document.querySelectorAll('.tbl-btn').forEach(b => b.classList.add('active'));
+    nextQuestion();
+  }
+  function selectNone() {
+    selectedTables = [];
+    document.querySelectorAll('.tbl-btn').forEach(b => b.classList.remove('active'));
+  }
+
+  function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+  function generateQuestion() {
+    if (!selectedTables.length) return;
+    currentA = selectedTables[rand(0, selectedTables.length - 1)];
+    currentB = rand(0, 12);
+    currentAnswer = currentA * currentB;
+  }
+
+  function generateOptions(correct) {
+    const opts = new Set([correct]);
+    while (opts.size < 4) {
+      // Generate plausible wrong answers close to correct
+      const type = rand(0, 3);
+      let fake;
+      if (type === 0) fake = correct + rand(1, 4) * (rand(0,1) ? 1 : -1);
+      else if (type === 1) fake = correct + rand(1, 3);
+      else if (type === 2) fake = Math.max(0, correct - rand(1, 5));
+      else fake = rand(Math.max(0, correct - 10), correct + 10);
+      if (fake >= 0 && fake !== correct) opts.add(fake);
+    }
+    return shuffle([...opts]);
+  }
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = rand(0, i);
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function nextQuestion() {
+    if (!selectedTables.length) return;
+    document.getElementById('completeScreen').classList.remove('show');
+    document.getElementById('qCard').style.display = 'flex';
+    answered = false;
+    generateQuestion();
+    roundCount++;
+
+    document.getElementById('questionText').textContent = `${currentA} × ${currentB} = ?`;
+    document.getElementById('feedbackMsg').textContent = '';
+    document.getElementById('feedbackMsg').className = 'feedback-msg';
+    document.getElementById('nextBtn').classList.remove('visible');
+
+    const opts = generateOptions(currentAnswer);
+    const answersGrid = document.getElementById('answersGrid');
+    answersGrid.innerHTML = '';
+    opts.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'ans-btn';
+      btn.textContent = opt;
+      btn.onclick = () => handleAnswer(opt, btn, opts);
+      answersGrid.appendChild(btn);
+    });
+
+    // Progress (resets every ROUND_SIZE)
+    const pct = ((roundCount % ROUND_SIZE) / ROUND_SIZE) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+  }
+
+  function handleAnswer(chosen, btn, opts) {
+    if (answered) return;
+    answered = true;
+    total++;
+
+    const allBtns = document.querySelectorAll('.ans-btn');
+    allBtns.forEach(b => b.disabled = true);
+
+    if (chosen === currentAnswer) {
+      correct++; streak++;
+      btn.classList.add('correct');
+      btn.classList.add('pop');
+      showFeedback(true);
+      updateStreak();
+      if (streak > 0 && streak % 5 === 0) launchConfetti();
+    } else {
+      wrong++; streak = 0;
+      btn.classList.add('wrong');
+      // reveal correct
+      allBtns.forEach(b => { if (parseInt(b.textContent) === currentAnswer) b.classList.add('reveal'); });
+      showFeedback(false);
+      updateStreak();
+    }
+
+    updateStats();
+    document.getElementById('nextBtn').classList.add('visible');
+
+    // Auto-advance after short delay on correct
+    if (chosen === currentAnswer) {
+      setTimeout(() => { if (answered) nextQuestion(); }, 900);
+    }
+
+    // Round complete every ROUND_SIZE questions
+    if (total > 0 && total % ROUND_SIZE === 0) {
+      setTimeout(showComplete, chosen === currentAnswer ? 950 : 1400);
+    }
+  }
+
+  const CORRECT_MSGS = ['🎉 Correct!', '⭐ Nailed it!', '🔥 Amazing!', '✅ Perfect!', '💥 Boom!', '🌟 Yes!'];
+  const WRONG_MSGS = ['❌ Not quite!', '😅 Try again!', '💡 Keep going!', '🤔 Nearly!'];
+
+  function showFeedback(isCorrect) {
+    const msg = document.getElementById('feedbackMsg');
+    const arr = isCorrect ? CORRECT_MSGS : WRONG_MSGS;
+    msg.textContent = arr[rand(0, arr.length - 1)];
+    msg.className = 'feedback-msg ' + (isCorrect ? 'correct' : 'wrong');
+  }
+
+  function updateStats() {
+    document.getElementById('statCorrect').textContent = correct;
+    document.getElementById('statWrong').textContent = wrong;
+    document.getElementById('statStreak').textContent = streak;
+    document.getElementById('statTotal').textContent = total;
+  }
+
+  function updateStreak() {
+    const badge = document.getElementById('streakBadge');
+    document.getElementById('streakNum').textContent = streak;
+    if (streak >= 3) {
+      badge.classList.add('show');
+      clearTimeout(badge._t);
+      badge._t = setTimeout(() => badge.classList.remove('show'), 1800);
+    } else {
+      badge.classList.remove('show');
+    }
+  }
+
+  function showComplete() {
+    document.getElementById('qCard').style.display = 'none';
+    const screen = document.getElementById('completeScreen');
+    screen.classList.add('show');
+    const pct = Math.round((correct / total) * 100);
+    document.getElementById('completeSummary').innerHTML =
+      `You answered <strong>${ROUND_SIZE} questions</strong><br>
+       ✅ Correct: <strong>${correct}</strong> &nbsp; ❌ Wrong: <strong>${wrong}</strong><br>
+       Score: <strong>${pct}%</strong> ${pct === 100 ? '🏆 Perfect!' : pct >= 80 ? '🌟 Great work!' : pct >= 60 ? '👍 Good effort!' : '💪 Keep practising!'}`;
+    launchConfetti(pct >= 80 ? 60 : 20);
+  }
+
+  function restartRound() {
+    correct = 0; wrong = 0; streak = 0; total = 0; roundCount = 0;
+    updateStats();
+    document.getElementById('completeScreen').classList.remove('show');
+    document.getElementById('qCard').style.display = 'flex';
+    nextQuestion();
+  }
+
+  function launchConfetti(count = 30) {
+    const colors = ['#a78bfa','#34d399','#fbbf24','#f87171','#60a5fa','#f472b6'];
+    for (let i = 0; i < count; i++) {
+      const el = document.createElement('div');
+      el.className = 'confetti-piece';
+      el.style.left = rand(10, 90) + 'vw';
+      el.style.top = '-10px';
+      el.style.background = colors[rand(0, colors.length - 1)];
+      el.style.width = rand(6, 12) + 'px';
+      el.style.height = rand(6, 12) + 'px';
+      el.style.animationDuration = (rand(12, 25) / 10) + 's';
+      el.style.animationDelay = (rand(0, 8) / 10) + 's';
+      document.body.appendChild(el);
+      el.addEventListener('animationend', () => el.remove());
+    }
+  }
+
+  // Keyboard support
+  document.addEventListener('keydown', e => {
+    if (!answered) {
+      const btns = document.querySelectorAll('.ans-btn:not(:disabled)');
+      if (e.key === '1' && btns[0]) btns[0].click();
+      else if (e.key === '2' && btns[1]) btns[1].click();
+      else if (e.key === '3' && btns[2]) btns[2].click();
+      else if (e.key === '4' && btns[3]) btns[3].click();
+    } else if (e.key === 'Enter' || e.key === 'ArrowRight') {
+      nextQuestion();
+    }
+  });
+
+  // Start immediately
+  nextQuestion();
+</script>
+</body>
+</html>

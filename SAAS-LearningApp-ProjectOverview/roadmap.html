@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap – SaaS Learning App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">Lekke<span>Leer</span></a>
+    <span class="nav-badge">Project Overview</span>
+    <div class="nav-links">
+      <a href="overview.html" class="nav-link">Overview</a>
+      <a href="roadmap.html" class="nav-link active">Roadmap</a>
+      <a href="activity-lib.html" class="nav-link">Activity Lib</a>
+      <a href="phase-1.html" class="nav-link">Phase 1</a>
+      <a href="phase-2.html" class="nav-link">Phase 2</a>
+      <a href="phase-3.html" class="nav-link">Phase 3</a>
+      <a href="phase-4.html" class="nav-link">Phase 4</a>
+      <a href="phase-5.html" class="nav-link">Phase 5</a>
+      <a href="monetization.html" class="nav-link">Monetization</a>
+      <a href="proposals.html" class="nav-link">Proposals</a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <h1>Roadmap</h1>
+    <p class="page-desc">A phased plan from MVP to monetization, including the Expo (React Native) port and subscription tiers.</p>
+  </header>
+
+  <main class="main main-page">
+    <!-- Current phase: MVP -->
+    <section class="section">
+      <h2>Current phase: MVP</h2>
+      <p><strong>Status:</strong> Early access, gathering feedback.</p>
+      
+      <div class="card">
+        <h3>Done</h3>
+        <ul>
+          <li>8 weeks Afrikaans reading (Lees saam)</li>
+          <li>Tap-to-hear, Speel (karaoke), Begin Lees (speech recognition)</li>
+          <li>Supabase sync, progress, stats</li>
+          <li>In-app feedback → Discord</li>
+          <li>TTS cache (IndexedDB)</li>
+          <li>Breadcrumb picker (Term › Week › Subject › Activity)</li>
+        </ul>
+      </div>
+      
+      <div class="card">
+        <h3>In progress / next</h3>
+        <ul>
+          <li>[ ] Woorde flashcard section (<code>words.html</code> + <code>words.js</code>)</li>
+          <li>[ ] Stability and polish based on feedback</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Phase 1 -->
+    <section class="section">
+      <h2>Phase 1: MVP completion</h2>
+      <p><strong>Goal:</strong> Solid free tier before monetization.</p>
+      
+      <table class="data-table">
+        <thead>
+          <tr><th>Item</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Woorde flashcard section</td><td>Afrikaans word + TTS, flip for English, week selector</td></tr>
+          <tr><td>Unlock Term 2–4 content</td><td>As content is ready</td></tr>
+          <tr><td>English activities</td><td>When content is ready</td></tr>
+          <tr><td>Spell woorde</td><td>When content is ready</td></tr>
+          <tr><td>Bug fixes & UX polish</td><td>From user feedback</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Curriculum structure expansion</h3>
+      <p>Expand from Afrikaans reading only to full subject/activity structure:</p>
+      <pre class="code-block">Term 1 → Week 1 → Afrikaans
+  - Lees sinne (reading sentences) — CURRENT
+  - Spell woorde (spelling words)
+
+Term 1 → Week 1 → English (locked)
+  - Reading sentences
+  - Spelling words
+
+Term 1 → Week 1 → Maths/Wiskunde (locked)
+  - Addition, subtraction, multiply, divide</pre>
+
+      <h4>Key decisions</h4>
+      <ul>
+        <li>Navigation: tab-based (subject row + activity row) vs card-based landing page</li>
+        <li>Data structure: nested CURRICULUM object (term > week > subject > activity)</li>
+        <li>Reuse: reading engine shared for Afrikaans & English (swap TTS voice + recognition lang)</li>
+        <li>Spelling: new interaction mode (reuse tap-to-hear)</li>
+        <li>Maths: new interaction type (problem cards, input/answer flow)</li>
+      </ul>
+    </section>
+
+    <!-- Phase 2 -->
+    <section class="section">
+      <h2>Phase 2: Auth & accounts foundation</h2>
+      <p><strong>Goal:</strong> Shared identity, roles, and multi-tenant wiring for parents and schools.</p>
+      
+      <table class="data-table">
+        <thead>
+          <tr><th>Item</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Supabase Auth</td><td>Email/password or magic link sign-in</td></tr>
+          <tr><td>Account model</td><td>Households, learners, schools, and roles</td></tr>
+          <tr><td>Multi-tenant wiring</td><td>Link users to schools/classes where needed</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Phase 3 -->
+    <section class="section">
+      <h2>Phase 3: Lumi Plus (parent subscriptions)</h2>
+      <p><strong>Goal:</strong> Optional parent subscription that adds premium value (features/content), not required for Lumi Schools home access.</p>
+      
+      <table class="data-table">
+        <thead>
+          <tr><th>Item</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Subscription state</td><td>Stripe or RevenueCat integration</td></tr>
+          <tr><td>Paywall logic</td><td>Gate premium features behind subscription</td></tr>
+          <tr><td>Free vs Plus feature split</td><td>Define what stays free vs paid</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Lumi Plus features (from monetization strategy)</h3>
+      <ul>
+        <li>Full content library</li>
+        <li>iOS + Android native app</li>
+        <li>Offline mode (cached audio)</li>
+        <li>Progress dashboard</li>
+        <li>Priority feature access (annual)</li>
+        <li>Founding family badge (annual)</li>
+      </ul>
+    </section>
+
+    <!-- Phase 4 -->
+    <section class="section">
+      <h2>Phase 4: Expo / React Native port</h2>
+      <p><strong>Goal:</strong> Native iOS and Android apps for Lumi Plus subscribers.</p>
+      
+      <table class="data-table">
+        <thead>
+          <tr><th>Item</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Expo project setup</td><td><code>expo init</code> or <code>create-expo-app</code></td></tr>
+          <tr><td>Shared core</td><td>Extract TTS, speech, content, sync into shared modules</td></tr>
+          <tr><td>React Native Web</td><td>Keep web app in same repo if desired</td></tr>
+          <tr><td>Native TTS</td><td><code>expo-speech</code> or Azure Speech SDK</td></tr>
+          <tr><td>Native speech recognition</td><td>Fix iOS limitation (no Web Speech API)</td></tr>
+          <tr><td>Offline caching</td><td>Native storage for audio + content</td></tr>
+          <tr><td>Supabase client</td><td>Same backend, add auth + subscription checks</td></tr>
+          <tr><td>App Store / Play Store</td><td>Listing, screenshots, metadata</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Why Expo</h3>
+      <ul>
+        <li>Single codebase for iOS + Android</li>
+        <li>Over-the-air updates</li>
+        <li>Easier native module integration</li>
+        <li>Good path from web to native</li>
+      </ul>
+    </section>
+
+    <!-- Phase 5 -->
+    <section class="section">
+      <h2>Phase 5: Lumi Schools (school licences)</h2>
+      <p><strong>Goal:</strong> Annual Lumi Schools tiers with teacher dashboard and home access for learners under the school’s seat allocation.</p>
+      
+      <table class="data-table">
+        <thead>
+          <tr><th>Item</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Multi-tenant model</td><td>Schools, classes, learners</td></tr>
+          <tr><td>Teacher admin dashboard</td><td>Beyond current admin; class/learner views</td></tr>
+          <tr><td>Per-learner progress</td><td>Already have sentence_results; add school/class linkage</td></tr>
+          <tr><td>Class-wide stats & exports</td><td>Medium tier</td></tr>
+          <tr><td>Grade-level reporting</td><td>Large tier</td></tr>
+          <tr><td>Onboarding sessions</td><td>Medium tier</td></tr>
+          <tr><td>Custom content requests</td><td>Large tier</td></tr>
+          <tr><td>Dedicated account manager</td><td>Large tier</td></tr>
+          <tr><td>SLA-backed uptime</td><td>Large tier</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Monetization tiers (reference) -->
+    <section class="section">
+      <h2>Monetization tiers (reference)</h2>
+      
+      <h3>Lumi Schools – annual, per school</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Tier</th><th>Price</th><th>Learners</th><th>Key features</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Small</td><td>R8,500/yr</td><td>Up to 100</td><td>CAPS content, Afrikaans + English, teacher dashboard, per-learner progress, email support</td></tr>
+          <tr><td>Medium</td><td>R16,000/yr</td><td>101–400</td><td>+ Multi-class, class stats/exports, priority support, onboarding</td></tr>
+          <tr><td>Large</td><td>R26,000/yr</td><td>401+</td><td>+ Grade-level reporting, custom content, dedicated account manager, SLA</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Parent subscription – Lumi Plus</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Plan</th><th>Price</th><th>Key features</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Monthly</td><td>R79/mo</td><td>Full content, iOS + Android app, offline mode, progress dashboard</td></tr>
+          <tr><td>Annual</td><td>R599/yr</td><td>Same + priority feature access, founding family badge (≈ R49.90/mo, 37% savings)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Suggested timeline -->
+    <section class="section">
+      <h2>Suggested timeline (high level)</h2>
+      <pre class="code-block">MVP completion      →  Woorde, polish, more content
+       ↓
+Auth & accounts     →  Supabase Auth, roles, multi-tenant model
+       ↓
+Lumi Plus           →  Subscriptions, paywall, free vs Plus split
+       ↓
+Expo port           →  Native apps for Lumi Plus
+       ↓
+Lumi Schools        →  Multi-tenant, teacher dashboard, school tiers</pre>
+      
+      <div class="mermaid-wrap">
+        <pre class="mermaid">
+flowchart LR
+  A[MVP] --> B[MVP Complete]
+  B --> C[Auth & accounts]
+  C --> D[Lumi Plus]
+  D --> E[Expo / Native]
+  E --> F[Lumi Schools]
+        </pre>
+      </div>
+    </section>
+
+    <!-- Open questions -->
+    <section class="section">
+      <h2>Open questions</h2>
+      <ul>
+        <li>[ ] Stripe vs RevenueCat for subscriptions?</li>
+        <li>[ ] Keep web app free forever, or freemium with limits?</li>
+        <li>[ ] School licence: separate app or same app with role-based access?</li>
+        <li>[ ] Content pipeline: who creates Term 2–4, English, Maths?</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Source: <code>lekkeleer-lees/docs/ROADMAP.md</code>. Last updated: 2026-03-09</p>
+  </footer>
+
+  <script>mermaid.initialize({ startOnLoad: true, theme: 'neutral' });</script>
+</body>
+</html>

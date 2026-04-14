@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LekkeLeer – Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="dashboard-page">
+  <header>
+    <a href="./dashboard.html" class="logo">Lekke<span>Leer</span></a>
+    <span class="early-access">Early access</span>
+    <div class="header-badge">Dashboard</div>
+  </header>
+
+  <div class="breadcrumb-picker" id="breadcrumbPicker">
+    <div class="breadcrumb-segment">
+      <button type="button" class="breadcrumb-trigger" disabled>Term 1</button>
+    </div>
+    <span class="breadcrumb-sep">›</span>
+    <div class="breadcrumb-segment">
+      <button type="button" class="breadcrumb-trigger" data-picker="week" aria-haspopup="listbox" aria-expanded="false">Week 1</button>
+      <div class="breadcrumb-dropdown hidden" role="listbox">
+        <button type="button" role="option" data-week-index="0">Week 1</button>
+        <button type="button" role="option" data-week-index="1">Week 2</button>
+        <button type="button" role="option" data-week-index="2">Week 3</button>
+        <button type="button" role="option" data-week-index="3">Week 4</button>
+        <button type="button" role="option" data-week-index="4">Week 5</button>
+        <button type="button" role="option" data-week-index="5">Week 6</button>
+        <button type="button" role="option" data-week-index="6">Week 7</button>
+        <button type="button" role="option" data-week-index="7">Week 8</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="dashboard-main">
+    <h2 class="dashboard-title">Aktiwiteite vir hierdie week</h2>
+    <p class="dashboard-subtitle" id="weekLabel">Term 1 · Week 1</p>
+
+    <div class="dashboard-cards" id="activityCards">
+      <a href="./index.html" class="dashboard-card" id="cardLees" data-activity="lees">
+        <span class="dashboard-card-tag">Afrikaans</span>
+        <span class="dashboard-card-emoji">📖</span>
+        <span class="dashboard-card-title">Lees saam</span>
+        <span class="dashboard-card-desc">Lees sinne saam met die rekenaar</span>
+      </a>
+      <a href="./words.html" class="dashboard-card" id="cardSpell" data-activity="spell">
+        <span class="dashboard-card-tag">Afrikaans</span>
+        <span class="dashboard-card-emoji">✏️</span>
+        <span class="dashboard-card-title">Spell woorde</span>
+        <span class="dashboard-card-desc">Leer woorde met flitskaarte</span>
+      </a>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <a href="./about.html" class="feedback-link" target="_blank" rel="noopener">ℹ️ About</a>
+    <span class="footer-sep">|</span>
+    <a href="./stats.html" class="feedback-link">📊 Progress</a>
+    <span class="footer-sep">|</span>
+    <button type="button" class="feedback-link" id="feedbackBtn">💬 Your feedback</button>
+    <span class="footer-sep">|</span>
+    <button type="button" class="feedback-link" id="debugBtn" title="Debug info">🐛 Debug</button>
+  </footer>
+
+  <div class="version-modal hidden" id="debugModal" role="dialog" aria-labelledby="debugModalTitle">
+    <div class="version-modal-backdrop"></div>
+    <div class="version-modal-content">
+      <h2 id="debugModalTitle">Debug</h2>
+      <div class="version-modal-body" id="debugModalBody"></div>
+      <div class="version-modal-actions">
+        <button type="button" class="feedback-modal-btn feedback-modal-cancel" id="debugCloseBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="feedback-modal hidden" id="feedbackModal" role="dialog" aria-labelledby="feedbackModalTitle">
+    <div class="feedback-modal-backdrop"></div>
+    <div class="feedback-modal-content">
+      <h2 id="feedbackModalTitle">Send feedback</h2>
+      <textarea id="feedbackInput" placeholder="Write your feedback here…" rows="4"></textarea>
+      <p class="feedback-modal-contact">or contact developer directly: <a href="mailto:devon@superimmersive.io">devon@superimmersive.io</a></p>
+      <div class="feedback-modal-actions">
+        <button type="button" class="feedback-modal-btn feedback-modal-cancel" id="feedbackCancelBtn">Cancel</button>
+        <button type="button" class="feedback-modal-btn feedback-modal-submit" id="feedbackSubmitBtn">Send</button>
+      </div>
+      <p class="feedback-modal-status hidden" id="feedbackStatus"></p>
+    </div>
+  </div>
+
+  <div class="feedback-modal hidden" id="nameRequiredModal" role="dialog" aria-labelledby="nameRequiredTitle">
+    <div class="feedback-modal-backdrop"></div>
+    <div class="feedback-modal-content">
+      <h2 id="nameRequiredTitle">Set your name first</h2>
+      <p class="feedback-modal-hint">Please enter your name before sending feedback.</p>
+      <input type="text" id="nameRequiredInput" placeholder="e.g. Mia or Jan" maxlength="32" />
+      <div class="feedback-modal-actions">
+        <button type="button" class="feedback-modal-btn feedback-modal-cancel" id="nameRequiredCancelBtn">Cancel</button>
+        <button type="button" class="feedback-modal-btn feedback-modal-submit" id="nameRequiredContinueBtn">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./dashboard.js"></script>
+</body>
+</html>

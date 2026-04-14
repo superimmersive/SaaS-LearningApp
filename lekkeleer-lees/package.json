@@ -1,0 +1,13 @@
+{
+  "name": "lekkeleer-lees",
+  "private": true,
+  "scripts": {
+    "deploy:tts": "supabase functions deploy tts-proxy --project-ref taiwqvydfhlkyjguunrb",
+    "deploy:feedback": "supabase functions deploy feedback-to-discord --project-ref taiwqvydfhlkyjguunrb",
+    "deploy:tts:all": "supabase link --project-ref taiwqvydfhlkyjguunrb && supabase functions deploy tts-proxy",
+    "supabase": "supabase"
+  },
+  "devDependencies": {
+    "supabase": "^2"
+  }
+}

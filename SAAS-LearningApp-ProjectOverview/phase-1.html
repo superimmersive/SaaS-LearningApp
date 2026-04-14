@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phase 1 – MVP completion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">Lekke<span>Leer</span></a>
+    <span class="nav-badge">Project Overview</span>
+    <div class="nav-links">
+      <a href="overview.html" class="nav-link">Overview</a>
+      <a href="roadmap.html" class="nav-link">Roadmap</a>
+      <a href="activity-lib.html" class="nav-link">Activity Lib</a>
+      <a href="phase-1.html" class="nav-link active">Phase 1</a>
+      <a href="phase-2.html" class="nav-link">Phase 2</a>
+      <a href="phase-3.html" class="nav-link">Phase 3</a>
+      <a href="phase-4.html" class="nav-link">Phase 4</a>
+      <a href="phase-5.html" class="nav-link">Phase 5</a>
+      <a href="monetization.html" class="nav-link">Monetization</a>
+      <a href="proposals.html" class="nav-link">Proposals</a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <h1>Phase 1 – MVP completion</h1>
+    <p class="page-desc">Create a compelling free web app that introduces LekkeLeer and pulls parents and schools into the ecosystem.</p>
+  </header>
+
+  <main class="main main-page">
+    <section class="section">
+      <h2>Goals</h2>
+      <div class="card">
+        <ul>
+          <li>Finish the MVP experience so it feels complete and reliable for parents and learners.</li>
+          <li>Ship Woorde flashcards and expand Term 1 content across more terms and subjects.</li>
+          <li>Collect and act on early-access feedback to smooth out rough edges.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Scope (from Roadmap)</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Item</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Woorde flashcard section</td><td>Afrikaans word + TTS, flip for English, week selector</td></tr>
+          <tr><td>Unlock Term 2–4 content</td><td>As content is ready</td></tr>
+          <tr><td>English activities</td><td>When content is ready</td></tr>
+          <tr><td>Spell woorde</td><td>When content is ready</td></tr>
+          <tr><td>Bug fixes & UX polish</td><td>From user feedback</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>Curriculum structure expansion</h2>
+      <p>Expand from Afrikaans reading only to full subject/activity structure:</p>
+      <pre class="code-block">Term 1 → Week 1 → Afrikaans
+  - Lees sinne (reading sentences) — CURRENT
+  - Spell woorde (spelling words)
+
+Term 1 → Week 1 → English (locked)
+  - Reading sentences
+  - Spelling words
+
+Term 1 → Week 1 → Maths/Wiskunde (locked)
+  - Addition, subtraction, multiply, divide</pre>
+
+      <h3>Key decisions</h3>
+      <ul>
+        <li>Navigation: tab-based (subject row + activity row) vs card-based landing page.</li>
+        <li>Data structure: nested CURRICULUM object (term > week > subject > activity).</li>
+        <li>Reuse: reading engine shared for Afrikaans & English (swap TTS voice + recognition lang).</li>
+        <li>Spelling: new interaction mode (reuse tap-to-hear).</li>
+        <li>Maths: new interaction type (problem cards, input/answer flow).</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Status and risks</h2>
+      <div class="card">
+        <ul>
+          <li><strong>Status:</strong> MVP live with Term 1 Afrikaans reading; Woorde and additional content to come.</li>
+          <li><strong>Risks:</strong> content bottlenecks (Term 2–4, English, Maths), and UX issues discovered during early access.</li>
+          <li><strong>Mitigation:</strong> prioritise high-impact content first and keep feedback loop tight with families and teachers.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Derived from <code>ROADMAP.md</code> Phase 1. Last updated: 2026-03-17</p>
+  </footer>
+</body>
+</html>
+

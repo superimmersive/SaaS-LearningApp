@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Afrikaans Flashcards – Kwartaal 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF8F0;
+    --card-front: #FFFFFF;
+    --card-back: #3D5A80;
+    --accent1: #EE6C4D;
+    --accent2: #98C1D9;
+    --accent3: #FFD166;
+    --text-dark: #1A1A2E;
+    --text-light: #FFFFFF;
+    --week-colors: #FF6B6B, #FF9F43, #F9CA24, #6AB04C, #22A6B3, #686DE0, #E84393, #C0392B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-image: radial-gradient(circle at 15% 20%, rgba(238,108,77,0.12) 0%, transparent 50%),
+                      radial-gradient(circle at 85% 80%, rgba(61,90,128,0.1) 0%, transparent 50%);
+  }
+
+  h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  h1 span { color: var(--accent1); }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: #888;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* Week tabs */
+  .week-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 24px;
+    max-width: 700px;
+  }
+
+  .week-tab {
+    padding: 7px 18px;
+    border-radius: 30px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    transition: all 0.2s;
+    background: white;
+    color: var(--text-dark);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .week-tab:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .week-tab.active { color: white; border-color: transparent; }
+
+  /* Card area */
+  .card-area {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #E0E0E0;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+
+  .counter {
+    font-size: 0.9rem;
+    color: #999;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  /* Flashcard */
+  .card-wrapper {
+    width: 100%;
+    height: 280px;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 24px;
+  }
+  .card.flipped { transform: rotateY(180deg); }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    padding: 30px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  }
+
+  .card-front {
+    background: white;
+    border: 3px solid transparent;
+  }
+
+  .card-back {
+    background: var(--card-back);
+    transform: rotateY(180deg);
+    color: white;
+  }
+
+  .word-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+
+  .word-main {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .word-hint {
+    font-size: 0.82rem;
+    opacity: 0.5;
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .card-back .word-main {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    color: white;
+  }
+
+  .emoji-icon {
+    font-size: 3rem;
+    margin-bottom: 8px;
+  }
+
+  .week-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.9rem;
+    color: white;
+  }
+
+  /* Navigation */
+  .nav-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .nav-btn:hover { transform: scale(1.1); }
+  .nav-btn:active { transform: scale(0.95); }
+  .nav-prev { background: white; color: var(--text-dark); }
+  .nav-next { color: white; }
+
+  .shuffle-btn {
+    padding: 10px 22px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    background: white;
+    color: var(--text-dark);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .shuffle-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+  /* Word list */
+  .word-list-toggle {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #aaa;
+    cursor: pointer;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+  }
+  .word-list-toggle:hover { color: var(--accent1); }
+
+  .word-grid {
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+    max-width: 700px;
+    width: 100%;
+    margin-top: 12px;
+  }
+  .word-grid.open { display: grid; }
+
+  .word-chip {
+    background: white;
+    border-radius: 12px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 2px solid transparent;
+  }
+  .word-chip:hover { transform: translateY(-2px); }
+  .word-chip.current { border-color: currentColor; }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .card-animate { animation: cardIn 0.35s ease forwards; }
+
+  @media (max-width: 480px) {
+    .card-wrapper { height: 240px; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🦁 Afrikaans <span>Flitskaarte</span></h1>
+<p class="subtitle">Kwartaal 1 · Klik op die kaart om te sien</p>
+
+<div class="week-tabs" id="weekTabs"></div>
+
+<div class="card-area">
+  <div class="counter" id="counter">1 / 10</div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="card-wrapper" id="cardWrapper" onclick="flipCard()">
+    <div class="card" id="card">
+      <div class="card-face card-front" id="cardFront">
+        <div class="week-badge" id="weekBadge"></div>
+        <div class="emoji-icon" id="cardEmoji">🔤</div>
+        <div class="word-label">Afrikaans</div>
+        <div class="word-main" id="frontWord">—</div>
+        <div class="word-hint">👆 Klik om te vertaal</div>
+      </div>
+      <div class="card-face card-back" id="cardBack">
+        <div class="week-badge" id="weekBadgeBack"></div>
+        <div class="word-label" style="color:rgba(255,255,255,0.6)">English</div>
+        <div class="word-main" id="backWord">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn nav-prev" onclick="navigate(-1)">←</button>
+    <button class="shuffle-btn" onclick="shuffleCards()">🔀 Shuffle</button>
+    <button class="nav-btn nav-next" id="navNext" onclick="navigate(1)">→</button>
+  </div>
+</div>
+
+<button class="word-list-toggle" onclick="toggleList()">▼ Wys alle woorde vir hierdie week</button>
+<div class="word-grid" id="wordGrid"></div>
+
+<script>
+const WEEK_COLORS = [
+  '#FF6B6B','#FF9F43','#E2B024','#6AB04C','#22A6B3','#686DE0','#E84393','#C0392B'
+];
+
+// Emoji mapping for common Afrikaans words
+const EMOJIS = {
+  das:'🧣', sak:'🎒', mat:'🟫', bal:'⚽', kam:'💈', kat:'🐱', vat:'🏺', tak:'🌿',
+  tas:'👜', was:'🧺', nes:'🪺', pet:'🧢', bed:'🛏️', pen:'✏️', mes:'🔪', hek:'🚪',
+  ek:'👤', tent:'⛺', emmer:'🪣', lig:'💡', pit:'🌱', lip:'💋', vis:'🐟', kis:'📦',
+  pil:'💊', bril:'👓', gril:'😬', in:'📥', iglo:'🏔️', son:'☀️', rot:'🐀', rok:'👗',
+  pop:'🪆', mot:'🦋', dop:'🔔', gom:'🗑️', som:'➕', hom:'👦', hok:'🐔',
+  vyf:'5️⃣', rys:'🌾', byl:'🪓', pyp:'🚰', ys:'🧊', by:'🐝', pyl:'🏹', ryp:'❄️',
+  lys:'📋', lyf:'🫀', bus:'🚌', hut:'🛖', sus:'👧', rug:'🎒', mus:'🐭', bul:'🐂',
+  put:'⛏️', rus:'😴', lug:'🌬️', buk:'📚',
+  kat_w7:'🐱', katte:'🐱', mat_w7:'🟫', matte:'🟫', vuur:'🔥', mure:'🧱', sak_w7:'🎒',
+  sakke:'🎒', sin:'✳️', sinne:'✳️', dam:'🌊', damme:'🌊', muur:'🏰',
+  naam:'🏷️', naam_:'🏷️', raam:'🖼️', vere:'🪶', veer:'🪶', vure:'🔥', yure:'⏰',
+  haan:'🐓', hane:'🐓', rane:'🐸', dame:'👑'
+};
+
+const weeks = [
+  {
+    label:'Week 1', words:[
+      {af:'das',en:'tie / scarf'},
+      {af:'sak',en:'bag / pocket'},
+      {af:'mat',en:'mat'},
+      {af:'bal',en:'ball'},
+      {af:'kam',en:'comb'},
+      {af:'kat',en:'cat'},
+      {af:'vat',en:'barrel / to grab'},
+      {af:'tak',en:'branch'},
+      {af:'tas',en:'bag / suitcase'},
+      {af:'was',en:'washing / was'},
+    ]
+  },
+  {
+    label:'Week 2', words:[
+      {af:'nes',en:'nest'},
+      {af:'pet',en:'cap / hat'},
+      {af:'bed',en:'bed'},
+      {af:'pen',en:'pen'},
+      {af:'mes',en:'knife'},
+      {af:'hek',en:'gate / fence'},
+      {af:'ek',en:'I / me'},
+      {af:'tent',en:'tent'},
+      {af:'emmer',en:'bucket'},
+    ]
+  },
+  {
+    label:'Week 3', words:[
+      {af:'lig',en:'light / easy'},
+      {af:'pit',en:'seed / pip'},
+      {af:'lip',en:'lip'},
+      {af:'vis',en:'fish'},
+      {af:'kis',en:'chest / box'},
+      {af:'pil',en:'pill'},
+      {af:'bril',en:'glasses'},
+      {af:'gril',en:'shudder / grill'},
+      {af:'in',en:'in'},
+      {af:'iglo',en:'igloo'},
+    ]
+  },
+  {
+    label:'Week 4', words:[
+      {af:'son',en:'sun'},
+      {af:'rot',en:'rat / rotten'},
+      {af:'rok',en:'dress / skirt'},
+      {af:'pop',en:'doll'},
+      {af:'mot',en:'moth'},
+      {af:'dop',en:'shell / to fail'},
+      {af:'gom',en:'gum / eraser'},
+      {af:'som',en:'sum'},
+      {af:'hom',en:'him'},
+      {af:'hok',en:'cage / coop'},
+    ]
+  },
+  {
+    label:'Week 5', words:[
+      {af:'vyf',en:'five'},
+      {af:'rys',en:'rice'},
+      {af:'byl',en:'axe'},
+      {af:'pyp',en:'pipe / tube'},
+      {af:'ys',en:'ice'},
+      {af:'by',en:'bee / at / by'},
+      {af:'pyl',en:'arrow'},
+      {af:'ryp',en:'ripe / frost'},
+      {af:'lys',en:'list / pale'},
+      {af:'lyf',en:'body'},
+    ]
+  },
+  {
+    label:'Week 6 ★', words:[
+      {af:'bus',en:'bus'},
+      {af:'hut',en:'hut'},
+      {af:'sus',en:'sister'},
+      {af:'rug',en:'back (body)'},
+      {af:'mus',en:'mouse / beanie'},
+      {af:'bul',en:'bull'},
+      {af:'put',en:'well / pit'},
+      {af:'rus',en:'to rest'},
+      {af:'lug',en:'air / sky'},
+      {af:'buk',en:'to bend down'},
+    ]
+  },
+  {
+    label:'Week 7', words:[
+      {af:'kat',en:'cat'},
+      {af:'katte',en:'cats'},
+      {af:'mat',en:'mat'},
+      {af:'matte',en:'mats'},
+      {af:'vuur',en:'fire'},
+      {af:'mure',en:'walls'},
+      {af:'sak',en:'bag'},
+      {af:'sakke',en:'bags'},
+      {af:'sin',en:'sense / sentence'},
+      {af:'sinne',en:'senses'},
+      {af:'dam',en:'dam / pond'},
+      {af:'damme',en:'dams'},
+    ]
+  },
+  {
+    label:'Week 8', words:[
+      {af:'muur',en:'wall'},
+      {af:'mure',en:'walls'},
+      {af:'vuur',en:'fire'},
+      {af:'vure',en:'fires'},
+      {af:'veer',en:'feather / spring'},
+      {af:'vere',en:'feathers'},
+      {af:'naam',en:'name'},
+      {af:'name',en:'names'},
+      {af:'raam',en:'frame / window'},
+      {af:'rane',en:'frames'},
+      {af:'haan',en:'rooster'},
+      {af:'hane',en:'roosters'},
+    ]
+  }
+];
+
+let currentWeek = 0;
+let currentIndex = 0;
+let isFlipped = false;
+let currentWords = [];
+
+function getEmoji(word) {
+  return EMOJIS[word] || '🔤';
+}
+
+function init() {
+  // Build week tabs
+  const tabs = document.getElementById('weekTabs');
+  tabs.innerHTML = '';
+  weeks.forEach((w, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'week-tab' + (i === 0 ? ' active' : '');
+    btn.textContent = w.label;
+    btn.style.setProperty('--wc', WEEK_COLORS[i]);
+    btn.onclick = () => selectWeek(i);
+    if (i === currentWeek) {
+      btn.style.background = WEEK_COLORS[i];
+      btn.style.color = 'white';
+    }
+    tabs.appendChild(btn);
+  });
+  loadWeek(0);
+}
+
+function selectWeek(idx) {
+  currentWeek = idx;
+  currentIndex = 0;
+  // Update tabs
+  document.querySelectorAll('.week-tab').forEach((t, i) => {
+    t.classList.toggle('active', i === idx);
+    t.style.background = i === idx ? WEEK_COLORS[i] : 'white';
+    t.style.color = i === idx ? 'white' : '';
+  });
+  loadWeek(idx);
+}
+
+function loadWeek(idx) {
+  currentWords = [...weeks[idx].words];
+  currentIndex = 0;
+  renderCard();
+  renderWordGrid();
+}
+
+function renderCard() {
+  // Reset flip
+  const card = document.getElementById('card');
+  card.classList.remove('flipped');
+  isFlipped = false;
+
+  const w = currentWords[currentIndex];
+  const color = WEEK_COLORS[currentWeek];
+
+  document.getElementById('frontWord').textContent = w.af;
+  document.getElementById('backWord').textContent = w.en;
+  document.getElementById('cardEmoji').textContent = getEmoji(w.af);
+
+  document.getElementById('weekBadge').textContent = currentWeek + 1;
+  document.getElementById('weekBadge').style.background = color;
+  document.getElementById('weekBadgeBack').textContent = currentWeek + 1;
+  document.getElementById('weekBadgeBack').style.background = 'rgba(255,255,255,0.25)';
+
+  document.getElementById('cardFront').style.borderColor = color + '33';
+
+  // Progress
+  const pct = ((currentIndex + 1) / currentWords.length) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressFill').style.background = color;
+  document.getElementById('counter').textContent = `${currentIndex + 1} / ${currentWords.length}`;
+
+  // Nav next color
+  document.getElementById('navNext').style.background = color;
+
+  // Animate
+  const wrapper = document.getElementById('cardWrapper');
+  wrapper.classList.remove('card-animate');
+  void wrapper.offsetWidth;
+  wrapper.classList.add('card-animate');
+
+  // Update grid highlights
+  document.querySelectorAll('.word-chip').forEach((chip, i) => {
+    chip.classList.toggle('current', i === currentIndex);
+    chip.style.color = i === currentIndex ? color : '';
+  });
+}
+
+function flipCard() {
+  const card = document.getElementById('card');
+  isFlipped = !isFlipped;
+  card.classList.toggle('flipped', isFlipped);
+}
+
+function navigate(dir) {
+  const newIdx = currentIndex + dir;
+  if (newIdx < 0 || newIdx >= currentWords.length) return;
+  currentIndex = newIdx;
+  renderCard();
+}
+
+function shuffleCards() {
+  for (let i = currentWords.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [currentWords[i], currentWords[j]] = [currentWords[j], currentWords[i]];
+  }
+  currentIndex = 0;
+  renderCard();
+  renderWordGrid();
+}
+
+function renderWordGrid() {
+  const grid = document.getElementById('wordGrid');
+  const color = WEEK_COLORS[currentWeek];
+  grid.innerHTML = '';
+  currentWords.forEach((w, i) => {
+    const chip = document.createElement('div');
+    chip.className = 'word-chip' + (i === currentIndex ? ' current' : '');
+    chip.textContent = w.af;
+    if (i === currentIndex) chip.style.color = color;
+    chip.onclick = () => { currentIndex = i; renderCard(); };
+    grid.appendChild(chip);
+  });
+}
+
+function toggleList() {
+  const grid = document.getElementById('wordGrid');
+  const btn = document.querySelector('.word-list-toggle');
+  grid.classList.toggle('open');
+  btn.textContent = grid.classList.contains('open')
+    ? '▲ Verberg woorde'
+    : '▼ Wys alle woorde vir hierdie week';
+}
+
+// Keyboard nav
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') navigate(1);
+  else if (e.key === 'ArrowLeft') navigate(-1);
+  else if (e.key === ' ' || e.key === 'Enter') flipCard();
+});
+
+init();
+</script>
+</body>
+</html>

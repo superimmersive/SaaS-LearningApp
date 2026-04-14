@@ -1,0 +1,41 @@
+LekkeLeer Lees – Feature Reference
+==================================
+
+Use these names in prompts when you want to refer to each feature.
+
+
+1. TAP-TO-HEAR (word playback)
+------------------------------
+• What it does: User taps a word in the sentence and that word is spoken aloud via Azure TTS.
+• In code: speakWord(); each word span has a click listener that calls it.
+• Use in prompts: "tap-to-hear", "word tap playback", "TTS when you tap a word".
+
+
+2. READ-ALOUD RECOGNITION (listening mode)
+------------------------------------------
+• What it does: User taps "Begin Lees" → the app uses the browser's speech recognition (Web Speech API), listens to the learner, and matches what they say to the sentence (left-to-right, fuzzy match). Words turn green as they are recognised.
+• In code: recognitionService, processTranscript(), fuzzyMatch(); "Begin Lees" starts this flow.
+• Use in prompts: "read-aloud recognition", "speech recognition", "listening mode", "Begin Lees flow".
+
+
+3. SPEEL (sentence playback with karaoke highlight)
+----------------------------------------------------
+• What it does: User taps the "Speel" (🔊) button on the card and the full sentence is spoken aloud via Azure TTS. As the audio plays, each word is highlighted in yellow in real time (karaoke-style), following along with the narration.
+• In code: playSentence(), playWithKaraokeHighlight(); word boundary timings are captured from Azure SDK during synthesis and stored in state.ttsTimings. A requestAnimationFrame loop syncs audio.currentTime with the timings to toggle a .tts-active class on each word span.
+• Use in prompts: "Speel", "sentence playback", "karaoke highlight", "play sentence TTS".
+
+
+Quick reference
+---------------
+Tap a word → hear it spoken     →  Tap-to-hear / word playback
+"Begin Lees" → mic listens and matches words  →  Read-aloud recognition / listening mode
+"Speel" → full sentence TTS with karaoke word tracking  →  Speel / sentence playback
+
+
+
+cd "lekkeleer-lees"
+python -m http.server 8080
+http://localhost:8080/
+
+Admin
+https://yoursite.github.io/admin.html?token=ll-admin-2024

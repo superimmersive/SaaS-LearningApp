@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phase 4 – Lumi Plus (parent subscriptions)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">Lekke<span>Leer</span></a>
+    <span class="nav-badge">Project Overview</span>
+    <div class="nav-links">
+      <a href="overview.html" class="nav-link">Overview</a>
+      <a href="roadmap.html" class="nav-link">Roadmap</a>
+      <a href="activity-lib.html" class="nav-link">Activity Lib</a>
+      <a href="phase-1.html" class="nav-link">Phase 1</a>
+      <a href="phase-2.html" class="nav-link">Phase 2</a>
+      <a href="phase-3.html" class="nav-link">Phase 3</a>
+      <a href="phase-4.html" class="nav-link active">Phase 4</a>
+      <a href="phase-5.html" class="nav-link">Phase 5</a>
+      <a href="monetization.html" class="nav-link">Monetization</a>
+      <a href="proposals.html" class="nav-link">Proposals</a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <h1>Phase 4 – Lumi Plus (parent subscriptions)</h1>
+    <p class="page-desc">Lumi Plus is an optional parent subscription that adds premium value (extra features and content) on top of free access and Lumi Schools access.</p>
+  </header>
+
+  <main class="main main-page">
+    <section class="section">
+      <h2>Goals</h2>
+      <div class="card">
+        <ul>
+          <li>Enable parents to subscribe to Lumi Plus on monthly or annual plans.</li>
+          <li>Introduce paywalls around premium features while keeping a meaningful free tier.</li>
+          <li>Integrate billing (Stripe or RevenueCat) into the auth and account foundation from Phase 2.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Scope (from Roadmap)</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Item</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Subscription state</td><td>Stripe or RevenueCat integration</td></tr>
+          <tr><td>Paywall logic</td><td>Gate premium features behind subscription</td></tr>
+          <tr><td>Free vs Plus feature split</td><td>Define what stays free vs paid</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>Lumi Plus features</h2>
+      <div class="card">
+        <p>Lumi Plus (parent subscription) is defined in the roadmap as:</p>
+        <ul>
+          <li>Full content library.</li>
+          <li>iOS + Android native app.</li>
+          <li>Offline mode (cached audio).</li>
+          <li>Progress dashboard.</li>
+          <li>Priority feature access (annual).</li>
+          <li>Founding family badge (annual).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Design questions</h2>
+      <div class="card">
+        <ul>
+          <li>What is the exact boundary between free vs Lumi Plus features?</li>
+          <li>How visible is the upgrade path inside the learner experience vs parent settings?</li>
+          <li>Stripe vs RevenueCat for subscription management and renewals?</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Derived from <code>ROADMAP.md</code> Phase 2 (Lumi Plus items). Last updated: 2026-03-17</p>
+  </footer>
+</body>
+</html>
+

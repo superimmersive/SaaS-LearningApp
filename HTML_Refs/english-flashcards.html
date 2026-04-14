@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Spelling Flashcards – Term 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F0F7FF;
+    --accent1: #4A90D9;
+    --text-dark: #1A1A2E;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-image: radial-gradient(circle at 10% 20%, rgba(74,144,217,0.12) 0%, transparent 50%),
+                      radial-gradient(circle at 90% 80%, rgba(255,107,107,0.1) 0%, transparent 50%);
+  }
+
+  h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  h1 span { color: #4A90D9; }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: #888;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .week-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 24px;
+    max-width: 700px;
+  }
+
+  .week-tab {
+    padding: 7px 18px;
+    border-radius: 30px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    transition: all 0.2s;
+    background: white;
+    color: var(--text-dark);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .week-tab:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .week-tab.active { color: white; }
+
+  .card-area {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #E0E0E0;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+
+  .counter {
+    font-size: 0.9rem;
+    color: #999;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .card-wrapper {
+    width: 100%;
+    height: 280px;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 24px;
+  }
+  .card.flipped { transform: rotateY(180deg); }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    padding: 30px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  }
+
+  .card-front {
+    background: white;
+    border: 3px solid transparent;
+  }
+
+  .card-back {
+    background: #2C3E6B;
+    transform: rotateY(180deg);
+    color: white;
+  }
+
+  .word-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+
+  .word-main {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .word-hint {
+    font-size: 0.82rem;
+    opacity: 0.5;
+    margin-top: 14px;
+  }
+
+  .card-back .word-main {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    color: white;
+  }
+
+  .emoji-icon {
+    font-size: 3rem;
+    margin-bottom: 8px;
+  }
+
+  .week-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.9rem;
+    color: white;
+  }
+
+  /* Spell-it mode */
+  .spell-input-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .spell-input {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    text-align: center;
+    width: 80%;
+    padding: 10px 16px;
+    border-radius: 14px;
+    border: 3px solid #E0E0E0;
+    outline: none;
+    transition: border-color 0.2s;
+    letter-spacing: 4px;
+  }
+  .spell-input:focus { border-color: var(--accent1); }
+  .spell-input.correct { border-color: #6AB04C; background: #f0fff4; }
+  .spell-input.wrong { border-color: #FF6B6B; background: #fff0f0; }
+
+  .check-btn {
+    padding: 10px 28px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    color: white;
+    transition: all 0.2s;
+  }
+  .check-btn:hover { transform: translateY(-2px); }
+
+  .feedback {
+    font-size: 1.1rem;
+    font-weight: 800;
+    min-height: 26px;
+  }
+  .feedback.correct { color: #6AB04C; }
+  .feedback.wrong { color: #FF6B6B; }
+
+  /* Mode toggle */
+  .mode-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .mode-btn {
+    padding: 7px 18px;
+    border-radius: 30px;
+    border: 2px solid #E0E0E0;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    background: white;
+    color: #888;
+    transition: all 0.2s;
+  }
+  .mode-btn.active { color: white; border-color: transparent; }
+
+  .nav-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .nav-btn:hover { transform: scale(1.1); }
+  .nav-btn:active { transform: scale(0.95); }
+  .nav-prev { background: white; color: var(--text-dark); }
+  .nav-next { color: white; }
+
+  .shuffle-btn {
+    padding: 10px 22px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    background: white;
+    color: var(--text-dark);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.2s;
+  }
+  .shuffle-btn:hover { transform: translateY(-2px); }
+
+  .word-list-toggle {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #aaa;
+    cursor: pointer;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .word-grid {
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 8px;
+    max-width: 700px;
+    width: 100%;
+    margin-top: 12px;
+  }
+  .word-grid.open { display: grid; }
+
+  .word-chip {
+    background: white;
+    border-radius: 12px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 2px solid transparent;
+  }
+  .word-chip:hover { transform: translateY(-2px); }
+  .word-chip.current { border-color: currentColor; }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .card-animate { animation: cardIn 0.35s ease forwards; }
+
+  @media (max-width: 480px) {
+    .card-wrapper { height: 260px; }
+  }
+</style>
+</head>
+<body>
+
+<h1>📚 English <span>Spelling</span></h1>
+<p class="subtitle">Term 1 · Flashcard & Spelling Practice</p>
+
+<div class="week-tabs" id="weekTabs"></div>
+
+<div class="mode-row">
+  <button class="mode-btn active" id="modeFlash" onclick="setMode('flash')">🃏 Flashcard</button>
+  <button class="mode-btn" id="modeSpell" onclick="setMode('spell')">✏️ Spell It</button>
+</div>
+
+<div class="card-area">
+  <div class="counter" id="counter">1 / 10</div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+  <!-- FLASHCARD MODE -->
+  <div id="flashMode" style="width:100%">
+    <div class="card-wrapper" id="cardWrapper" onclick="flipCard()">
+      <div class="card" id="card">
+        <div class="card-face card-front" id="cardFront">
+          <div class="week-badge" id="weekBadge"></div>
+          <div class="emoji-icon" id="cardEmoji">🔤</div>
+          <div class="word-label">Spelling Word</div>
+          <div class="word-main" id="frontWord">—</div>
+          <div class="word-hint">👆 Click to see the word used</div>
+        </div>
+        <div class="card-face card-back" id="cardBack">
+          <div class="week-badge" id="weekBadgeBack"></div>
+          <div class="word-label" style="color:rgba(255,255,255,0.6)">Example</div>
+          <div class="word-main" id="backWord" style="font-size:1.5rem; line-height:1.4">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPELL IT MODE -->
+  <div id="spellMode" style="width:100%; display:none;">
+    <div class="card-wrapper" style="cursor:default;">
+      <div class="card-face card-front" style="position:relative; border-radius:24px; box-shadow: 0 12px 40px rgba(0,0,0,0.15); border: 3px solid transparent; background: white;">
+        <div class="week-badge" id="weekBadgeSpell"></div>
+        <div class="emoji-icon" id="spellEmoji">🔤</div>
+        <div class="word-label">Type the word you hear</div>
+        <div class="spell-input-wrap">
+          <input class="spell-input" id="spellInput" type="text" placeholder="..." autocomplete="off" autocorrect="off" spellcheck="false" oninput="resetFeedback()" onkeydown="if(event.key==='Enter') checkSpelling()"/>
+          <button class="check-btn" id="checkBtn" onclick="checkSpelling()">Check ✓</button>
+          <div class="feedback" id="spellFeedback"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn nav-prev" onclick="navigate(-1)">←</button>
+    <button class="shuffle-btn" onclick="shuffleCards()">🔀 Shuffle</button>
+    <button class="nav-btn nav-next" id="navNext" onclick="navigate(1)">→</button>
+  </div>
+</div>
+
+<button class="word-list-toggle" onclick="toggleList()">▼ Show all words this week</button>
+<div class="word-grid" id="wordGrid"></div>
+
+<script>
+const WEEK_COLORS = [
+  '#FF6B6B','#FF9F43','#F9CA24','#6AB04C','#22A6B3','#686DE0','#E84393','#C0392B'
+];
+
+const EMOJIS = {
+  pan:'🍳', pin:'📌', in:'📥', at:'🎯', sin:'😈', span:'📏', spot:'🔴', assist:'🤝', pants:'👖', insist:'☝️',
+  peck:'🐦', den:'🦁', nap:'😴', rap:'🎤', spank:'👋', snack:'🍎', speck:'🔬', nest:'🪺', hectic:'😵', rocket:'🚀',
+  mink:'🐭', intend:'🎯', he:'👦', she:'👧', the:'📖',
+  sun:'☀️', bun:'🍞', bin:'🗑️', rod:'🎣', did:'✅', gran:'👵', skid:'🛞', dragon:'🐉', instruct:'📋', skunk:'🦨',
+  lipstick:'💄', fantastic:'🌟', dustbin:'🗑️', there:'📍', they:'👥',
+  pain:'😣', coat:'🧥', rain:'🌧️', boat:'⛵', tie:'👔', bee:'🐝', feet:'🦶', for:'➡️', born:'👶', magpie:'🐦‍⬛',
+  canteen:'🏫', popcorn:'🍿', sportsman:'🏆', your:'👆', said:'💬',
+  where:'📍', were:'⏪', more:'➕', which:'❓', why:'🤔', who:'🙋', insist2:'☝️', span2:'📏', lipstick2:'💄',
+  fantastic2:'🌟', dustbin2:'🗑️', born2:'👶', dragon2:'🐉', gran2:'👵', said2:'💬',
+  zip:'🤐', web:'🕸️', ring:'💍', vet:'🐾', vain:'🪞', wool:'🧶', book:'📚', foot:'🦶', pool:'🏊', root:'🌱',
+  woodland:'🌲', scrapbook:'📒', any:'🔢', many:'🔢', other:'🔄',
+  yell:'📢', yack:'🗣️', unexpected:'😲', paint:'🎨', chipmunk:'🐿️', mushroom:'🍄', within:'📦', thing:'🔮',
+  shopping:'🛍️', eggshell:'🥚', toothbrush:'🪥', put:'⬇️', made:'🔨', right:'✅', saw:'🪚',
+  queen:'👑', quick:'⚡', out:'🚪', loud:'📣', coin:'🪙', quicksand:'⏳', shouting:'📢', aloud:'🔊',
+  topsoil:'🌱', toilet:'🚽', cruel:'😤', untrue:'❌', blister:'🩹', should:'💭', would:'💭'
+};
+
+const SENTENCES = {
+  pan:'I cook eggs in a pan.', pin:'Pin the note to the board.', in:'Come in and sit down.', at:'Look at the cat.',
+  sin:'Lying is a sin.', span:'The bridge spans the river.', spot:'I can spot a red dot.',
+  assist:'Can you assist me please?', pants:'He wore blue pants.', insist:'I insist you try it.',
+  peck:'The bird gave a quick peck.', den:'The lion lives in a den.', nap:'The baby had a nap.',
+  rap:'He loves to rap along.', spank:'That is not a kind thing to do.', snack:'An apple is a healthy snack.',
+  speck:'There is a speck of dust.', nest:'The bird built a cosy nest.', hectic:'Monday mornings are hectic.',
+  rocket:'The rocket flew to the moon.', mink:'A mink has very soft fur.', intend:'I intend to do my best.',
+  he:'He is my brother.', she:'She won the race.', the:'The dog is friendly.',
+  sun:'The sun is bright today.', bun:'I ate a sticky bun.', bin:'Put the rubbish in the bin.',
+  rod:'He fished with a long rod.', did:'Did you finish your work?', gran:'Gran baked us biscuits.',
+  skid:'The car began to skid on ice.', dragon:'The dragon breathed fire.',
+  instruct:'Please instruct the class.', skunk:'A skunk has a strong smell.',
+  lipstick:'Mum put on red lipstick.', fantastic:'You did a fantastic job!',
+  dustbin:'Put it in the dustbin.', there:'Put it over there.', they:'They are my friends.',
+  pain:'I have a pain in my knee.', coat:'Wear your coat — it is cold.', rain:'The rain fell all day.',
+  boat:'We sailed in a small boat.', tie:'Dad wore a blue tie.', bee:'A bee made some honey.',
+  feet:'My feet are cold.', for:'This gift is for you.', born:'She was born in July.',
+  magpie:'A magpie is black and white.', canteen:'We eat lunch in the canteen.',
+  popcorn:'We had popcorn at the movies.', sportsman:'A good sportsman is fair.',
+  your:'Is this your pencil?', said:'She said hello to me.',
+  where:'Where did you put it?', were:'We were late for school.',
+  more:'Can I have more please?', which:'Which one do you want?', why:'Why is the sky blue?',
+  who:'Who is knocking at the door?', span2:'The rope spans the gap.',
+  fantastic2:'What a fantastic day!', dustbin2:'Toss it in the dustbin.',
+  born2:'A new kitten was born.', dragon2:'She drew a friendly dragon.',
+  gran2:'Gran made soup for us.', said2:'He said it was his turn.',
+  zip:'Zip up your jacket.', web:'A spider spun a web.', ring:'She wore a gold ring.',
+  vet:'The vet helped the sick dog.', vain:'She was vain about her hair.',
+  wool:'The sheep gave soft wool.', book:'I read a great book.',
+  foot:'I hurt my foot playing.', pool:'We swam in the pool.',
+  root:'The tree has deep roots.', woodland:'Foxes live in woodland.',
+  scrapbook:'She made a scrapbook of photos.', any:'Do you have any questions?',
+  many:'There were many stars at night.', other:'Look at the other side.',
+  yell:'Do not yell in class.', yack:'Stop the yack and listen.',
+  unexpected:'The snow was unexpected.', paint:'Let\'s paint the fence.',
+  chipmunk:'A chipmunk stores nuts.', mushroom:'She found a mushroom in the garden.',
+  within:'Stay within the lines.', thing:'What is that strange thing?',
+  shopping:'We went shopping on Saturday.', eggshell:'The eggshell was very thin.',
+  toothbrush:'Brush with your toothbrush twice a day.', put:'Put your bag away.',
+  made:'She made a lovely card.', right:'Turn right at the corner.',
+  saw:'I saw a shooting star.',
+  queen:'The queen wore a golden crown.', quick:'Be quick or we will be late.',
+  out:'Go out and play.', loud:'The music was very loud.',
+  coin:'I found a coin on the floor.', quicksand:'Do not step in quicksand!',
+  shouting:'Stop shouting in the house.', aloud:'Read the poem aloud.',
+  topsoil:'Plants grow in topsoil.', toilet:'Wash your hands after the toilet.',
+  cruel:'It is cruel to hurt animals.', untrue:'That story is untrue.',
+  blister:'I got a blister on my heel.', should:'You should brush your teeth.',
+  would:'Would you like some cake?'
+};
+
+const weeks = [
+  { label:'Week 1', words:['pan','pin','in','at','sin','span','spot','assist','pants','insist'] },
+  { label:'Week 2', words:['peck','den','nap','rap','spank','snack','speck','nest','hectic','rocket','mink','intend','he','she','the'] },
+  { label:'Week 3', words:['sun','bun','bin','rod','did','gran','skid','dragon','instruct','skunk','lipstick','fantastic','dustbin','there','they'] },
+  { label:'Week 4', words:['pain','coat','rain','boat','tie','bee','feet','for','born','magpie','canteen','popcorn','sportsman','your','said'] },
+  { label:'Week 5', words:['where','were','more','which','why','who','insist','span','lipstick','fantastic','dustbin','born','dragon','gran','said'] },
+  { label:'Week 6', words:['zip','web','ring','vet','vain','wool','book','foot','pool','root','woodland','scrapbook','any','many','other'] },
+  { label:'Week 7', words:['yell','yack','unexpected','paint','chipmunk','mushroom','within','thing','shopping','eggshell','toothbrush','put','made','right','saw'] },
+  { label:'Week 8', words:['queen','quick','out','loud','coin','quicksand','shouting','aloud','topsoil','toilet','cruel','untrue','blister','should','would'] },
+];
+
+let currentWeek = 0;
+let currentIndex = 0;
+let isFlipped = false;
+let currentWords = [];
+let mode = 'flash';
+
+function getEmoji(w) { return EMOJIS[w] || '🔤'; }
+function getSentence(w) { return SENTENCES[w] || `Use "${w}" in a sentence.`; }
+
+function init() {
+  const tabs = document.getElementById('weekTabs');
+  tabs.innerHTML = '';
+  weeks.forEach((w, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'week-tab' + (i === 0 ? ' active' : '');
+    btn.textContent = w.label;
+    btn.onclick = () => selectWeek(i);
+    if (i === 0) { btn.style.background = WEEK_COLORS[0]; btn.style.color = 'white'; }
+    tabs.appendChild(btn);
+  });
+  loadWeek(0);
+}
+
+function selectWeek(idx) {
+  currentWeek = idx;
+  currentIndex = 0;
+  document.querySelectorAll('.week-tab').forEach((t, i) => {
+    t.classList.toggle('active', i === idx);
+    t.style.background = i === idx ? WEEK_COLORS[i] : 'white';
+    t.style.color = i === idx ? 'white' : '';
+  });
+  loadWeek(idx);
+}
+
+function loadWeek(idx) {
+  currentWords = [...weeks[idx].words];
+  currentIndex = 0;
+  renderCard();
+  renderWordGrid();
+}
+
+function setMode(m) {
+  mode = m;
+  document.getElementById('flashMode').style.display = m === 'flash' ? 'block' : 'none';
+  document.getElementById('spellMode').style.display = m === 'spell' ? 'block' : 'none';
+  document.getElementById('modeFlash').classList.toggle('active', m === 'flash');
+  document.getElementById('modeSpell').classList.toggle('active', m === 'spell');
+  const c = WEEK_COLORS[currentWeek];
+  document.getElementById('modeFlash').style.background = m === 'flash' ? c : 'white';
+  document.getElementById('modeFlash').style.color = m === 'flash' ? 'white' : '#888';
+  document.getElementById('modeSpell').style.background = m === 'spell' ? c : 'white';
+  document.getElementById('modeSpell').style.color = m === 'spell' ? 'white' : '#888';
+  if (m === 'spell') {
+    renderSpell();
+    document.getElementById('spellInput').focus();
+  } else {
+    renderCard();
+  }
+}
+
+function renderCard() {
+  const card = document.getElementById('card');
+  card.classList.remove('flipped');
+  isFlipped = false;
+
+  const w = currentWords[currentIndex];
+  const color = WEEK_COLORS[currentWeek];
+
+  document.getElementById('frontWord').textContent = w;
+  document.getElementById('backWord').textContent = getSentence(w);
+  document.getElementById('cardEmoji').textContent = getEmoji(w);
+
+  document.getElementById('weekBadge').textContent = currentWeek + 1;
+  document.getElementById('weekBadge').style.background = color;
+  document.getElementById('weekBadgeBack').textContent = currentWeek + 1;
+  document.getElementById('weekBadgeBack').style.background = 'rgba(255,255,255,0.25)';
+  document.getElementById('cardFront').style.borderColor = color + '33';
+
+  const pct = ((currentIndex + 1) / currentWords.length) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressFill').style.background = color;
+  document.getElementById('counter').textContent = `${currentIndex + 1} / ${currentWords.length}`;
+  document.getElementById('navNext').style.background = color;
+  document.getElementById('checkBtn').style.background = color;
+
+  const wrapper = document.getElementById('cardWrapper');
+  wrapper.classList.remove('card-animate');
+  void wrapper.offsetWidth;
+  wrapper.classList.add('card-animate');
+
+  document.querySelectorAll('.word-chip').forEach((chip, i) => {
+    chip.classList.toggle('current', i === currentIndex);
+    chip.style.color = i === currentIndex ? color : '';
+  });
+}
+
+function renderSpell() {
+  const w = currentWords[currentIndex];
+  const color = WEEK_COLORS[currentWeek];
+
+  document.getElementById('spellEmoji').textContent = getEmoji(w);
+  document.getElementById('weekBadgeSpell').textContent = currentWeek + 1;
+  document.getElementById('weekBadgeSpell').style.background = color;
+  document.getElementById('spellInput').value = '';
+  document.getElementById('spellInput').className = 'spell-input';
+  document.getElementById('spellFeedback').textContent = '';
+  document.getElementById('spellFeedback').className = 'feedback';
+  document.getElementById('checkBtn').style.background = color;
+
+  const pct = ((currentIndex + 1) / currentWords.length) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressFill').style.background = color;
+  document.getElementById('counter').textContent = `${currentIndex + 1} / ${currentWords.length}`;
+  document.getElementById('navNext').style.background = color;
+
+  document.querySelectorAll('.word-chip').forEach((chip, i) => {
+    chip.classList.toggle('current', i === currentIndex);
+    chip.style.color = i === currentIndex ? color : '';
+  });
+}
+
+function checkSpelling() {
+  const w = currentWords[currentIndex];
+  const input = document.getElementById('spellInput');
+  const feedback = document.getElementById('spellFeedback');
+  const typed = input.value.trim().toLowerCase();
+  if (!typed) return;
+  if (typed === w.toLowerCase()) {
+    input.className = 'spell-input correct';
+    feedback.textContent = '✅ Correct! Well done!';
+    feedback.className = 'feedback correct';
+    setTimeout(() => navigate(1), 1000);
+  } else {
+    input.className = 'spell-input wrong';
+    feedback.textContent = `❌ Try again! (${w})`;
+    feedback.className = 'feedback wrong';
+  }
+}
+
+function resetFeedback() {
+  document.getElementById('spellInput').className = 'spell-input';
+  document.getElementById('spellFeedback').textContent = '';
+}
+
+function flipCard() {
+  if (mode !== 'flash') return;
+  const card = document.getElementById('card');
+  isFlipped = !isFlipped;
+  card.classList.toggle('flipped', isFlipped);
+}
+
+function navigate(dir) {
+  const newIdx = currentIndex + dir;
+  if (newIdx < 0 || newIdx >= currentWords.length) return;
+  currentIndex = newIdx;
+  if (mode === 'flash') renderCard();
+  else renderSpell();
+}
+
+function shuffleCards() {
+  for (let i = currentWords.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [currentWords[i], currentWords[j]] = [currentWords[j], currentWords[i]];
+  }
+  currentIndex = 0;
+  if (mode === 'flash') renderCard();
+  else renderSpell();
+  renderWordGrid();
+}
+
+function renderWordGrid() {
+  const grid = document.getElementById('wordGrid');
+  const color = WEEK_COLORS[currentWeek];
+  grid.innerHTML = '';
+  currentWords.forEach((w, i) => {
+    const chip = document.createElement('div');
+    chip.className = 'word-chip' + (i === currentIndex ? ' current' : '');
+    chip.textContent = w;
+    if (i === currentIndex) chip.style.color = color;
+    chip.onclick = () => { currentIndex = i; mode === 'flash' ? renderCard() : renderSpell(); };
+    grid.appendChild(chip);
+  });
+}
+
+function toggleList() {
+  const grid = document.getElementById('wordGrid');
+  const btn = document.querySelector('.word-list-toggle');
+  grid.classList.toggle('open');
+  btn.textContent = grid.classList.contains('open') ? '▲ Hide word list' : '▼ Show all words this week';
+}
+
+document.addEventListener('keydown', e => {
+  if (mode === 'spell') return;
+  if (e.key === 'ArrowRight') navigate(1);
+  else if (e.key === 'ArrowLeft') navigate(-1);
+  else if (e.key === ' ' || e.key === 'Enter') flipCard();
+});
+
+init();
+</script>
+</body>
+</html>

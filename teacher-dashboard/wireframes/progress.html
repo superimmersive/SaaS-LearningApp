@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learner progress – Teacher Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+  <header class="td-header">
+    <div class="td-logo">Lekke<span>Leer</span></div>
+    <span class="td-badge">Lumi Schools · Teacher</span>
+    <nav class="td-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="homework-picker.html">Set homework</a>
+      <a href="schoolwork-picker.html">Set schoolwork</a>
+      <a href="progress.html" class="active">Progress</a>
+    </nav>
+  </header>
+
+  <main class="td-main">
+    <section class="td-section">
+      <h2>Learner progress</h2>
+      <p class="td-intro">Assigned: <strong>Term 1 · Week 3</strong> — Afrikaans · Lees sinne</p>
+
+      <div class="td-picker-row td-picker-row-spaced">
+        <div class="td-picker-group">
+          <label>Filter by week</label>
+          <select>
+            <option>Week 1</option>
+            <option>Week 2</option>
+            <option selected>Week 3</option>
+            <option>Week 4</option>
+            <option>Week 5</option>
+            <option>Week 6</option>
+            <option>Week 7</option>
+            <option>Week 8</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="td-table-wrap">
+        <table class="td-table">
+          <thead>
+            <tr>
+              <th>Learner</th>
+              <th>Sentences</th>
+              <th>Stars</th>
+              <th>Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Anathi M.</td>
+              <td>7/7</td>
+              <td>★★★★★★★</td>
+              <td>12 min</td>
+              <td class="status-ok">On track</td>
+            </tr>
+            <tr>
+              <td>Bongani K.</td>
+              <td>7/7</td>
+              <td>★★★★★★★</td>
+              <td>15 min</td>
+              <td class="status-ok">On track</td>
+            </tr>
+            <tr>
+              <td>Lerato S.</td>
+              <td>4/7</td>
+              <td>★★★★☆☆☆</td>
+              <td>8 min</td>
+              <td class="status-behind">Behind</td>
+            </tr>
+            <tr>
+              <td>Thabo N.</td>
+              <td>2/7</td>
+              <td>★★☆☆☆☆☆</td>
+              <td>5 min</td>
+              <td class="status-behind">Behind</td>
+            </tr>
+            <tr>
+              <td>Zanele P.</td>
+              <td>0/7</td>
+              <td>☆☆☆☆☆☆☆</td>
+              <td>—</td>
+              <td class="status-behind">Not started</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="td-wireframe-note">Wireframe: Learner progress by week. Curriculum columns: sentences, stars, time, status.</p>
+  </main>
+</body>
+</html>

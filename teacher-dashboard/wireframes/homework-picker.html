@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set homework – Teacher Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+  <header class="td-header">
+    <div class="td-logo">Lekke<span>Leer</span></div>
+    <span class="td-badge">Lumi Schools · Teacher</span>
+    <nav class="td-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="homework-picker.html" class="active">Set homework</a>
+      <a href="schoolwork-picker.html">Set schoolwork</a>
+      <a href="progress.html">Progress</a>
+    </nav>
+  </header>
+
+  <main class="td-main">
+    <section class="td-section">
+      <div class="td-section-header">
+        <h2>Set this week's homework</h2>
+        <span class="td-status td-status-published">Published</span>
+      </div>
+      <p class="td-intro">Learners see this when they log in. Choose Term › Week, then set weekly activities and daily exercises.</p>
+
+      <!-- Term & Week -->
+      <div class="td-picker-row">
+        <div class="td-picker-group">
+          <label>Term</label>
+          <select>
+            <option>Term 1</option>
+            <option>Term 2</option>
+            <option>Term 3</option>
+            <option>Term 4</option>
+          </select>
+        </div>
+        <span class="td-picker-sep">›</span>
+        <div class="td-picker-group">
+          <label>Week</label>
+          <select>
+            <option>Week 1</option>
+            <option>Week 2</option>
+            <option selected>Week 3</option>
+            <option>Week 4</option>
+            <option>Week 5</option>
+            <option>Week 6</option>
+            <option>Week 7</option>
+            <option>Week 8</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Weekly activities: practice every day -->
+      <h3 class="td-subsection">Weekly activities</h3>
+      <p class="td-section-subtitle">Practice these every day of the week</p>
+      <ul class="td-activity-list">
+        <li class="td-activity-item expanded">
+          <div class="td-activity-header">
+            <button type="button" class="td-activity-toggle" aria-expanded="true">▼</button>
+            <div class="td-activity-info">
+              <span class="td-activity-name">Lees sinne</span>
+              <div class="td-activity-meta">Afrikaans · Term 1 · Week 3</div>
+            </div>
+            <div class="td-activity-stats">
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Completion rate</span> <span class="td-activity-stat-value">18/24</span></span>
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Missed homework</span> <span class="td-activity-stat-value td-activity-stat-behind">6</span></span>
+            </div>
+            <div class="td-activity-actions">
+              <button type="button" class="td-btn-icon td-btn-customise">✎ Edit</button>
+            </div>
+          </div>
+          <div class="td-activity-dropdown">
+            <div class="td-activity-instruction">
+              <label>Teacher's instruction</label>
+              <p class="td-instruction-display">Lees die sinne op jou tablet en skryf dit oor in jou huiswerk boek.</p>
+            </div>
+            <label style="font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 4px; display: block;">Sentences</label>
+            <ul class="td-sentence-list">
+              <li>1. Die kat sit op die mat.</li>
+              <li>2. Die hond hardloop vinnig.</li>
+              <li>3. Die ma se brood is lekker.</li>
+              <li>4. Ek lees 'n boek in die huis.</li>
+              <li>5. Die son skyn helder vandag.</li>
+              <li>6. Ons speel in die park.</li>
+              <li>7. Die kind drink melk.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="td-activity-item">
+          <div class="td-activity-header">
+            <button type="button" class="td-activity-toggle" aria-expanded="false">▼</button>
+            <div class="td-activity-info">
+              <span class="td-activity-name">Spelling woorde</span>
+              <div class="td-activity-meta">Afrikaans · Term 1 · Week 3</div>
+            </div>
+            <div class="td-activity-stats">
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Completion rate</span> <span class="td-activity-stat-value">20/24</span></span>
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Missed homework</span> <span class="td-activity-stat-value td-activity-stat-behind">4</span></span>
+            </div>
+            <div class="td-activity-actions">
+              <button type="button" class="td-btn-icon td-btn-customise">✎ Edit</button>
+            </div>
+          </div>
+          <div class="td-activity-dropdown">
+            <div class="td-activity-instruction">
+              <label>Teacher's instruction</label>
+              <p class="td-instruction-display">Leer die woorde en skryf elke woord 3 keer.</p>
+            </div>
+            <label style="font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 4px; display: block;">Words</label>
+            <ul class="td-sentence-list">
+              <li>kat, mat, sit, hond, brood, melk, park</li>
+            </ul>
+          </div>
+        </li>
+        <li class="td-activity-item">
+          <div class="td-activity-header">
+            <button type="button" class="td-activity-toggle" aria-expanded="false">▼</button>
+            <div class="td-activity-info">
+              <span class="td-activity-name">Wiskunde</span>
+              <div class="td-activity-meta">Term 1 · Week 3</div>
+            </div>
+            <div class="td-activity-stats">
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Completion rate</span> <span class="td-activity-stat-value td-activity-stat-all-done">24/24</span></span>
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Missed homework</span> <span class="td-activity-stat-value">0</span></span>
+            </div>
+            <div class="td-activity-actions">
+              <button type="button" class="td-btn-icon td-btn-customise">✎ Edit</button>
+            </div>
+          </div>
+          <div class="td-activity-dropdown">
+            <div class="td-activity-instruction">
+              <label>Teacher's instruction</label>
+              <p class="td-instruction-display">Doen die somme in jou huiswerk boek.</p>
+            </div>
+            <label style="font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 4px; display: block;">Problems</label>
+            <ul class="td-sentence-list">
+              <li>5 + 3 = __ · 7 − 2 = __ · 4 + 4 = __</li>
+            </ul>
+          </div>
+        </li>
+        <li class="td-activity-item">
+          <div class="td-activity-header">
+            <button type="button" class="td-activity-toggle" aria-expanded="false">▼</button>
+            <div class="td-activity-info">
+              <span class="td-activity-name">Show and tell (weekly oral)</span>
+              <div class="td-activity-meta">Term 1 · Week 3</div>
+            </div>
+            <div class="td-activity-stats">
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Completion rate</span> <span class="td-activity-stat-value">22/24</span></span>
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Missed homework</span> <span class="td-activity-stat-value td-activity-stat-behind">2</span></span>
+            </div>
+            <div class="td-activity-actions">
+              <button type="button" class="td-btn-icon td-btn-customise">✎ Edit</button>
+            </div>
+          </div>
+          <div class="td-activity-dropdown">
+            <div class="td-activity-instruction">
+              <label>Teacher's instruction</label>
+              <p class="td-instruction-display">Bring iets van die huis en vertel die klas daarvan. Oefen jou woorde.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <button type="button" class="td-btn-add">+ Add weekly activity</button>
+
+      <!-- Daily exercises: tab per day, activities beneath -->
+      <h3 class="td-subsection">Daily exercises</h3>
+      <p class="td-section-subtitle">Each day has 1–3 activities. Select a day to see and edit.</p>
+      <div class="td-day-tabs">
+        <button type="button" class="td-day-tab">Mon</button>
+        <button type="button" class="td-day-tab active">Tue</button>
+        <button type="button" class="td-day-tab">Wed</button>
+        <button type="button" class="td-day-tab">Thu</button>
+        <button type="button" class="td-day-tab">Fri</button>
+      </div>
+      <div class="td-day-panel">
+        <p class="td-day-label">Monday's activities (2)</p>
+        <ul class="td-activity-list">
+          <li class="td-activity-item expanded">
+            <div class="td-activity-header">
+              <button type="button" class="td-activity-toggle" aria-expanded="true">▼</button>
+              <div class="td-activity-info">
+                <span class="td-activity-name">Vul die woorde in</span>
+                <div class="td-activity-meta">Afrikaans · Term 1 · Week 3</div>
+              </div>
+            <div class="td-activity-stats">
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Completion rate</span> <span class="td-activity-stat-value">21/24</span></span>
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Missed homework</span> <span class="td-activity-stat-value td-activity-stat-behind">3</span></span>
+            </div>
+              <div class="td-activity-actions">
+                <button type="button" class="td-btn-icon td-btn-customise">✎ Edit</button>
+              </div>
+            </div>
+            <div class="td-activity-dropdown">
+              <div class="td-activity-instruction">
+                <label>Teacher's instruction</label>
+                <p class="td-instruction-display">Skryf die sin oor in jou huiswerk boek en vul die ontbrekende woord in.</p>
+              </div>
+              <label style="font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 4px; display: block;">Sentences (missing words from spelling)</label>
+              <ul class="td-sentence-list">
+                <li>1. Die ___ sit op die mat. (kat)</li>
+                <li>2. Die hond ___ vinnig. (hardloop)</li>
+                <li>3. Die ma se ___ is lekker. (brood)</li>
+              </ul>
+            </div>
+          </li>
+          <li class="td-activity-item">
+            <div class="td-activity-header">
+              <button type="button" class="td-activity-toggle" aria-expanded="false">▼</button>
+              <div class="td-activity-info">
+                <span class="td-activity-name">Handskrif</span>
+                <div class="td-activity-meta">Afrikaans · Term 1 · Week 3</div>
+              </div>
+              <div class="td-activity-stats">
+                <span class="td-activity-stat-item"><span class="td-activity-stat-label">Completion rate</span> <span class="td-activity-stat-value td-activity-stat-all-done">24/24</span></span>
+                <span class="td-activity-stat-item"><span class="td-activity-stat-label">Missed homework</span> <span class="td-activity-stat-value">0</span></span>
+              </div>
+              <div class="td-activity-actions">
+                <button type="button" class="td-btn-icon td-btn-customise">✎ Edit</button>
+              </div>
+            </div>
+            <div class="td-activity-dropdown">
+              <div class="td-activity-instruction">
+                <label>Teacher's instruction</label>
+                <p class="td-instruction-display">Skryf die letters netjies oor in jou huiswerk boek.</p>
+              </div>
+              <label style="font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 4px; display: block;">Letters / words</label>
+              <ul class="td-sentence-list">
+                <li>k K · m M · s S · t T</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <button type="button" class="td-btn-add">+ Add activity</button>
+      </div>
+      <div class="td-day-panel active">
+        <p class="td-day-label">Tuesday's activities (1)</p>
+        <ul class="td-activity-list">
+          <li class="td-activity-item expanded">
+            <div class="td-activity-header">
+              <button type="button" class="td-activity-toggle" aria-expanded="true">▼</button>
+              <div class="td-activity-info">
+                <span class="td-activity-name">Handskrif</span>
+                <div class="td-activity-meta">Afrikaans · Term 1 · Week 3</div>
+              </div>
+            <div class="td-activity-stats">
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Completion rate</span> <span class="td-activity-stat-value">19/24</span></span>
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Missed homework</span> <span class="td-activity-stat-value td-activity-stat-behind">5</span></span>
+            </div>
+              <div class="td-activity-actions">
+                <button type="button" class="td-btn-icon td-btn-customise">✎ Edit</button>
+              </div>
+            </div>
+            <div class="td-activity-dropdown">
+              <div class="td-activity-instruction">
+                <label>Teacher's instruction</label>
+                <p class="td-instruction-display">Skryf die letters netjies oor in jou huiswerk boek.</p>
+              </div>
+              <label style="font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 4px; display: block;">Letters / words</label>
+              <ul class="td-sentence-list">
+                <li>k K · m M · s S · t T</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <button type="button" class="td-btn-add">+ Add activity</button>
+      </div>
+      <div class="td-day-panel">
+        <p class="td-day-label">Wednesday's activities (3)</p>
+        <ul class="td-activity-list">
+          <li class="td-activity-item">
+            <div class="td-activity-header">
+              <button type="button" class="td-activity-toggle" aria-expanded="false">▼</button>
+              <div class="td-activity-info">
+                <span class="td-activity-name">Wiskunde</span>
+                <div class="td-activity-meta">Term 1 · Week 3</div>
+              </div>
+            <div class="td-activity-stats">
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Completion rate</span> <span class="td-activity-stat-value">23/24</span></span>
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Missed homework</span> <span class="td-activity-stat-value td-activity-stat-behind">1</span></span>
+            </div>
+              <div class="td-activity-actions">
+                <button type="button" class="td-btn-icon td-btn-customise">✎ Edit</button>
+              </div>
+            </div>
+            <div class="td-activity-dropdown">
+              <div class="td-activity-instruction">
+                <label>Teacher's instruction</label>
+                <p class="td-instruction-display">Doen die somme in jou huiswerk boek.</p>
+              </div>
+              <label style="font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 4px; display: block;">Problems</label>
+              <ul class="td-sentence-list">
+                <li>5 + 3 = __ · 7 − 2 = __ · 4 + 4 = __ · 9 − 4 = __</li>
+              </ul>
+            </div>
+          </li>
+          <li class="td-activity-item">
+            <div class="td-activity-header">
+              <button type="button" class="td-activity-toggle" aria-expanded="false">▼</button>
+              <div class="td-activity-info">
+                <span class="td-activity-name">Teken en skryf</span>
+                <div class="td-activity-meta">Afrikaans · Term 1 · Week 3</div>
+              </div>
+            <div class="td-activity-stats">
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Completion rate</span> <span class="td-activity-stat-value">18/24</span></span>
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Missed homework</span> <span class="td-activity-stat-value td-activity-stat-behind">6</span></span>
+            </div>
+              <div class="td-activity-actions">
+                <button type="button" class="td-btn-icon td-btn-customise">✎ Edit</button>
+              </div>
+            </div>
+            <div class="td-activity-dropdown">
+              <div class="td-activity-instruction">
+                <label>Teacher's instruction</label>
+                <p class="td-instruction-display">Teken 'n prent van jou huis en skryf een sin daaronder.</p>
+              </div>
+            </div>
+          </li>
+          <li class="td-activity-item">
+            <div class="td-activity-header">
+              <button type="button" class="td-activity-toggle" aria-expanded="false">▼</button>
+              <div class="td-activity-info">
+                <span class="td-activity-name">Volgorde Numbers</span>
+                <div class="td-activity-meta">Term 1 · Week 3</div>
+              </div>
+              <div class="td-activity-stats">
+                <span class="td-activity-stat-item"><span class="td-activity-stat-label">Completion rate</span> <span class="td-activity-stat-value td-activity-stat-all-done">24/24</span></span>
+                <span class="td-activity-stat-item"><span class="td-activity-stat-label">Missed homework</span> <span class="td-activity-stat-value">0</span></span>
+              </div>
+              <div class="td-activity-actions">
+                <button type="button" class="td-btn-icon td-btn-customise">✎ Edit</button>
+              </div>
+            </div>
+            <div class="td-activity-dropdown">
+              <div class="td-activity-instruction">
+                <label>Teacher's instruction</label>
+                <p class="td-instruction-display">Skryf die getalle in die regte volgorde in jou huiswerk boek.</p>
+              </div>
+              <label style="font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 4px; display: block;">Numbers</label>
+              <ul class="td-sentence-list">
+                <li>3, 7, 1, 5, 9 → 1, 3, 5, 7, 9</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <button type="button" class="td-btn-add">+ Add activity</button>
+      </div>
+      <div class="td-day-panel">
+        <p class="td-day-label">Thursday's activities (1)</p>
+        <ul class="td-activity-list">
+          <li class="td-activity-item">
+            <div class="td-activity-header">
+              <button type="button" class="td-activity-toggle" aria-expanded="false">▼</button>
+              <div class="td-activity-info">
+                <span class="td-activity-name">Teken en skryf</span>
+                <div class="td-activity-meta">Afrikaans · Term 1 · Week 3</div>
+              </div>
+            <div class="td-activity-stats">
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Completion rate</span> <span class="td-activity-stat-value">20/24</span></span>
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Missed homework</span> <span class="td-activity-stat-value td-activity-stat-behind">4</span></span>
+            </div>
+              <div class="td-activity-actions">
+                <button type="button" class="td-btn-icon td-btn-customise">✎ Edit</button>
+              </div>
+            </div>
+            <div class="td-activity-dropdown">
+              <div class="td-activity-instruction">
+                <label>Teacher's instruction</label>
+                <p class="td-instruction-display">Teken 'n prent van jou huis en skryf een sin daaronder.</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <button type="button" class="td-btn-add">+ Add activity</button>
+      </div>
+      <div class="td-day-panel">
+        <p class="td-day-label">Friday's activities (2)</p>
+        <ul class="td-activity-list">
+          <li class="td-activity-item">
+            <div class="td-activity-header">
+              <button type="button" class="td-activity-toggle" aria-expanded="false">▼</button>
+              <div class="td-activity-info">
+                <span class="td-activity-name">Volgorde Numbers</span>
+                <div class="td-activity-meta">Term 1 · Week 3</div>
+              </div>
+              <div class="td-activity-stats">
+                <span class="td-activity-stat-item"><span class="td-activity-stat-label">Completion rate</span> <span class="td-activity-stat-value">22/24</span></span>
+                <span class="td-activity-stat-item"><span class="td-activity-stat-label">Missed homework</span> <span class="td-activity-stat-value td-activity-stat-behind">2</span></span>
+              </div>
+              <div class="td-activity-actions">
+                <button type="button" class="td-btn-icon td-btn-customise">✎ Edit</button>
+              </div>
+            </div>
+            <div class="td-activity-dropdown">
+              <div class="td-activity-instruction">
+                <label>Teacher's instruction</label>
+                <p class="td-instruction-display">Skryf die getalle in die regte volgorde in jou huiswerk boek.</p>
+              </div>
+              <label style="font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 4px; display: block;">Numbers</label>
+              <ul class="td-sentence-list">
+                <li>3, 7, 1, 5, 9 → 1, 3, 5, 7, 9</li>
+              </ul>
+            </div>
+          </li>
+          <li class="td-activity-item">
+            <div class="td-activity-header">
+              <button type="button" class="td-activity-toggle" aria-expanded="false">▼</button>
+              <div class="td-activity-info">
+                <span class="td-activity-name">Vorms</span>
+                <div class="td-activity-meta">Term 1 · Week 3</div>
+              </div>
+            <div class="td-activity-stats">
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Completion rate</span> <span class="td-activity-stat-value">21/24</span></span>
+              <span class="td-activity-stat-item"><span class="td-activity-stat-label">Missed homework</span> <span class="td-activity-stat-value td-activity-stat-behind">3</span></span>
+            </div>
+              <div class="td-activity-actions">
+                <button type="button" class="td-btn-icon td-btn-customise">✎ Edit</button>
+              </div>
+            </div>
+            <div class="td-activity-dropdown">
+              <div class="td-activity-instruction">
+                <label>Teacher's instruction</label>
+                <p class="td-instruction-display">Teken die vorms en skryf die name daarby.</p>
+              </div>
+              <label style="font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 4px; display: block;">Shapes</label>
+              <ul class="td-sentence-list">
+                <li>sirkel · vierkant · driehoek · reghoek</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <button type="button" class="td-btn-add">+ Add activity</button>
+      </div>
+
+      <div class="td-actions td-actions-end">
+        <button type="button" class="td-btn td-btn-primary">Save & publish</button>
+        <button type="button" class="td-btn td-btn-secondary">Cancel</button>
+      </div>
+    </section>
+
+    <p class="td-wireframe-note">Wireframe: Each activity shows completion (e.g. 18/24) and learners behind. Green = all done.</p>
+  </main>
+  <script>
+    document.querySelectorAll('.td-day-tab').forEach((tab, i) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.td-day-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.td-day-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelectorAll('.td-day-panel')[i].classList.add('active');
+      });
+    });
+    document.querySelectorAll('.td-activity-header').forEach(header => {
+      header.addEventListener('click', (e) => {
+        if (e.target.closest('.td-btn-customise')) return;
+        const item = header.closest('.td-activity-item');
+        if (item && !item.classList.contains('td-activity-empty')) {
+          item.classList.toggle('expanded');
+          const toggle = header.querySelector('.td-activity-toggle');
+          if (toggle) toggle.setAttribute('aria-expanded', item.classList.contains('expanded'));
+        }
+      });
+    });
+  </script>
+</body>
+</html>

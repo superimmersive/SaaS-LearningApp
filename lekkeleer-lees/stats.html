@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LekkeLeer – Progress</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">Lekke<span>Leer</span></div>
+    <span class="early-access">Early access</span>
+    <div class="header-badge">📊 Progress</div>
+  </header>
+
+  <main class="stats-main">
+    <a href="./index.html" class="stats-back">← Back to Read</a>
+
+    <div class="stats-profile" id="statsProfile">
+      <span class="stats-profile-uid" id="profileUid"></span>
+      <span class="stats-profile-name" id="profileName"></span>
+      <button type="button" class="stats-profile-edit" id="profileEditBtn" aria-label="Change name" title="Change name">✏️</button>
+    </div>
+
+    <div class="stats-loading" id="statsLoading">Loading progress…</div>
+    <div class="stats-content hidden" id="statsContent">
+      <div class="stats-total">
+        <span class="stats-total-val" id="statsTotal">0</span>
+        <span class="stats-total-lbl">sentences completed</span>
+      </div>
+      <div class="stats-time">
+        <span class="stats-time-val" id="statsTime">0</span>
+        <span class="stats-time-lbl">time (m/s)</span>
+      </div>
+      <div class="stats-word-time stats-total">
+        <span class="stats-total-val" id="statsWordTime">—</span>
+        <span class="stats-total-lbl">avg. word time</span>
+      </div>
+      <div class="stats-weeks" id="statsWeeks"></div>
+      <button type="button" class="stats-reset-btn" id="statsResetBtn">Reset progress</button>
+    </div>
+    <div class="stats-empty hidden" id="statsEmpty">
+      <p>No sentences completed yet.</p>
+      <p><a href="./index.html">Start reading →</a></p>
+    </div>
+  </main>
+
+  <div class="stats-name-modal hidden" id="nameModal" role="dialog" aria-labelledby="nameModalTitle">
+    <div class="stats-name-modal-backdrop"></div>
+    <div class="stats-name-modal-content">
+      <h2 id="nameModalTitle">Choose your name</h2>
+      <p class="stats-name-modal-hint">This helps identify you in progress reports. Use a first name or nickname.</p>
+      <input type="text" id="nameInput" placeholder="e.g. Mia or Jan" maxlength="32" />
+      <div class="stats-name-modal-actions">
+        <button type="button" class="stats-name-modal-clear" id="nameClearBtn">Clear username</button>
+        <button type="button" class="stats-name-modal-cancel" id="nameCancelBtn">Cancel</button>
+        <button type="button" class="stats-name-modal-save" id="nameSaveBtn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./stats.js"></script>
+</body>
+</html>

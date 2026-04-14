@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LekkeLeer – Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">Lekke<span>Leer</span></div>
+    <span class="early-access">Early access</span>
+    <div class="header-badge">📊 Admin</div>
+  </header>
+
+  <main class="admin-main">
+    <a href="./index.html" class="stats-back">← Back to Read</a>
+
+    <div class="admin-loading" id="adminLoading">Loading dashboard…</div>
+    <div class="admin-content hidden" id="adminContent">
+      <div class="admin-cards">
+        <div class="admin-card">
+          <span class="admin-card-val" id="cardUsers">0</span>
+          <span class="admin-card-lbl">Total users</span>
+        </div>
+        <div class="admin-card">
+          <span class="admin-card-val" id="cardCompletions">0</span>
+          <span class="admin-card-lbl">Sentences completed</span>
+        </div>
+        <div class="admin-card">
+          <span class="admin-card-val" id="cardFeedback">0</span>
+          <span class="admin-card-lbl">Feedback messages</span>
+        </div>
+      </div>
+
+      <section class="admin-section">
+        <h2>Daily active users (last 14 days)</h2>
+        <div class="admin-chart-wrap">
+          <canvas id="chartDailyUsers"></canvas>
+        </div>
+      </section>
+
+      <section class="admin-section">
+        <h2>Completions per week</h2>
+        <div class="admin-chart-wrap">
+          <canvas id="chartCompletions"></canvas>
+        </div>
+      </section>
+
+      <section class="admin-section">
+        <h2>Average accuracy per week (listen mode)</h2>
+        <div class="admin-chart-wrap">
+          <canvas id="chartAccuracy"></canvas>
+        </div>
+      </section>
+
+      <section class="admin-section">
+        <h2>All users</h2>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="tableActiveUsers">
+            <thead>
+              <tr><th>Name</th><th>ID</th><th>Sentences</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="admin-section">
+        <h2>Recent feedback</h2>
+        <div class="admin-feedback-list" id="feedbackList"></div>
+      </section>
+    </div>
+    <div class="admin-error hidden" id="adminError">
+      <p>Could not load data. Check the console for details.</p>
+      <p><a href="./index.html">← Back to Read</a></p>
+    </div>
+  </main>
+
+  <script type="module" src="./admin.js"></script>
+</body>
+</html>

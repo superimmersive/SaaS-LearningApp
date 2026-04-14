@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LekkeLeer – Lees Saam!</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header>
+  <a href="./dashboard.html" class="logo">Lekke<span>Leer</span></a>
+    <span class="early-access">Early access</span>
+  <div class="header-badge">📖 Lees Saam</div>
+</header>
+
+  <div class="breadcrumb-picker" id="breadcrumbPicker">
+    <div class="breadcrumb-segment">
+      <button type="button" class="breadcrumb-trigger" data-picker="term" aria-haspopup="listbox" aria-expanded="false">Term 1</button>
+      <div class="breadcrumb-dropdown hidden" role="listbox">
+        <button type="button" role="option" data-term="1">Term 1</button>
+        <button type="button" role="option" class="locked" data-term="2">Term 2</button>
+        <button type="button" role="option" class="locked" data-term="3">Term 3</button>
+        <button type="button" role="option" class="locked" data-term="4">Term 4</button>
+      </div>
+    </div>
+    <span class="breadcrumb-sep">›</span>
+    <div class="breadcrumb-segment">
+      <button type="button" class="breadcrumb-trigger" data-picker="week" aria-haspopup="listbox" aria-expanded="false">Week 1</button>
+      <div class="breadcrumb-dropdown hidden" role="listbox">
+        <button type="button" role="option" data-week-index="0">Week 1</button>
+        <button type="button" role="option" data-week-index="1">Week 2</button>
+        <button type="button" role="option" data-week-index="2">Week 3</button>
+        <button type="button" role="option" data-week-index="3">Week 4</button>
+        <button type="button" role="option" data-week-index="4">Week 5</button>
+        <button type="button" role="option" data-week-index="5">Week 6</button>
+        <button type="button" role="option" data-week-index="6">Week 7</button>
+        <button type="button" role="option" data-week-index="7">Week 8</button>
+      </div>
+    </div>
+    <span class="breadcrumb-sep">›</span>
+    <div class="breadcrumb-segment">
+      <button type="button" class="breadcrumb-trigger" data-picker="subject" aria-haspopup="listbox" aria-expanded="false">Afrikaans</button>
+      <div class="breadcrumb-dropdown hidden" role="listbox">
+        <button type="button" role="option" data-subject="afrikaans">Afrikaans</button>
+        <button type="button" role="option" class="locked" data-subject="english">English</button>
+        <button type="button" role="option" class="locked" data-subject="maths">Maths</button>
+      </div>
+    </div>
+    <span class="breadcrumb-sep">›</span>
+    <div class="breadcrumb-segment">
+      <button type="button" class="breadcrumb-trigger" data-picker="activity" aria-haspopup="listbox" aria-expanded="false">Lees saam</button>
+      <div class="breadcrumb-dropdown hidden" role="listbox">
+        <button type="button" role="option" data-activity="lees">Lees saam</button>
+        <button type="button" role="option" data-activity="spell">Spell woorde</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stars-bar" id="starsBar" aria-label="Progress stars"></div>
+
+  <div class="voice-bar">
+    <button class="voice-btn" id="voiceAdriBtn" data-voice="Adri" type="button">🎀 Adri (vrou)</button>
+    <button class="voice-btn" id="voiceWillemBtn" data-voice="Willem" type="button">🧔 Willem (man)</button>
+    <div class="tts-status ok" id="ttsStatus">✅ Ready</div>
+  </div>
+
+<div class="card-wrap">
+  <div class="sentence-card" id="mainCard">
+    <div class="unit-label" id="unitLabel">Term 1 · Week 1</div>
+    <div class="sentence-num" id="sentenceNum">1 / 7</div>
+    <div class="sentence-emoji" id="sentenceEmoji">🐱</div>
+    <div class="sentence-text" id="sentenceText"></div>
+    <div class="translation" id="translation"></div>
+      <div class="tts-loading-indicator">
+        Laai klank<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span>
+      </div>
+      <button class="ctrl-btn btn-play card-btn-left" id="playSentenceBtn" type="button"><span class="icon">🔊</span><span>Speel</span></button>
+      <button class="ctrl-btn btn-listen card-btn-right" id="listenBtn" type="button"><span class="icon" id="listenIcon">🎤</span><span id="listenLabel">Begin Lees</span></button>
+  </div>
+
+  <div class="celebration" id="celebration">
+    <div class="celeb-emoji">🏆</div>
+    <div class="celeb-title">Fantasties gedoen! 🌟</div>
+    <div class="celeb-sub">Jy het al 7 sinne gelees!<br><em>You read all 7 sentences!</em></div>
+    <div class="final-score">
+        <div><div class="fs-val green" id="finalCorrect">0</div><div class="fs-lbl">Korrek</div></div>
+        <div><div class="fs-val red" id="finalMissed">0</div><div class="fs-lbl">Gemis</div></div>
+        <div><div class="fs-val blue" id="finalPct">0%</div><div class="fs-lbl">Telling</div></div>
+      </div>
+      <button class="restart-btn" id="restartBtn" type="button">🔄 Weer probeer!</button>
+    </div>
+
+    <div class="mic-status idle" id="micStatus">
+      <div class="mic-dot"></div>
+      <span>Kies modus...</span>
+  </div>
+
+    <div class="score-chip hidden" id="scoreChip">
+    <span class="score-correct">✓ <span id="scoreCorrect">0</span></span>
+      <span class="score-support" id="scoreSupport">Hou aan!</span>
+  </div>
+
+  <div class="controls" id="controls">
+      <button class="ctrl-btn btn-prev" id="prevBtn" type="button"><span class="icon">◀</span>Terug</button>
+      <button class="ctrl-btn btn-next" id="nextBtn" type="button">Volgende<span class="icon">▶</span></button>
+  </div>
+
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+  <footer class="app-footer">
+    <a href="./dashboard.html" class="feedback-link">Dashboard</a>
+    <span class="footer-sep">|</span>
+    <a href="./about.html" class="feedback-link" target="_blank" rel="noopener">ℹ️ About</a>
+    <span class="footer-sep">|</span>
+    <a href="./stats.html" class="feedback-link">📊 Progress</a>
+    <span class="footer-sep">|</span>
+    <button type="button" class="feedback-link" id="feedbackBtn">💬 Your feedback</button>
+    <span class="footer-sep">|</span>
+    <button type="button" class="feedback-link" id="debugBtn" title="Debug info">🐛 Debug</button>
+  </footer>
+
+  <div class="version-modal hidden" id="debugModal" role="dialog" aria-labelledby="debugModalTitle">
+    <div class="version-modal-backdrop"></div>
+    <div class="version-modal-content">
+      <h2 id="debugModalTitle">Debug</h2>
+      <div class="version-modal-body" id="debugModalBody"></div>
+      <p class="version-modal-status hidden" id="debugMicStatus"></p>
+      <div class="version-modal-actions">
+        <button type="button" class="feedback-modal-btn feedback-modal-submit" id="micRepromptBtn">🎤 Re-prompt mic</button>
+        <button type="button" class="feedback-modal-btn feedback-modal-cancel" id="debugCloseBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="welcome-overlay hidden" id="welcomeOverlay" role="dialog" aria-labelledby="welcomeTitle">
+    <div class="welcome-backdrop"></div>
+    <div class="welcome-card">
+      <div class="welcome-banner" id="welcomeBanner"></div>
+      <div class="welcome-stars-row" id="welcomeStarsRow"></div>
+      <h2 id="welcomeTitle" class="welcome-title"></h2>
+      <p class="welcome-sub" id="welcomeSub"></p>
+      <div class="welcome-week-dots" id="welcomeWeekDots"></div>
+      <div class="welcome-name-wrap hidden" id="welcomeNameWrap">
+        <input type="text" id="welcomeNameInput" placeholder="e.g. Mia or Jan" maxlength="32" />
+      </div>
+      <div class="welcome-actions">
+        <button type="button" class="welcome-btn welcome-btn-primary" id="welcomeContinueBtn"></button>
+        <button type="button" class="welcome-btn welcome-btn-secondary" id="welcomePickWeekBtn">Pick a different week</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="feedback-modal hidden" id="nameRequiredModal" role="dialog" aria-labelledby="nameRequiredTitle">
+    <div class="feedback-modal-backdrop"></div>
+    <div class="feedback-modal-content">
+      <h2 id="nameRequiredTitle">Set your name first</h2>
+      <p class="feedback-modal-hint">Please enter your name before sending feedback. This helps us know who the feedback is from.</p>
+      <input type="text" id="nameRequiredInput" placeholder="e.g. Mia or Jan" maxlength="32" />
+      <div class="feedback-modal-actions">
+        <button type="button" class="feedback-modal-btn feedback-modal-cancel" id="nameRequiredCancelBtn">Cancel</button>
+        <button type="button" class="feedback-modal-btn feedback-modal-submit" id="nameRequiredContinueBtn">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="feedback-modal hidden" id="feedbackModal" role="dialog" aria-labelledby="feedbackModalTitle">
+    <div class="feedback-modal-backdrop"></div>
+    <div class="feedback-modal-content">
+      <h2 id="feedbackModalTitle">Send feedback</h2>
+      <textarea id="feedbackInput" placeholder="Write your feedback here…" rows="4"></textarea>
+      <p class="feedback-modal-contact">or contact developer directly: <a href="mailto:devon@superimmersive.io">devon@superimmersive.io</a></p>
+      <div class="feedback-modal-actions">
+        <button type="button" class="feedback-modal-btn feedback-modal-cancel" id="feedbackCancelBtn">Cancel</button>
+        <button type="button" class="feedback-modal-btn feedback-modal-submit" id="feedbackSubmitBtn">Send</button>
+      </div>
+      <p class="feedback-modal-status hidden" id="feedbackStatus"></p>
+    </div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

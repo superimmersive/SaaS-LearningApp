@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LekkeLeer – Lees Saam!</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #E8F4FF;
+    --blue: #3B9ED4;
+    --navy: #1A3A5C;
+    --green: #2ECC71;
+    --yellow: #FFD93D;
+    --orange: #FF8C42;
+    --pink: #FF6B9D;
+    --purple: #9B59B6;
+    --red: #E74C3C;
+    --white: #FFFFFF;
+    --text: #1A2332;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--sky);
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    padding-bottom: 48px;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(255,217,61,0.18) 0%, transparent 45%),
+      radial-gradient(circle at 90% 80%, rgba(59,158,212,0.15) 0%, transparent 45%);
+  }
+  header {
+    width: 100%; background: var(--navy);
+    padding: 14px 24px; display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 3px 16px rgba(0,0,0,0.2);
+  }
+  .logo { font-family: 'Baloo 2', cursive; font-size: 1.5rem; font-weight: 800; color: white; }
+  .logo span { color: var(--yellow); }
+  .header-badge {
+    margin-left: auto; background: rgba(255,217,61,0.2);
+    border: 1.5px solid rgba(255,217,61,0.5); color: var(--yellow);
+    font-size: 0.72rem; font-weight: 800; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 4px 12px; border-radius: 99px;
+  }
+  .stars-bar { display: flex; gap: 6px; align-items: center; margin: 18px 0 4px; }
+  .star { font-size: 1.6rem; filter: grayscale(1) opacity(0.3); transition: all 0.3s; }
+  .star.earned { filter: none; animation: starPop 0.4s ease; }
+  @keyframes starPop { 0%{transform:scale(0.5) rotate(-20deg)} 60%{transform:scale(1.4) rotate(10deg)} 100%{transform:scale(1) rotate(0)} }
+
+  .mode-bar {
+    display: flex; gap: 8px; margin: 10px 16px;
+    background: white; border-radius: 16px; padding: 6px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    max-width: 580px; width: calc(100% - 32px);
+  }
+  .mode-btn {
+    flex: 1; padding: 10px 8px; border-radius: 12px; border: none;
+    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.8rem;
+    cursor: pointer; transition: all 0.2s; color: #94A3B8; background: transparent;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .mode-btn.active { background: var(--navy); color: white; box-shadow: 0 3px 10px rgba(26,58,92,0.3); }
+
+  .tip-bar {
+    background: rgba(59,158,212,0.1); border: 1.5px solid rgba(59,158,212,0.2);
+    border-radius: 12px; padding: 9px 14px; font-size: 0.78rem; color: var(--navy);
+    text-align: center; max-width: 580px; margin: 8px 16px 0; font-weight: 600; line-height: 1.5;
+  }
+
+  .card-wrap { width: 100%; max-width: 620px; padding: 10px 16px 0; }
+
+  .sentence-card {
+    background: white; border-radius: 28px; padding: 32px 28px 24px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.1), 0 0 0 4px rgba(59,158,212,0.08);
+    position: relative; overflow: hidden; min-height: 190px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+    transition: box-shadow 0.3s;
+  }
+  .sentence-card.listening {
+    animation: listenPulse 2s ease-in-out infinite;
+  }
+  @keyframes listenPulse {
+    0%,100%{ box-shadow: 0 8px 40px rgba(59,158,212,0.25), 0 0 0 5px rgba(59,158,212,0.3); }
+    50%    { box-shadow: 0 8px 50px rgba(59,158,212,0.4),  0 0 0 9px rgba(59,158,212,0.15); }
+  }
+  .sentence-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:6px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--orange), var(--pink));
+  }
+  .sentence-num {
+    position:absolute; top:16px; right:18px;
+    font-size:0.72rem; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#B0BAC8;
+  }
+  .sentence-emoji { font-size:4rem; animation:float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+
+  .sentence-text {
+    font-family:'Baloo 2',cursive; font-size:clamp(1.7rem,6vw,2.7rem);
+    font-weight:700; color:var(--text); text-align:center; line-height:1.5;
+    display:flex; flex-wrap:wrap; justify-content:center; gap:0 8px;
+  }
+  .word-span {
+    display:inline-block; padding:3px 6px; border-radius:10px;
+    transition:all 0.25s; cursor:pointer;
+    border-bottom: 3px solid transparent;
+  }
+  .word-span:hover  { background:rgba(59,158,212,0.1); color:var(--blue); }
+  .word-span.pending{ color:#CBD5E1; border-bottom-color:#E2E8F0; }
+  .word-span.active { background:var(--yellow); color:var(--navy); transform:scale(1.12); box-shadow:0 4px 14px rgba(255,217,61,0.55); border-bottom-color:transparent; }
+  .word-span.correct{ background:rgba(46,204,113,0.15); color:#16A34A; border-bottom-color:var(--green); }
+  .word-span.missed { background:rgba(231,76,60,0.12);  color:var(--red); border-bottom-color:var(--red); }
+  .word-span.done   { color:var(--green); }
+  .word-span.correct::after{ content:'✓'; position:absolute; top:-10px; right:-4px; font-size:0.65rem; font-weight:900; color:var(--green); position:relative; }
+  .word-span.missed::after { content:'✗'; position:absolute; top:-10px; right:-4px; font-size:0.65rem; font-weight:900; color:var(--red);   position:relative; }
+
+  .translation { font-size:0.92rem; color:#94A3B8; font-weight:600; text-align:center; min-height:22px; font-style:italic; }
+
+  .mic-status {
+    display:flex; align-items:center; gap:10px; padding:10px 18px;
+    border-radius:99px; font-size:0.85rem; font-weight:800;
+    transition:all 0.3s; margin:12px auto 0; width:fit-content;
+  }
+  .mic-status.idle    { background:rgba(148,163,184,0.15); color:#94A3B8; }
+  .mic-status.ready   { background:rgba(59,158,212,0.12);  color:var(--blue); }
+  .mic-status.hearing { background:rgba(46,204,113,0.15);  color:#16A34A; }
+  .mic-status.error   { background:rgba(231,76,60,0.12);   color:var(--red); }
+  .mic-dot { width:10px; height:10px; border-radius:50%; background:currentColor; flex-shrink:0; }
+  .mic-status.hearing .mic-dot { animation:blink 0.6s ease infinite alternate; }
+  @keyframes blink { from{opacity:1;transform:scale(1)} to{opacity:0.3;transform:scale(0.7)} }
+  .wave { display:flex; gap:3px; align-items:center; height:20px; }
+  .wave-bar { width:4px; background:currentColor; border-radius:2px; min-height:4px; animation:wave-anim 0.5s ease infinite alternate; }
+  .wave-bar:nth-child(1){height:8px; animation-delay:0s}
+  .wave-bar:nth-child(2){height:14px;animation-delay:0.1s}
+  .wave-bar:nth-child(3){height:20px;animation-delay:0.2s}
+  .wave-bar:nth-child(4){height:14px;animation-delay:0.1s}
+  .wave-bar:nth-child(5){height:8px; animation-delay:0s}
+  @keyframes wave-anim { to{transform:scaleY(0.3)} }
+
+  .score-chip {
+    display:inline-flex; gap:12px; background:white; border-radius:99px;
+    padding:6px 16px; box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    font-size:0.8rem; font-weight:800; margin:8px auto 0;
+  }
+  .score-correct{color:var(--green)} .score-missed{color:var(--red)}
+
+  .controls {
+    display:flex; gap:12px; align-items:center; justify-content:center;
+    margin-top:14px; flex-wrap:wrap;
+  }
+  .ctrl-btn {
+    display:flex; flex-direction:column; align-items:center; gap:5px;
+    padding:13px 18px; border-radius:18px; border:none;
+    cursor:pointer; font-family:'Nunito',sans-serif;
+    font-weight:800; font-size:0.76rem; transition:all 0.18s;
+    box-shadow:0 4px 14px rgba(0,0,0,0.1);
+  }
+  .ctrl-btn:hover:not(:disabled){transform:translateY(-3px)}
+  .ctrl-btn:active:not(:disabled){transform:scale(0.96)}
+  .ctrl-btn:disabled{opacity:0.45;cursor:default}
+  .ctrl-btn .icon{font-size:1.5rem}
+  .btn-listen{background:var(--blue);   color:white}
+  .btn-listen.active{background:var(--red); animation:pulsebtn 1s infinite}
+  @keyframes pulsebtn{0%,100%{box-shadow:0 4px 14px rgba(231,76,60,.3)}50%{box-shadow:0 4px 26px rgba(231,76,60,.6)}}
+  .btn-play  {background:var(--purple); color:white}
+  .btn-word  {background:var(--orange); color:white}
+  .btn-prev  {background:white;color:var(--navy);border:2px solid #E2E8F0}
+  .btn-next  {background:var(--green);  color:white}
+
+  .progress-dots{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+  .dot{width:13px;height:13px;border-radius:50%;background:rgba(59,158,212,0.2);border:2px solid rgba(59,158,212,0.3);transition:all 0.3s;cursor:pointer}
+  .dot.current{background:var(--blue);border-color:var(--blue);transform:scale(1.3)}
+  .dot.done2  {background:var(--green);border-color:var(--green)}
+
+  .celebration{display:none;flex-direction:column;align-items:center;gap:14px;text-align:center;padding:40px 24px}
+  .celebration.show{display:flex}
+  .celeb-emoji{font-size:5rem;animation:bounce2 0.6s ease infinite alternate}
+  @keyframes bounce2{from{transform:translateY(0)}to{transform:translateY(-16px)}}
+  .celeb-title{font-family:'Baloo 2',cursive;font-size:2rem;font-weight:800;color:var(--navy)}
+  .celeb-sub{font-size:0.95rem;color:#64748B;line-height:1.6}
+  .final-score{background:white;border-radius:20px;padding:18px 32px;display:flex;gap:28px;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+  .fs-val{font-family:'Baloo 2',cursive;font-size:2.2rem;font-weight:800}
+  .fs-lbl{font-size:0.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#94A3B8}
+  .restart-btn{padding:14px 36px;border-radius:99px;border:none;background:var(--blue);color:white;font-family:'Nunito',sans-serif;font-weight:800;font-size:1.05rem;cursor:pointer;box-shadow:0 6px 20px rgba(59,158,212,0.4);transition:all 0.2s}
+  .restart-btn:hover{transform:translateY(-3px)}
+
+  .confetti-p{position:fixed;border-radius:2px;pointer-events:none;animation:fall linear forwards;z-index:999}
+  @keyframes fall{0%{transform:translateY(-10px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(540deg);opacity:0}}
+
+  @media(max-width:480px){
+    .sentence-card{padding:26px 18px 20px}
+    .ctrl-btn{padding:11px 12px}
+    .sentence-text{font-size:clamp(1.4rem,7vw,1.9rem)}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Lekke<span>Leer</span></div>
+  <div class="header-badge">📖 Lees Saam</div>
+</header>
+
+<div class="stars-bar" id="starsBar">
+  <span class="star" id="s1">⭐</span><span class="star" id="s2">⭐</span>
+  <span class="star" id="s3">⭐</span><span class="star" id="s4">⭐</span>
+  <span class="star" id="s5">⭐</span><span class="star" id="s6">⭐</span>
+  <span class="star" id="s7">⭐</span>
+</div>
+
+<div class="mode-bar">
+  <button class="mode-btn active" id="modeListenBtn" onclick="setMode('listen')">🎤 Lees Hardop</button>
+  <button class="mode-btn"        id="modeTapBtn"    onclick="setMode('tap')">👆 Tik Modus</button>
+  <button class="mode-btn"        id="modePlayBtn"   onclick="setMode('play')">🔊 Luister</button>
+</div>
+
+<!-- Voice selector -->
+<div style="display:flex;gap:8px;justify-content:center;margin:8px 16px 0;flex-wrap:wrap;">
+  <button class="mode-btn active" id="voiceAdriBtn" onclick="setVoice('Adri')"
+    style="flex:none;padding:8px 18px;border-radius:99px;border:none;background:white;
+           box-shadow:0 2px 10px rgba(0,0,0,0.08);font-family:'Nunito',sans-serif;
+           font-weight:800;font-size:0.8rem;cursor:pointer;transition:all 0.2s;
+           color:#94A3B8;" id="voiceAdriBtn">
+    🎀 Adri (vrou)
+  </button>
+  <button class="mode-btn" id="voiceWillemBtn" onclick="setVoice('Willem')"
+    style="flex:none;padding:8px 18px;border-radius:99px;border:none;background:white;
+           box-shadow:0 2px 10px rgba(0,0,0,0.08);font-family:'Nunito',sans-serif;
+           font-weight:800;font-size:0.8rem;cursor:pointer;transition:all 0.2s;
+           color:#94A3B8;">
+    🧔 Willem (man)
+  </button>
+  <div id="ttsStatus" style="display:flex;align-items:center;gap:6px;padding:8px 14px;
+       border-radius:99px;background:rgba(46,204,113,0.12);
+       font-size:0.75rem;font-weight:800;color:#16A34A;">
+    <span>✅ Azure TTS</span>
+  </div>
+</div>
+
+<div class="tip-bar" id="tipBar">🎤 Tik <strong>Begin Lees</strong> en lees die sin hardop!</div>
+
+<div class="card-wrap">
+  <div class="sentence-card" id="mainCard">
+    <div class="sentence-num" id="sentenceNum">1 / 7</div>
+    <div class="sentence-emoji" id="sentenceEmoji">🐱</div>
+    <div class="sentence-text" id="sentenceText"></div>
+    <div class="translation" id="translation"></div>
+  </div>
+
+  <div class="celebration" id="celebration">
+    <div class="celeb-emoji">🏆</div>
+    <div class="celeb-title">Fantasties gedoen! 🌟</div>
+    <div class="celeb-sub">Jy het al 7 sinne gelees!<br><em>You read all 7 sentences!</em></div>
+    <div class="final-score">
+      <div><div class="fs-val" id="finalCorrect" style="color:var(--green)">0</div><div class="fs-lbl">Korrek</div></div>
+      <div><div class="fs-val" id="finalMissed"  style="color:var(--red)">0</div><div class="fs-lbl">Gemis</div></div>
+      <div><div class="fs-val" id="finalPct"     style="color:var(--blue)">0%</div><div class="fs-lbl">Telling</div></div>
+    </div>
+    <button class="restart-btn" onclick="restart()">🔄 Weer probeer!</button>
+  </div>
+
+  <div class="mic-status idle" id="micStatus"><div class="mic-dot"></div><span id="micText">Kies modus...</span></div>
+  <div class="score-chip" id="scoreChip" style="display:none">
+    <span class="score-correct">✓ <span id="scoreCorrect">0</span></span>
+    <span class="score-missed">✗ <span id="scoreMissed">0</span></span>
+  </div>
+
+  <div class="controls" id="controls">
+    <button class="ctrl-btn btn-prev" onclick="navigate(-1)"><span class="icon">◀</span>Terug</button>
+    <button class="ctrl-btn btn-listen" id="listenBtn" onclick="toggleListen()"><span class="icon" id="listenIcon">🎤</span><span id="listenLabel">Begin Lees</span></button>
+    <button class="ctrl-btn btn-play"   id="playBtn"   onclick="playAudio()"   style="display:none"><span class="icon">🔊</span>Speel</button>
+    <button class="ctrl-btn btn-word"   id="wordBtn"   onclick="readNextWord()" style="display:none"><span class="icon">👆</span>Woord</button>
+    <button class="ctrl-btn btn-next" onclick="navigate(1)">Volgende<span class="icon">▶</span></button>
+  </div>
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+<script>
+const sentences=[
+  {af:"Die kat sit.",                  en:"The cat sits.",                         emoji:"🐱"},
+  {af:"Die man staan.",                en:"The man stands.",                       emoji:"🧍"},
+  {af:"Die kat sit langs die man.",    en:"The cat sits next to the man.",         emoji:"🐱🧍"},
+  {af:"Die kas is bruin.",             en:"The cupboard is brown.",                emoji:"🗄️"},
+  {af:"Die mat is voor die kas.",      en:"The mat is in front of the cupboard.",  emoji:"🟫"},
+  {af:"Die bad is vol.",               en:"The bath is full.",                     emoji:"🛁"},
+  {af:"Die kat sit op die mat.",       en:"The cat sits on the mat.",              emoji:"🐱"},
+];
+
+let current=0, mode='listen', listening=false, recognition=null;
+let wordIdx=0;
+// ── Azure TTS config ────────────────────────────────────────────────────────
+const AZURE_KEY    = ''; // Set your Azure Speech key locally (never commit real keys)
+const AZURE_REGION = 'westeurope';
+const VOICES = {
+  Adri:   'af-ZA-AdriNeural',
+  Willem: 'af-ZA-WillemNeural',
+};
+let currentVoice = 'Adri';
+let audioQueue   = [];
+let currentAudio = null;
+let wordHighlightTimer = null;
+
+function setVoice(name) {
+  currentVoice = name;
+  document.getElementById('voiceAdriBtn').style.background   = name==='Adri'   ? '#1A3A5C' : 'white';
+  document.getElementById('voiceAdriBtn').style.color        = name==='Adri'   ? 'white'   : '#94A3B8';
+  document.getElementById('voiceWillemBtn').style.background = name==='Willem' ? '#1A3A5C' : 'white';
+  document.getElementById('voiceWillemBtn').style.color      = name==='Willem' ? 'white'   : '#94A3B8';
+}
+
+// Azure Speech SDK handles CORS correctly — load it dynamically
+let sdkReady = false;
+let sdkLoading = false;
+let sdkCallbacks = [];
+
+function loadSDK() {
+  return new Promise((resolve) => {
+    if (sdkReady) { resolve(true); return; }
+    sdkCallbacks.push(resolve);
+    if (sdkLoading) return;
+    sdkLoading = true;
+    const s = document.createElement('script');
+    s.src = 'https://aka.ms/csspeech/jsbrowserpackageraw';
+    s.onload  = () => { sdkReady = true; sdkCallbacks.forEach(cb => cb(true));  sdkCallbacks = []; };
+    s.onerror = () => {                  sdkCallbacks.forEach(cb => cb(false)); sdkCallbacks = []; };
+    document.head.appendChild(s);
+  });
+}
+
+function ttsStatusOk()  {
+  const el = document.getElementById('ttsStatus');
+  el.innerHTML = '<span>✅ Azure TTS</span>';
+  el.style.background = 'rgba(46,204,113,0.12)';
+  el.style.color = '#16A34A';
+}
+function ttsStatusErr(msg) {
+  const el = document.getElementById('ttsStatus');
+  el.innerHTML = `<span>⚠️ ${msg}</span>`;
+  el.style.background = 'rgba(231,76,60,0.12)';
+  el.style.color = '#E74C3C';
+}
+function ttsStatusBusy() {
+  const el = document.getElementById('ttsStatus');
+  el.innerHTML = '<span>🔊 …</span>';
+  el.style.background = 'rgba(59,158,212,0.12)';
+  el.style.color = '#3B9ED4';
+}
+
+// Returns a Promise that resolves when speech is done, or rejects on error
+function azureSpeak(text, rate=1.0) {
+  stopAudio();
+  return new Promise(async (resolve, reject) => {
+    const ok = await loadSDK();
+    if (!ok) { ttsStatusErr('SDK laai fout'); reject('sdk'); return; }
+
+    const SpeechSDK = window.SpeechSDK;
+    const cfg = SpeechSDK.SpeechConfig.fromSubscription(AZURE_KEY, AZURE_REGION);
+    cfg.speechSynthesisVoiceName = VOICES[currentVoice];
+
+    // Use default speaker output
+    const synth = new SpeechSDK.SpeechSynthesizer(cfg, null);
+    currentSynth = synth;
+
+    const rateStr = rate === 1.0 ? '+0%' : `${Math.round((rate-1)*100)}%`;
+    const ssml = `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='af-ZA'>
+      <voice name='${VOICES[currentVoice]}'>
+        <prosody rate='${rateStr}'>${text}</prosody>
+      </voice>
+    </speak>`;
+
+    ttsStatusBusy();
+
+    synth.speakSsmlAsync(
+      ssml,
+      result => {
+        synth.close(); currentSynth = null;
+        if (result.reason === SpeechSDK.ResultReason.SynthesizingAudioCompleted) {
+          ttsStatusOk();
+          resolve(result);
+        } else {
+          ttsStatusErr('Stem fout');
+          reject(result);
+        }
+      },
+      err => {
+        synth.close(); currentSynth = null;
+        console.error('Azure TTS error:', err);
+        ttsStatusErr('Verbinding fout');
+        reject(err);
+      }
+    );
+  });
+}
+
+let currentSynth = null;
+
+function stopAudio() {
+  if (currentSynth) { try{currentSynth.close();}catch(e){} currentSynth=null; }
+  if (currentAudio) { currentAudio.pause(); currentAudio.src=''; currentAudio=null; }
+  if (wordHighlightTimer) { clearTimeout(wordHighlightTimer); wordHighlightTimer=null; }
+}
+let totalCorrect=0, totalMissed=0, sentenceCorrect=0, sentenceMissed=0;
+let completedSet=new Set(), expectedWord=0;
+
+const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+const hasSR=!!SpeechRecognition;
+
+function norm(w){return w.replace(/[.,!?;:]/g,'').toLowerCase().trim();}
+
+function levenshtein(a,b){
+  const m=a.length,n=b.length;
+  const dp=Array.from({length:m+1},(_,i)=>Array.from({length:n+1},(_,j)=>i===0?j:j===0?i:0));
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)
+    dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);
+  return dp[m][n];
+}
+function fuzzyMatch(s,e){if(s===e)return true;return levenshtein(s,e)<=(e.length<=3?1:2);}
+
+function setupRecognition(){
+  if(!hasSR)return;
+  recognition=new SpeechRecognition();
+  recognition.continuous=true; recognition.interimResults=true; recognition.lang='af-ZA';
+  recognition.onresult=(e)=>{
+    let t='';
+    for(let i=e.resultIndex;i<e.results.length;i++) t+=e.results[i][0].transcript;
+    processTranscript(t.toLowerCase().trim());
+  };
+  recognition.onerror=(e)=>{
+    if(e.error==='not-allowed') setMicStatus('error','🚫 Mikrofoon geweier. Gee toestemming in browser.');
+    else if(e.error==='no-speech') setMicStatus('ready','🎤 Geen spraak — probeer weer...');
+    else setMicStatus('error','⚠️ Fout: '+e.error);
+    stopListening();
+  };
+  recognition.onend=()=>{ if(listening){try{recognition.start();}catch(e){}} };
+}
+
+function processTranscript(transcript){
+  const spans=document.querySelectorAll('.word-span');
+  const words=sentences[current].af.split(' ').map(norm);
+  const spoken=transcript.split(/\s+/).filter(Boolean);
+  spoken.forEach(sw=>{
+    for(let la=0;la<3&&expectedWord+la<words.length;la++){
+      const idx=expectedWord+la;
+      if(fuzzyMatch(sw,words[idx])){
+        for(let m=expectedWord;m<idx;m++){
+          if(!spans[m].classList.contains('correct')&&!spans[m].classList.contains('missed')){
+            spans[m].className='word-span missed'; sentenceMissed++;totalMissed++;
+          }
+        }
+        spans[idx].className='word-span correct'; sentenceCorrect++;totalCorrect++;
+        expectedWord=idx+1;
+        if(expectedWord<spans.length) spans[expectedWord].className='word-span active';
+        updateScoreChip();
+        if(expectedWord>=words.length) setTimeout(sentenceComplete,400);
+        break;
+      }
+    }
+  });
+  setMicStatus('hearing','');
+}
+
+function sentenceComplete(){
+  stopListening();
+  document.getElementById('translation').textContent=sentences[current].en;
+  document.querySelectorAll('.word-span').forEach(s=>{if(!s.classList.contains('correct')&&!s.classList.contains('missed'))s.className='word-span correct';});
+  awardStar();
+  setMicStatus('idle','✅ Uitstekend! Gaan voort na die volgende sin.');
+}
+
+function toggleListen(){
+  if(!hasSR){setMicStatus('error','😔 Gebruik Chrome op Android vir spraakherkenning.');return;}
+  listening?stopListening():startListening();
+}
+
+function startListening(){
+  if(!recognition)setupRecognition();
+  synth.cancel(); listening=true; expectedWord=0; sentenceCorrect=0; sentenceMissed=0;
+  document.querySelectorAll('.word-span').forEach((s,i)=>{s.className='word-span '+(i===0?'active':'pending');});
+  document.getElementById('translation').textContent='';
+  updateScoreChip();
+  document.getElementById('mainCard').classList.add('listening');
+  document.getElementById('listenBtn').classList.add('active');
+  document.getElementById('listenIcon').textContent='⏹';
+  document.getElementById('listenLabel').textContent='Stop';
+  setMicStatus('ready','🎤 Luister... Lees die sin hardop!');
+  try{recognition.start();}catch(e){}
+}
+
+function stopListening(){
+  listening=false;
+  if(recognition){try{recognition.stop();}catch(e){}}
+  document.getElementById('mainCard').classList.remove('listening');
+  document.getElementById('listenBtn').classList.remove('active');
+  document.getElementById('listenIcon').textContent='🎤';
+  document.getElementById('listenLabel').textContent='Begin Lees';
+}
+
+async function playAudio(){
+  stopAudio();
+  const s=sentences[current], words=s.af.split(' ');
+  const spans=document.querySelectorAll('.word-span');
+  spans.forEach(sp=>sp.className='word-span');
+
+  // Highlight words evenly across estimated duration
+  // Average Afrikaans word ~400ms at 0.85 rate
+  const perWord = 480;
+  words.forEach((_,i) => {
+    const t = setTimeout(() => {
+      spans.forEach((sp,j) => {
+        if(j < i) sp.classList.add('done');
+        sp.classList.toggle('active', j===i);
+      });
+    }, i * perWord);
+    wordHighlightTimer = t;
+  });
+
+  try {
+    await azureSpeak(s.af, 0.85);
+  } catch(e) { return; }
+
+  spans.forEach(sp=>{sp.classList.remove('active');sp.classList.add('done');});
+  document.getElementById('translation').textContent=s.en;
+  awardStar();
+}
+
+async function readNextWord(){
+  const spans=document.querySelectorAll('.word-span');
+  if(wordIdx>=spans.length){
+    document.getElementById('translation').textContent=sentences[current].en;
+    awardStar(); wordIdx=0; return;
+  }
+  const sp=spans[wordIdx];
+  spans.forEach((s,i)=>s.classList.toggle('active',i===wordIdx));
+  sp.classList.add('done');
+  wordIdx++;
+  try { await azureSpeak(sp.dataset.word, 0.85); } catch(e){}
+  if(wordIdx===spans.length)
+    setTimeout(()=>{document.getElementById('translation').textContent=sentences[current].en;awardStar();},400);
+}
+
+async function speakWord(word,span){
+  stopAudio();
+  document.querySelectorAll('.word-span').forEach(s=>{if(s!==span)s.classList.remove('active');});
+  span.classList.add('active');
+  try { await azureSpeak(word, 0.85); } catch(e){}
+  span.classList.remove('active');
+}
+
+function buildSentence(){
+  stopListening();stopAudio();wordIdx=0;sentenceCorrect=0;sentenceMissed=0;expectedWord=0;
+  const s=sentences[current],words=s.af.split(' ');
+  document.getElementById('sentenceEmoji').textContent=s.emoji;
+  document.getElementById('translation').textContent='';
+  document.getElementById('sentenceNum').textContent=`${current+1} / ${sentences.length}`;
+  const c=document.getElementById('sentenceText');c.innerHTML='';
+  words.forEach((word,i)=>{
+    const span=document.createElement('span');
+    span.className='word-span'+(mode==='listen'&&i===0?' active':'');
+    span.textContent=word;span.dataset.index=i;span.dataset.word=norm(word);
+    span.onclick=()=>speakWord(span.dataset.word,span);
+    c.appendChild(span);
+  });
+  updateDots();updateScoreChip();
+  const tips={
+    listen: hasSR?'🎤 Tik <strong>Begin Lees</strong> en lees die sin hardop — elke woord word groen! | Tap <strong>Begin Lees</strong> and read aloud!':'😔 Spraakherkenning is slegs beskikbaar in Chrome. Gebruik Tik Modus.',
+    tap:    '👆 Tik <strong>Woord</strong> om een woord op \'n slag te leer. | Tap <strong>Word</strong> one at a time.',
+    play:   '🔊 Tik <strong>Speel</strong> om die sin te hoor. | Tap <strong>Play</strong> to hear the sentence.',
+  };
+  document.getElementById('tipBar').innerHTML=tips[mode];
+  setMicStatus('idle', mode==='listen'?(hasSR?'🎤 Gereed — tik Begin Lees!':'Gebruik Chrome vir spraakherkenning'):mode==='tap'?'👆 Tik Woord om te begin':'🔊 Tik Speel om te begin');
+}
+
+function setMode(m){
+  mode=m;
+  ['listen','tap','play'].forEach(id=>{
+    document.getElementById('mode'+id[0].toUpperCase()+id.slice(1)+'Btn').classList.toggle('active',id===m);
+  });
+  document.getElementById('listenBtn').style.display=m==='listen'?'flex':'none';
+  document.getElementById('playBtn').style.display  =m==='play'  ?'flex':'none';
+  document.getElementById('wordBtn').style.display  =m==='tap'   ?'flex':'none';
+  document.getElementById('scoreChip').style.display=m==='listen'?'flex':'none';
+  buildSentence();
+}
+
+function navigate(dir){const n=current+dir;if(n<0||n>=sentences.length)return;current=n;buildSentence();}
+
+function setMicStatus(state,msg){
+  const el=document.getElementById('micStatus');
+  el.className='mic-status '+state;
+  if(state==='hearing'){el.innerHTML=`<div class="wave">${'<div class="wave-bar"></div>'.repeat(5)}</div><span>Hoor jou...</span>`;}
+  else{el.innerHTML=`<div class="mic-dot"></div><span>${msg}</span>`;}
+}
+
+function updateScoreChip(){
+  if(mode!=='listen'){document.getElementById('scoreChip').style.display='none';return;}
+  document.getElementById('scoreChip').style.display='flex';
+  document.getElementById('scoreCorrect').textContent=sentenceCorrect;
+  document.getElementById('scoreMissed').textContent=sentenceMissed;
+}
+
+function awardStar(){
+  if(completedSet.has(current))return;
+  completedSet.add(current);
+  for(let i=1;i<=completedSet.size;i++)document.getElementById('s'+i).classList.add('earned');
+  updateDots();
+  if(completedSet.size===sentences.length)setTimeout(showCelebration,900);
+}
+
+function updateDots(){
+  const c=document.getElementById('progressDots');c.innerHTML='';
+  sentences.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='dot'+(i===current?' current':'')+(completedSet.has(i)?' done2':'');
+    d.onclick=()=>{current=i;buildSentence();};
+    c.appendChild(d);
+  });
+}
+
+function showCelebration(){
+  confetti(70);
+  const total=totalCorrect+totalMissed||1;
+  document.getElementById('finalCorrect').textContent=totalCorrect;
+  document.getElementById('finalMissed').textContent=totalMissed;
+  document.getElementById('finalPct').textContent=Math.round(totalCorrect/total*100)+'%';
+  ['mainCard','controls','progressDots','micStatus','scoreChip'].forEach(id=>{
+    document.getElementById(id).style.display='none';
+  });
+  document.getElementById('celebration').classList.add('show');
+}
+
+function restart(){
+  current=0;totalCorrect=0;totalMissed=0;completedSet.clear();
+  document.querySelectorAll('.star').forEach(s=>s.classList.remove('earned'));
+  ['mainCard','controls','progressDots','micStatus'].forEach(id=>{
+    document.getElementById(id).style.display=id==='mainCard'?'flex':'flex';
+  });
+  document.getElementById('celebration').classList.remove('show');
+  setMode('listen');
+}
+
+function confetti(n){
+  const cols=['#FFD93D','#3B9ED4','#2ECC71','#FF6B9D','#FF8C42','#9B59B6'];
+  for(let i=0;i<n;i++){
+    const el=document.createElement('div');el.className='confetti-p';
+    el.style.cssText=`left:${Math.random()*100}vw;top:-10px;width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;background:${cols[Math.floor(Math.random()*cols.length)]};animation-duration:${1.5+Math.random()*2}s;animation-delay:${Math.random()*0.8}s`;
+    document.body.appendChild(el);el.addEventListener('animationend',()=>el.remove());
+  }
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight')navigate(1);
+  else if(e.key==='ArrowLeft')navigate(-1);
+  else if(e.key===' '){e.preventDefault();mode==='listen'?toggleListen():mode==='play'?playAudio():readNextWord();}
+});
+
+setupRecognition();
+setMode('listen');
+</script>
+</body>
+</html>

@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LekkeLeer – School Survey</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1F3A;
+    --blue: #1B6CA8;
+    --sky: #3B9ED4;
+    --green: #1EB980;
+    --cream: #FAFAF7;
+    --warm: #F5F0E8;
+    --border: #DDE4EF;
+    --text: #1A2332;
+    --muted: #6B7A94;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 0% 0%, rgba(27,108,168,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 100% 100%, rgba(30,185,128,0.07) 0%, transparent 60%);
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--navy);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: #3B9ED4; }
+  .header-tag {
+    background: rgba(59,158,212,0.2);
+    border: 1px solid rgba(59,158,212,0.4);
+    color: #7DD3F8;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 99px;
+    margin-left: auto;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #163354 100%);
+    padding: 60px 24px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(30,185,128,0.15);
+    border: 1px solid rgba(30,185,128,0.4);
+    color: #5EEAD4;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 99px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero h1 em { color: #3B9ED4; font-style: normal; }
+  .hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 1rem;
+    max-width: 520px;
+    margin: 0 auto 28px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 12px 20px;
+    text-align: center;
+  }
+  .hero-stat-val { font-size: 1.4rem; font-weight: 700; color: #3B9ED4; }
+  .hero-stat-lbl { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+  /* ── Progress ── */
+  .progress-container {
+    max-width: 680px;
+    margin: -24px auto 0;
+    padding: 0 24px;
+    position: relative;
+    z-index: 10;
+  }
+  .progress-card {
+    background: white;
+    border-radius: 16px;
+    padding: 16px 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .progress-label { font-size: 0.82rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
+  .progress-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    border-radius: 99px;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    width: 0%;
+  }
+  .progress-count { font-size: 0.82rem; font-weight: 700; color: var(--navy); white-space: nowrap; }
+
+  /* ── Main ── */
+  main {
+    max-width: 680px;
+    margin: 32px auto;
+    padding: 0 24px 60px;
+  }
+
+  /* ── Question Cards ── */
+  .q-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s, transform 0.2s;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: slideIn 0.45s ease forwards;
+  }
+  .q-card:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.1); }
+
+  @keyframes slideIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .q-card:nth-child(1) { animation-delay: 0.1s; }
+  .q-card:nth-child(2) { animation-delay: 0.18s; }
+  .q-card:nth-child(3) { animation-delay: 0.26s; }
+  .q-card:nth-child(4) { animation-delay: 0.34s; }
+  .q-card:nth-child(5) { animation-delay: 0.42s; }
+  .q-card:nth-child(6) { animation-delay: 0.50s; }
+
+  .q-number {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 8px;
+  }
+  .q-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .q-subtitle {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* Text input */
+  .text-input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--cream);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .text-input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 4px rgba(27,108,168,0.1);
+    background: white;
+  }
+  .text-input::placeholder { color: #B0BAC8; }
+
+  /* Number input with stepper */
+  .number-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    max-width: 200px;
+  }
+  .stepper-btn {
+    width: 46px; height: 46px;
+    border: 2px solid var(--border);
+    background: var(--cream);
+    color: var(--navy);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .stepper-btn:first-child { border-radius: 12px 0 0 12px; border-right: none; }
+  .stepper-btn:last-child  { border-radius: 0 12px 12px 0; border-left: none; }
+  .stepper-btn:hover { background: var(--blue); color: white; border-color: var(--blue); }
+  .number-input {
+    width: 80px; height: 46px;
+    border: 2px solid var(--border);
+    border-left: none; border-right: none;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--navy);
+    background: white;
+    outline: none;
+  }
+
+  /* Radio / checkbox options */
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .options.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .option-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.18s;
+    background: var(--cream);
+    user-select: none;
+  }
+  .option-label:hover {
+    border-color: var(--blue);
+    background: rgba(27,108,168,0.04);
+  }
+  .option-label input { display: none; }
+  .option-label.selected {
+    border-color: var(--blue);
+    background: rgba(27,108,168,0.06);
+  }
+  .option-label.selected .radio-dot { background: var(--blue); border-color: var(--blue); }
+  .option-label.selected .radio-dot::after { opacity: 1; }
+
+  .radio-dot {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.18s;
+  }
+  .radio-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: white;
+    opacity: 0;
+    transition: opacity 0.18s;
+  }
+
+  .check-dot {
+    width: 20px; height: 20px;
+    border-radius: 6px;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.18s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .option-label.selected .check-dot {
+    background: var(--blue);
+    border-color: var(--blue);
+  }
+  .check-dot::after {
+    content: '✓';
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.18s;
+  }
+  .option-label.selected .check-dot::after { opacity: 1; }
+
+  .option-text { font-size: 0.95rem; font-weight: 500; color: var(--text); line-height: 1.3; }
+  .option-sub { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
+
+  /* Price slider */
+  .price-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 480px) { .price-options { grid-template-columns: 1fr; } }
+
+  .price-card {
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.18s;
+    background: var(--cream);
+    text-align: center;
+  }
+  .price-card:hover { border-color: var(--blue); background: rgba(27,108,168,0.04); }
+  .price-card.selected {
+    border-color: var(--green);
+    background: rgba(30,185,128,0.06);
+  }
+  .price-card input { display: none; }
+  .price-val { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--navy); }
+  .price-card.selected .price-val { color: var(--green); }
+  .price-range { font-size: 0.75rem; color: var(--muted); margin-top: 3px; }
+
+  /* Textarea */
+  .text-area {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--cream);
+    resize: vertical;
+    min-height: 100px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    line-height: 1.6;
+  }
+  .text-area:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 4px rgba(27,108,168,0.1);
+    background: white;
+  }
+
+  /* Required asterisk */
+  .required { color: #EF4444; margin-left: 3px; }
+
+  /* Submit */
+  .submit-wrap { text-align: center; margin-top: 12px; }
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 48px;
+    background: linear-gradient(135deg, var(--blue), #0E4F82);
+    color: white;
+    border: none;
+    border-radius: 99px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(27,108,168,0.35);
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(27,108,168,0.45); }
+  .submit-btn:active { transform: scale(0.98); }
+  .submit-note { font-size: 0.78rem; color: var(--muted); margin-top: 12px; }
+
+  /* Validation */
+  .error-msg { font-size: 0.78rem; color: #EF4444; margin-top: 6px; display: none; }
+  .q-card.has-error .text-input,
+  .q-card.has-error .text-area { border-color: #EF4444; }
+
+  /* ── Thank You Screen ── */
+  .thankyou {
+    display: none;
+    text-align: center;
+    padding: 60px 24px;
+    max-width: 560px;
+    margin: 0 auto;
+    animation: slideIn 0.5s ease forwards;
+  }
+  .thankyou.show { display: block; }
+  .thankyou-icon { font-size: 4rem; margin-bottom: 20px; animation: bounce 0.7s ease infinite alternate; }
+  @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-12px); } }
+  .thankyou h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--navy);
+    margin-bottom: 14px;
+  }
+  .thankyou p { color: var(--muted); font-size: 1rem; line-height: 1.7; margin-bottom: 10px; font-weight: 300; }
+  .thankyou-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 28px;
+    text-align: left;
+  }
+  .thankyou-card h3 { font-size: 0.85rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .summary-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-label { color: var(--muted); font-weight: 400; }
+  .summary-value { color: var(--navy); font-weight: 600; text-align: right; max-width: 60%; }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--navy);
+    padding: 24px;
+    text-align: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.78rem;
+  }
+  footer strong { color: rgba(255,255,255,0.7); }
+
+  @media (max-width: 520px) {
+    .q-card { padding: 24px 20px; }
+    .options.grid-2 { grid-template-columns: 1fr; }
+    .hero { padding: 40px 20px 60px; }
+  }
+
+  /* ── Video Section ── */
+  .video-section {
+    background: linear-gradient(180deg, #0B1F3A 0%, #0f2847 100%);
+    padding: 48px 24px 56px;
+  }
+  .video-section-label {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #3B9ED4;
+    margin-bottom: 10px;
+  }
+  .video-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    color: white;
+    text-align: center;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .video-section-sub {
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.88rem;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+  .video-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  }
+  .video-chip {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.5px;
+    background: rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .video-chip .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #1EB980;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .video-embed-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+  }
+  .video-embed-wrap iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .video-cta {
+    text-align: center;
+    margin-top: 32px;
+  }
+  .video-cta p {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+    font-weight: 300;
+  }
+  .scroll-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #1EB980, #0e9065);
+    color: white;
+    border: none;
+    border-radius: 99px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(30,185,128,0.35);
+    transition: all 0.2s;
+  }
+  .scroll-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(30,185,128,0.45); }
+
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="logo">Lekke<span>Leer</span></div>
+  <div class="header-tag">School Survey</div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-badge">📋 2 Minutes · 6 Questions</div>
+  <h1>Help Us Build the <em>Right</em> Product for Your School</h1>
+  <p>LekkeLeer turns your existing printed worksheets into interactive digital learning tools via QR code. We're asking principals to help shape our pricing and offering before we launch.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-val">6</div><div class="hero-stat-lbl">Questions</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">~2 min</div><div class="hero-stat-lbl">To complete</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">100%</div><div class="hero-stat-lbl">Confidential</div></div>
+  </div>
+</section>
+
+<!-- Video Section -->
+<section class="video-section">
+  <div class="video-section-label">See It In Action</div>
+  <h2 class="video-section-title">Watch LekkeLeer Come to Life</h2>
+  <p class="video-section-sub">Real demos — QR code scanning, flashcards, spelling practice and times tables.</p>
+  <div class="video-grid">
+    <div class="video-card">
+      <div class="video-chip"><span class="dot"></span>🇿🇦 Afrikaans Spellys</div>
+      <div class="video-embed-wrap">
+        <iframe src="https://drive.google.com/file/d/10GCYqd-GLP6t2nt3fCqlJYQ6UksAXHXE/preview" allow="autoplay" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-chip"><span class="dot"></span>🇬🇧 English Spelling</div>
+      <div class="video-embed-wrap">
+        <iframe src="https://drive.google.com/file/d/1T3u5bjkEzoRKb6ntKH_5iG103E9-wjyl/preview" allow="autoplay" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-chip"><span class="dot"></span>✖️ Times Tables</div>
+      <div class="video-embed-wrap">
+        <iframe src="https://drive.google.com/file/d/1LrzCUWb_tsbP3Zm7jG-rhccX9oclIFpC/preview" allow="autoplay" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="video-cta">
+    <p>Impressed? Help us shape the product for your school.</p>
+    <button class="scroll-btn" onclick="document.getElementById('surveyMain').scrollIntoView({behavior:'smooth'})">
+      Take the 2-Minute Survey ↓
+    </button>
+  </div>
+</section>
+
+<!-- Progress -->
+<div class="progress-container">
+  <div class="progress-card">
+    <span class="progress-label">Your progress</span>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount">0 / 6</span>
+  </div>
+</div>
+
+<!-- Survey Form -->
+<main id="surveyMain">
+
+  <!-- Q1: School Name -->
+  <div class="q-card" id="q1">
+    <div class="q-number">Question 1 of 6</div>
+    <div class="q-title">What is the name of your school? <span class="required">*</span></div>
+    <div class="q-subtitle">This helps us personalise any follow-up communication.</div>
+    <input class="text-input" id="schoolName" type="text" placeholder="e.g. Sunridge Private School" oninput="updateProgress()">
+    <div class="error-msg" id="err1">Please enter your school name.</div>
+  </div>
+
+  <!-- Q2: Learner count -->
+  <div class="q-card" id="q2">
+    <div class="q-number">Question 2 of 6</div>
+    <div class="q-title">How many learners are in Grade 1–6 at your school? <span class="required">*</span></div>
+    <div class="q-subtitle">We use this to ensure our pricing is fair for your school's size.</div>
+    <div class="number-wrap">
+      <button class="stepper-btn" onclick="stepper('learnerCount', -10)">−</button>
+      <input class="number-input" id="learnerCount" type="number" value="0" min="0" max="2000" oninput="updateProgress()">
+      <button class="stepper-btn" onclick="stepper('learnerCount', 10)">+</button>
+    </div>
+    <div class="error-msg" id="err2">Please enter a learner count greater than 0.</div>
+  </div>
+
+  <!-- Q3: Digital tools -->
+  <div class="q-card" id="q3">
+    <div class="q-number">Question 3 of 6</div>
+    <div class="q-title">Does your school currently use any digital learning tools for home practice? <span class="required">*</span></div>
+    <div class="q-subtitle">e.g. apps, platforms or websites parents use with learners at home.</div>
+    <div class="options" id="q3options">
+      <label class="option-label" onclick="selectOption(this, 'q3options', false)">
+        <input type="radio" name="digital" value="yes_paid">
+        <div class="radio-dot"></div>
+        <div><div class="option-text">Yes — we pay for a digital learning platform</div></div>
+      </label>
+      <label class="option-label" onclick="selectOption(this, 'q3options', false)">
+        <input type="radio" name="digital" value="yes_free">
+        <div class="radio-dot"></div>
+        <div><div class="option-text">Yes — we use free tools (e.g. YouTube, Khan Academy)</div></div>
+      </label>
+      <label class="option-label" onclick="selectOption(this, 'q3options', false)">
+        <input type="radio" name="digital" value="no">
+        <div class="radio-dot"></div>
+        <div><div class="option-text">No — we don't currently use digital tools for home practice</div></div>
+      </label>
+      <label class="option-label" onclick="selectOption(this, 'q3options', false)">
+        <input type="radio" name="digital" value="considering">
+        <div class="radio-dot"></div>
+        <div><div class="option-text">We've been considering it but haven't found the right solution</div></div>
+      </label>
+    </div>
+    <div class="error-msg" id="err3">Please select an option.</div>
+  </div>
+
+  <!-- Q4: Annual EdTech spend -->
+  <div class="q-card" id="q4">
+    <div class="q-number">Question 4 of 6</div>
+    <div class="q-title">Approximately how much does your school spend on educational technology per year? <span class="required">*</span></div>
+    <div class="q-subtitle">A rough estimate is perfectly fine — this helps us understand current budget norms.</div>
+    <div class="options" id="q4options">
+      <label class="option-label" onclick="selectOption(this, 'q4options', false)">
+        <input type="radio" name="spend" value="0">
+        <div class="radio-dot"></div>
+        <div class="option-text">We don't currently budget for EdTech</div>
+      </label>
+      <label class="option-label" onclick="selectOption(this, 'q4options', false)">
+        <input type="radio" name="spend" value="under5k">
+        <div class="radio-dot"></div>
+        <div class="option-text">Under R5,000 / year</div>
+      </label>
+      <label class="option-label" onclick="selectOption(this, 'q4options', false)">
+        <input type="radio" name="spend" value="5k-15k">
+        <div class="radio-dot"></div>
+        <div class="option-text">R5,000 – R15,000 / year</div>
+      </label>
+      <label class="option-label" onclick="selectOption(this, 'q4options', false)">
+        <input type="radio" name="spend" value="15k-50k">
+        <div class="radio-dot"></div>
+        <div class="option-text">R15,000 – R50,000 / year</div>
+      </label>
+      <label class="option-label" onclick="selectOption(this, 'q4options', false)">
+        <input type="radio" name="spend" value="50k+">
+        <div class="radio-dot"></div>
+        <div class="option-text">More than R50,000 / year</div>
+      </label>
+    </div>
+    <div class="error-msg" id="err4">Please select an option.</div>
+  </div>
+
+  <!-- Q5: Fair price -->
+  <div class="q-card" id="q5">
+    <div class="q-number">Question 5 of 6</div>
+    <div class="q-title">What annual fee would you consider fair for LekkeLeer? <span class="required">*</span></div>
+    <div class="q-subtitle">This covers unlimited QR-linked interactive learning tools for all Grade 1–6 learners at your school — no downloads, no logins for parents.</div>
+    <div class="price-options" id="q5options">
+      <label class="price-card" onclick="selectPrice(this, 'q5options')">
+        <input type="radio" name="price" value="under2k">
+        <div class="price-val">Under R2,000</div>
+        <div class="price-range">per year</div>
+      </label>
+      <label class="price-card" onclick="selectPrice(this, 'q5options')">
+        <input type="radio" name="price" value="2k-5k">
+        <div class="price-val">R2,000 – R5,000</div>
+        <div class="price-range">per year</div>
+      </label>
+      <label class="price-card" onclick="selectPrice(this, 'q5options')">
+        <input type="radio" name="price" value="5k-10k">
+        <div class="price-val">R5,000 – R10,000</div>
+        <div class="price-range">per year</div>
+      </label>
+      <label class="price-card" onclick="selectPrice(this, 'q5options')">
+        <input type="radio" name="price" value="10k+">
+        <div class="price-val">R10,000+</div>
+        <div class="price-range">per year</div>
+      </label>
+    </div>
+    <div class="error-msg" id="err5">Please select a price range.</div>
+  </div>
+
+  <!-- Q6: Demo interest + contact -->
+  <div class="q-card" id="q6">
+    <div class="q-number">Question 6 of 6</div>
+    <div class="q-title">Would you be interested in a free live demo at your school?</div>
+    <div class="q-subtitle">We'll bring a working QR code linked to your own school's spelling list — no obligation, no sales pressure.</div>
+    <div class="options" id="q6options" style="margin-bottom: 20px;">
+      <label class="option-label" onclick="selectOption(this, 'q6options', false); toggleContact(true)">
+        <input type="radio" name="demo" value="yes">
+        <div class="radio-dot"></div>
+        <div class="option-text">Yes, I'd love a demo — please contact me</div>
+      </label>
+      <label class="option-label" onclick="selectOption(this, 'q6options', false); toggleContact(false)">
+        <input type="radio" name="demo" value="maybe">
+        <div class="radio-dot"></div>
+        <div class="option-text">Maybe — send me more information first</div>
+      </label>
+      <label class="option-label" onclick="selectOption(this, 'q6options', false); toggleContact(false)">
+        <input type="radio" name="demo" value="no">
+        <div class="radio-dot"></div>
+        <div class="option-text">Not at this stage, thank you</div>
+      </label>
+    </div>
+
+    <div id="contactFields" style="display:none;">
+      <div style="margin-bottom: 12px;">
+        <input class="text-input" id="contactName" type="text" placeholder="Your name" style="margin-bottom: 10px;">
+        <input class="text-input" id="contactEmail" type="email" placeholder="Your email address" style="margin-bottom: 10px;">
+        <input class="text-input" id="contactPhone" type="tel" placeholder="Your phone / WhatsApp number">
+      </div>
+    </div>
+
+    <div style="margin-top: 16px;">
+      <div class="q-subtitle" style="margin-bottom: 8px;">Any other thoughts or questions for us? (optional)</div>
+      <textarea class="text-area" id="comments" placeholder="Feel free to share anything — we read every response personally." oninput="updateProgress()"></textarea>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="submit-wrap">
+    <button class="submit-btn" onclick="submitSurvey()">
+      Submit My Responses
+      <span>→</span>
+    </button>
+    <div class="submit-note">Your responses are confidential and used only to improve LekkeLeer.<br>We will never share your information with third parties.</div>
+  </div>
+
+</main>
+
+<!-- Thank You -->
+<div class="thankyou" id="thankYou">
+  <div class="thankyou-icon">🎉</div>
+  <h2>Thank you so much!</h2>
+  <p>Your feedback is genuinely valuable and will directly shape how LekkeLeer is built and priced.</p>
+  <p>If you requested a demo, we'll be in touch within <strong>2 business days</strong>.</p>
+  <div class="thankyou-card" id="summaryCard">
+    <h3>Your Responses</h3>
+    <div id="summaryRows"></div>
+  </div>
+  <p style="margin-top: 24px; font-size: 0.85rem;">Questions? Reach us at <strong>hello@lekkeleer.co.za</strong></p>
+</div>
+
+<footer>
+  <strong>LekkeLeer</strong> · QR-Linked Interactive Learning Companion · Cape Town, South Africa<br>
+  <span style="margin-top: 4px; display:block;">hello@lekkeleer.co.za · www.lekkeleer.co.za</span>
+</footer>
+
+<script>
+  const TOTAL = 6;
+
+  function stepper(id, delta) {
+    const el = document.getElementById(id);
+    const val = parseInt(el.value) || 0;
+    el.value = Math.max(0, val + delta);
+    updateProgress();
+  }
+
+  function selectOption(label, groupId, multi) {
+    const group = document.getElementById(groupId);
+    if (!multi) group.querySelectorAll('.option-label').forEach(l => l.classList.remove('selected'));
+    label.classList.toggle('selected');
+    updateProgress();
+  }
+
+  function selectPrice(label, groupId) {
+    document.getElementById(groupId).querySelectorAll('.price-card').forEach(l => l.classList.remove('selected'));
+    label.classList.add('selected');
+    updateProgress();
+  }
+
+  function toggleContact(show) {
+    document.getElementById('contactFields').style.display = show ? 'block' : 'none';
+  }
+
+  function getAnswered() {
+    let count = 0;
+    if (document.getElementById('schoolName').value.trim()) count++;
+    if (parseInt(document.getElementById('learnerCount').value) > 0) count++;
+    if (document.querySelector('#q3options .selected')) count++;
+    if (document.querySelector('#q4options .selected')) count++;
+    if (document.querySelector('#q5options .selected')) count++;
+    const q6 = document.querySelector('#q6options .selected');
+    if (q6) count++;
+    return count;
+  }
+
+  function updateProgress() {
+    const answered = getAnswered();
+    const pct = (answered / TOTAL) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressCount').textContent = `${answered} / ${TOTAL}`;
+  }
+
+  function getVal(selector) {
+    const el = document.querySelector(selector);
+    return el ? el.querySelector('input')?.value || el.textContent.trim() : '—';
+  }
+
+  function getLabelText(selector) {
+    const el = document.querySelector(selector + ' .selected');
+    if (!el) return '—';
+    const t = el.querySelector('.option-text') || el.querySelector('.price-val');
+    return t ? t.textContent.trim() : '—';
+  }
+
+  async function submitSurvey() {
+    let valid = true;
+
+    const name = document.getElementById('schoolName').value.trim();
+    document.getElementById('err1').style.display = name ? 'none' : 'block';
+    document.getElementById('q1').classList.toggle('has-error', !name);
+    if (!name) valid = false;
+
+    const learners = parseInt(document.getElementById('learnerCount').value);
+    document.getElementById('err2').style.display = learners > 0 ? 'none' : 'block';
+    document.getElementById('q2').classList.toggle('has-error', !(learners > 0));
+    if (!(learners > 0)) valid = false;
+
+    const q3sel = document.querySelector('#q3options .selected');
+    document.getElementById('err3').style.display = q3sel ? 'none' : 'block';
+    if (!q3sel) valid = false;
+
+    const q4sel = document.querySelector('#q4options .selected');
+    document.getElementById('err4').style.display = q4sel ? 'none' : 'block';
+    if (!q4sel) valid = false;
+
+    const q5sel = document.querySelector('#q5options .selected');
+    document.getElementById('err5').style.display = q5sel ? 'none' : 'block';
+    if (!q5sel) valid = false;
+
+    if (!valid) {
+      document.querySelector('.has-error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const demoSel      = document.querySelector('#q6options .selected');
+    const demoVal      = demoSel ? demoSel.querySelector('.option-text').textContent.trim() : 'Not answered';
+    const learnerCount = document.getElementById('learnerCount').value;
+    const digitalTools = getLabelText('#q3options');
+    const edtechBudget = getLabelText('#q4options');
+    const fairPrice    = getLabelText('#q5options');
+    const contactName  = document.getElementById('contactName').value.trim();
+    const contactEmail = document.getElementById('contactEmail').value.trim();
+    const contactPhone = document.getElementById('contactPhone').value.trim();
+    const comments     = document.getElementById('comments').value.trim();
+
+    const btn = document.querySelector('.submit-btn');
+    btn.innerHTML = '⏳ Sending…';
+    btn.disabled = true;
+
+    const message = [
+      'LekkeLeer School Survey Response',
+      '==================================',
+      '',
+      'School Name:            ' + name,
+      'Grade 1-6 Learners:     ' + learnerCount,
+      'Current Digital Tools:  ' + digitalTools,
+      'Annual EdTech Budget:   ' + edtechBudget,
+      'Fair Annual Price:      ' + fairPrice,
+      'Demo Interest:          ' + demoVal,
+      '',
+      'Contact Details:',
+      '  Name:   ' + (contactName  || 'Not provided'),
+      '  Email:  ' + (contactEmail || 'Not provided'),
+      '  Phone:  ' + (contactPhone || 'Not provided'),
+      '',
+      'Additional Comments:',
+      comments || 'None'
+    ].join('
+');
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: 'c45e9f84-28e4-4c1d-a1cd-0b549e539c66',
+          subject: 'LekkeLeer Survey: ' + name,
+          from_name: 'LekkeLeer Survey',
+          message: message
+        })
+      });
+      const result = await res.json();
+      if (!result.success) throw new Error(result.message);
+    } catch(e) {
+      console.warn('Web3Forms error:', e);
+    }
+
+    const rows = [
+      ['School', name],
+      ['Grade 1-6 Learners', learnerCount],
+      ['Current Digital Tools', digitalTools],
+      ['Annual EdTech Budget', edtechBudget],
+      ['Fair Annual Price', fairPrice],
+      ['Demo Interest', demoVal]
+    ];
+
+    document.getElementById('summaryRows').innerHTML = rows.map(function(r) {
+      return '<div class="summary-row"><span class="summary-label">' + r[0] + '</span><span class="summary-value">' + r[1] + '</span></div>';
+    }).join('');
+
+    document.getElementById('surveyMain').style.display = 'none';
+    document.getElementById('thankYou').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Init progress
+  updateProgress();
+</script>
+</body>
+</html>

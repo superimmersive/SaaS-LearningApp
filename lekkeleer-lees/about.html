@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LekkeLeer – About</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">Lekke<span>Leer</span></div>
+    <span class="early-access">Early access</span>
+    <div class="header-badge">ℹ️ About</div>
+  </header>
+
+  <main class="about-main">
+    <a href="./index.html" class="stats-back">← Back to Read</a>
+
+    <section class="about-hero">
+      <div class="about-hero-emoji">📖</div>
+      <h1>LekkeLeer</h1>
+      <p>A reading practice app for young Afrikaans learners (Grade 1–3).
+        Build confidence by reading sentences aloud, hearing correct pronunciation,
+        and tracking progress week by week.</p>
+    </section>
+
+    <section class="about-section">
+      <h2><span class="about-icon">🎯</span> How it works</h2>
+      <ol class="about-steps">
+        <li><span class="step-num">1</span><div><strong>Pick a week</strong><br>Choose from Week 1 to 8 at the top of the page.</div></li>
+        <li><span class="step-num">2</span><div><strong>Tap a word</strong><br>Tap any word to hear it spoken aloud.</div></li>
+        <li><span class="step-num">3</span><div><strong>Speel (Play)</strong><br>Press 🔊 to hear the full sentence with karaoke highlighting.</div></li>
+        <li><span class="step-num">4</span><div><strong>Begin Lees (Start Reading)</strong><br>Press 🎤 and read aloud. Words turn green as you go.</div></li>
+        <li><span class="step-num">5</span><div><strong>Earn stars</strong><br>Complete a sentence for a star. Get all 7 to finish the week!</div></li>
+      </ol>
+    </section>
+
+    <section class="about-section">
+      <h2><span class="about-icon">👨‍👩‍👧</span> Tips for parents</h2>
+      <ul class="about-tips">
+        <li>Let your child tap each word first to learn pronunciation before reading aloud.</li>
+        <li>Use "Speel" to model the sentence — the karaoke highlight shows the pace.</li>
+        <li>Check the <a href="./stats.html">Progress</a> page to see completed sentences and reading speed.</li>
+        <li>Works best in Chrome or Edge on a quiet device with a microphone.</li>
+      </ul>
+    </section>
+
+    <section class="about-section about-tech">
+      <h2><span class="about-icon">⚙️</span> Under the hood</h2>
+      <div class="about-tech-grid">
+        <div class="tech-card">
+          <span class="tech-emoji">🔊</span>
+          <strong>Speech synthesis</strong>
+          <span>Natural Afrikaans voices</span>
+        </div>
+        <div class="tech-card">
+          <span class="tech-emoji">💾</span>
+          <strong>Local audio cache</strong>
+          <span>No re-download on refresh</span>
+        </div>
+        <div class="tech-card">
+          <span class="tech-emoji">☁️</span>
+          <strong>Cloud sync</strong>
+          <span>Progress saved to Supabase</span>
+        </div>
+        <div class="tech-card">
+          <span class="tech-emoji">📱</span>
+          <strong>Any device</strong>
+          <span>Phone, tablet, or desktop</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <h2><span class="about-icon">⚠️</span> Current limitations</h2>
+      <ul class="about-tips">
+        <li>
+          <strong>iOS browser support:</strong> Safari and other iOS browsers do not currently support
+          the Web Speech API used for read-aloud recognition. Learners on iPhones or iPads won't be
+          able to use the "Begin Lees" microphone feature. The planned solution is to build a dedicated
+          iOS app that uses native speech recognition, providing full functionality on Apple devices.
+        </li>
+        <li>
+          <strong>Microphone quality matters:</strong> Speech recognition works best in a quiet
+          environment with a decent microphone. Background noise or low-quality built-in mics can
+          cause words to be missed or misrecognized.
+        </li>
+        <li>
+          <strong>Android variability:</strong> Speech recognition on Android Chrome can be unreliable
+          on some devices — the mic may pick up sound (visualizer works) but words may not register.
+          We've added mobile-specific handling; if issues persist, try a different Android device or
+          use a laptop/desktop for the best experience.
+        </li>
+        <li>
+          <strong>Browser requirement:</strong> For the best experience, use Google Chrome or
+          Microsoft Edge. Other browsers may have limited or missing speech recognition support.
+        </li>
+        <li>
+          <strong>Internet required for first load:</strong> Audio is synthesized online and cached
+          locally for future use. An internet connection is needed the first time each sentence is
+          played, but subsequent visits work from the local cache.
+        </li>
+      </ul>
+    </section>
+
+    <section class="about-section">
+      <h2><span class="about-icon">🎯</span> Current focus</h2>
+      <ul class="about-tips">
+        <li>
+          <strong>User feedback:</strong> Actively gathering feedback from parents, teachers, and
+          testers to identify issues, improve the reading experience, and prioritize what to build
+          next. Use the "Your feedback" button to share your thoughts.
+        </li>
+        <li>
+          <strong>Sharing and early adoption:</strong> Getting the app into the hands of more
+          Grade 1–3 learners and their parents to validate the approach and build a community of
+          early users.
+        </li>
+        <li>
+          <strong>Stability and polish:</strong> Fixing bugs, improving speech recognition accuracy,
+          and refining the UI based on real-world usage and feedback.
+        </li>
+      </ul>
+    </section>
+
+    <section class="about-section">
+      <h2><span class="about-icon">🚀</span> Future plans</h2>
+      <ul class="about-tips">
+        <li>
+          <strong>Expanding activities:</strong> Moving beyond reading sentences to include spelling
+          words, English reading, and foundational maths (addition, subtraction, multiplication,
+          division) — all aligned to the South African CAPS curriculum by term and week.
+        </li>
+        <li>
+          <strong>Gamification:</strong> Badges, streaks, and rewards to keep learners motivated
+          and coming back every day.
+        </li>
+        <li>
+          <strong>Dedicated iOS and Android apps:</strong> Native mobile apps with full speech
+          recognition support, offline mode, and push notifications to encourage daily practice.
+        </li>
+        <li>
+          <strong>Student–teacher portal:</strong> A dashboard where teachers can view learner
+          progress, assign specific weeks, and track class-wide reading performance. Parents will
+          also be able to link their child's account for a shared view of progress.
+        </li>
+        <li>
+          <strong>Multi-language support:</strong> Extending to other South African languages
+          (isiZulu, isiXhosa, Sesotho, etc.) to reach more learners across the country.
+        </li>
+        <li>
+          <strong>Branding and identity:</strong> A proper branding process to define the app's
+          name, visual identity — logo, colour palette, typography, and tone of voice. The current
+          name is a working title; the final name will be chosen as part of this process. The goal
+          is a polished, professional look that parents and schools trust, while staying playful
+          and inviting for young learners.
+        </li>
+      </ul>
+    </section>
+
+    <section class="about-section">
+      <h2><span class="about-icon">📋</span> Changelog</h2>
+      <div class="changelog">
+        <div class="changelog-entry">
+          <span class="changelog-date">2026-03-09</span>
+          <span class="changelog-tag tag-new">new</span>
+          <ul>
+            <li>In-app feedback form (replaces Google Forms).</li>
+            <li>Progress reset from the Progress page.</li>
+            <li>Persistent TTS audio cache — instant playback after first load.</li>
+            <li>Progress dots unlock instantly when audio is cached.</li>
+            <li>Main app completion synced with Supabase.</li>
+            <li>Stats show unique sentences completed and avg. word time.</li>
+            <li>Feedback and progress UI switched to English.</li>
+          </ul>
+        </div>
+        <div class="changelog-entry">
+          <span class="changelog-date">2026-03-08</span>
+          <ul>
+            <li>Supabase integration: sessions, sentence results, user sync.</li>
+            <li>Progress page with per-week star breakdown.</li>
+            <li>Completion persistence via localStorage.</li>
+          </ul>
+        </div>
+        <div class="changelog-entry">
+          <span class="changelog-date">2026-03-07</span>
+          <span class="changelog-tag tag-launch">launch</span>
+          <ul>
+            <li>Initial release: 8 weeks of Afrikaans reading sentences.</li>
+            <li>Tap-to-hear, read-aloud recognition, Speel with karaoke highlight.</li>
+            <li>Two voice options (Adri, Willem).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section about-contact">
+      <div class="about-contact-block">
+        <a href="https://superimmersive.io" target="_blank" rel="noopener" class="about-powered-link"><img src="./images/superimmersive-logo.png" alt="SuperImmersive" class="about-powered-logo" /></a>
+        <p class="about-contact-email">Developer: <a href="mailto:devon@superimmersive.io">devon@superimmersive.io</a></p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
