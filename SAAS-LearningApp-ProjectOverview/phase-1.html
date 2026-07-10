@@ -3,100 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phase 1 – MVP completion</title>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Phase 1 · MVP completion — LekkeLeer</title>
+  <meta name="description" content="Phase 1: a compelling free web app that introduces LekkeLeer and pulls parents and schools into the ecosystem.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <script>(function(){try{var t=localStorage.getItem('ll-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
 </head>
-<body>
-  <nav class="site-nav">
-    <a href="index.html" class="nav-logo">Lekke<span>Leer</span></a>
-    <span class="nav-badge">Project Overview</span>
-    <div class="nav-links">
-      <a href="overview.html" class="nav-link">Overview</a>
-      <a href="roadmap.html" class="nav-link">Roadmap</a>
-      <a href="activity-lib.html" class="nav-link">Activity Lib</a>
-      <a href="phase-1.html" class="nav-link active">Phase 1</a>
-      <a href="phase-2.html" class="nav-link">Phase 2</a>
-      <a href="phase-3.html" class="nav-link">Phase 3</a>
-      <a href="phase-4.html" class="nav-link">Phase 4</a>
-      <a href="phase-5.html" class="nav-link">Phase 5</a>
-      <a href="monetization.html" class="nav-link">Monetization</a>
-      <a href="proposals.html" class="nav-link">Proposals</a>
-    </div>
-  </nav>
+<body data-page="phase1">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-nav"></div>
 
-  <header class="page-header">
-    <h1>Phase 1 – MVP completion</h1>
-    <p class="page-desc">Create a compelling free web app that introduces LekkeLeer and pulls parents and schools into the ecosystem.</p>
-  </header>
+  <main id="main">
+    <header class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> <span>/</span> <a href="roadmap.html">Roadmap</a> <span>/</span> <span>Phase 1</span></nav>
+        <div class="stepper">
+          <a href="phase-1.html" class="is-current"><span class="n">1</span><span class="lbl">MVP completion</span></a>
+          <a href="phase-2.html"><span class="n">2</span><span class="lbl">Auth &amp; accounts</span></a>
+          <a href="phase-3.html"><span class="n">3</span><span class="lbl">Expo / Native</span></a>
+          <a href="phase-4.html"><span class="n">4</span><span class="lbl">Lumi Plus</span></a>
+          <a href="phase-5.html"><span class="n">5</span><span class="lbl">Lumi Schools</span></a>
+        </div>
+        <span class="eyebrow">Phase 1 of 5 · Now</span>
+        <h1>MVP completion</h1>
+        <p class="lead">Create a compelling free web app that introduces LekkeLeer and pulls parents and schools into the ecosystem.</p>
+      </div>
+    </header>
 
-  <main class="main main-page">
-    <section class="section">
-      <h2>Goals</h2>
-      <div class="card">
-        <ul>
-          <li>Finish the MVP experience so it feels complete and reliable for parents and learners.</li>
-          <li>Ship Woorde flashcards and expand Term 1 content across more terms and subjects.</li>
-          <li>Collect and act on early-access feedback to smooth out rough edges.</li>
-        </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>Goals</h2></div>
+        <div class="card card--pad-lg">
+          <ul class="feature-list">
+            <li><span>Finish the MVP experience so it feels complete and reliable for parents and learners.</span></li>
+            <li><span>Ship Woorde flashcards and expand Term 1 content across more terms and subjects.</span></li>
+            <li><span>Collect and act on early-access feedback to smooth out rough edges.</span></li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Scope (from Roadmap)</h2>
-      <table class="data-table">
-        <thead>
-          <tr><th>Item</th><th>Notes</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Woorde flashcard section</td><td>Afrikaans word + TTS, flip for English, week selector</td></tr>
-          <tr><td>Unlock Term 2–4 content</td><td>As content is ready</td></tr>
-          <tr><td>English activities</td><td>When content is ready</td></tr>
-          <tr><td>Spell woorde</td><td>When content is ready</td></tr>
-          <tr><td>Bug fixes & UX polish</td><td>From user feedback</td></tr>
-        </tbody>
-      </table>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>Scope</h2><p class="section__lead">From the roadmap.</p></div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Item</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><b>Woorde flashcard section</b></td><td>Afrikaans word + TTS, flip for English, week selector</td></tr>
+              <tr><td><b>Unlock Term 2–4 content</b></td><td>As content is ready</td></tr>
+              <tr><td><b>English activities</b></td><td>When content is ready</td></tr>
+              <tr><td><b>Spell woorde</b></td><td>When content is ready</td></tr>
+              <tr><td><b>Bug fixes &amp; UX polish</b></td><td>From user feedback</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
-    <section class="section">
-      <h2>Curriculum structure expansion</h2>
-      <p>Expand from Afrikaans reading only to full subject/activity structure:</p>
-      <pre class="code-block">Term 1 → Week 1 → Afrikaans
-  - Lees sinne (reading sentences) — CURRENT
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>Curriculum structure expansion</h2><p class="section__lead">Expand from Afrikaans reading only to a full subject / activity structure.</p></div>
+        <pre class="code">Term 1 → Week 1 → Afrikaans
+  - Lees sinne (reading sentences) <span class="c-cur">— CURRENT</span>
   - Spell woorde (spelling words)
 
-Term 1 → Week 1 → English (locked)
+Term 1 → Week 1 → English <span class="c-lock">(locked)</span>
   - Reading sentences
   - Spelling words
 
-Term 1 → Week 1 → Maths/Wiskunde (locked)
+Term 1 → Week 1 → Maths/Wiskunde <span class="c-lock">(locked)</span>
   - Addition, subtraction, multiply, divide</pre>
-
-      <h3>Key decisions</h3>
-      <ul>
-        <li>Navigation: tab-based (subject row + activity row) vs card-based landing page.</li>
-        <li>Data structure: nested CURRICULUM object (term > week > subject > activity).</li>
-        <li>Reuse: reading engine shared for Afrikaans & English (swap TTS voice + recognition lang).</li>
-        <li>Spelling: new interaction mode (reuse tap-to-hear).</li>
-        <li>Maths: new interaction type (problem cards, input/answer flow).</li>
-      </ul>
+        <h3>Key decisions</h3>
+        <div class="card">
+          <ul class="feature-list dots">
+            <li><span>Navigation: tab-based (subject row + activity row) vs card-based landing page.</span></li>
+            <li><span>Data structure: nested <code>CURRICULUM</code> object (term &gt; week &gt; subject &gt; activity).</span></li>
+            <li><span>Reuse: reading engine shared for Afrikaans &amp; English (swap TTS voice + recognition lang).</span></li>
+            <li><span>Spelling: new interaction mode (reuse tap-to-hear).</span></li>
+            <li><span>Maths: new interaction type (problem cards, input/answer flow).</span></li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <section class="section">
-      <h2>Status and risks</h2>
-      <div class="card">
-        <ul>
-          <li><strong>Status:</strong> MVP live with Term 1 Afrikaans reading; Woorde and additional content to come.</li>
-          <li><strong>Risks:</strong> content bottlenecks (Term 2–4, English, Maths), and UX issues discovered during early access.</li>
-          <li><strong>Mitigation:</strong> prioritise high-impact content first and keep feedback loop tight with families and teachers.</li>
-        </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>Status &amp; risks</h2></div>
+        <div class="grid grid-3">
+          <div class="card"><span class="pill pill--ok">Status</span><p style="margin-top:0.6rem;">MVP live with Term 1 Afrikaans reading; Woorde and additional content to come.</p></div>
+          <div class="card"><span class="pill pill--warn">Risks</span><p style="margin-top:0.6rem;">Content bottlenecks (Term 2–4, English, Maths) and UX issues discovered during early access.</p></div>
+          <div class="card"><span class="pill pill--info">Mitigation</span><p style="margin-top:0.6rem;">Prioritise high-impact content first and keep the feedback loop tight with families and teachers.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <nav class="pager" aria-label="Phase navigation">
+          <a class="prev" href="roadmap.html"><small>Back to</small><b>← Roadmap</b></a>
+          <a class="next" href="phase-2.html"><small>Next phase</small><b>Phase 2 · Auth &amp; accounts →</b></a>
+        </nav>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>Derived from <code>ROADMAP.md</code> Phase 1. Last updated: 2026-03-17</p>
-  </footer>
+  <div id="site-footer"></div>
+  <script src="js/site.js"></script>
 </body>
 </html>
-

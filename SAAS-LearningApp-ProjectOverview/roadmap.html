@@ -3,268 +3,313 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roadmap – SaaS Learning App</title>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <title>Roadmap — LekkeLeer</title>
+  <meta name="description" content="A phased plan from MVP to monetization: auth, native apps, Lumi Plus subscriptions, and Lumi Schools licences.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <script>(function(){try{var t=localStorage.getItem('ll-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
 </head>
-<body>
-  <nav class="site-nav">
-    <a href="index.html" class="nav-logo">Lekke<span>Leer</span></a>
-    <span class="nav-badge">Project Overview</span>
-    <div class="nav-links">
-      <a href="overview.html" class="nav-link">Overview</a>
-      <a href="roadmap.html" class="nav-link active">Roadmap</a>
-      <a href="activity-lib.html" class="nav-link">Activity Lib</a>
-      <a href="phase-1.html" class="nav-link">Phase 1</a>
-      <a href="phase-2.html" class="nav-link">Phase 2</a>
-      <a href="phase-3.html" class="nav-link">Phase 3</a>
-      <a href="phase-4.html" class="nav-link">Phase 4</a>
-      <a href="phase-5.html" class="nav-link">Phase 5</a>
-      <a href="monetization.html" class="nav-link">Monetization</a>
-      <a href="proposals.html" class="nav-link">Proposals</a>
-    </div>
-  </nav>
+<body data-page="roadmap">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-nav"></div>
 
-  <header class="page-header">
-    <h1>Roadmap</h1>
-    <p class="page-desc">A phased plan from MVP to monetization, including the Expo (React Native) port and subscription tiers.</p>
-  </header>
-
-  <main class="main main-page">
-    <!-- Current phase: MVP -->
-    <section class="section">
-      <h2>Current phase: MVP</h2>
-      <p><strong>Status:</strong> Early access, gathering feedback.</p>
-      
-      <div class="card">
-        <h3>Done</h3>
-        <ul>
-          <li>8 weeks Afrikaans reading (Lees saam)</li>
-          <li>Tap-to-hear, Speel (karaoke), Begin Lees (speech recognition)</li>
-          <li>Supabase sync, progress, stats</li>
-          <li>In-app feedback → Discord</li>
-          <li>TTS cache (IndexedDB)</li>
-          <li>Breadcrumb picker (Term › Week › Subject › Activity)</li>
-        </ul>
+  <main id="main">
+    <header class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Roadmap</span></nav>
+        <span class="eyebrow">The plan, on one page</span>
+        <h1>Roadmap</h1>
+        <p class="lead">A phased plan from MVP to monetization — including the Expo (React Native) port and subscription tiers. Tap any phase for the deep dive.</p>
       </div>
-      
-      <div class="card">
-        <h3>In progress / next</h3>
-        <ul>
-          <li>[ ] Woorde flashcard section (<code>words.html</code> + <code>words.js</code>)</li>
-          <li>[ ] Stability and polish based on feedback</li>
-        </ul>
+    </header>
+
+    <section class="section section--tight reveal">
+      <div class="container">
+        <div class="now-banner">
+          <span class="pill">Current phase</span>
+          <div style="flex:1;min-width:200px;">
+            <h3>MVP · Early access</h3>
+            <p>Gathering feedback while we complete the free experience.</p>
+          </div>
+          <a class="btn btn-sun" href="phase-1.html">What's next →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual timeline -->
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>At a glance</h2></div>
+        <div class="timeline">
+          <div class="tl-item" data-state="now">
+            <div class="tl-node">1</div>
+            <a class="tl-card" href="phase-1.html">
+              <div class="tl-card__top"><h3>MVP completion</h3><span class="pill pill--warn">Now</span></div>
+              <p>A compelling free web app that introduces LekkeLeer and pulls parents and schools into the ecosystem.</p>
+            </a>
+          </div>
+          <div class="tl-item" data-state="next">
+            <div class="tl-node">2</div>
+            <a class="tl-card" href="phase-2.html">
+              <div class="tl-card__top"><h3>Auth &amp; accounts foundation</h3><span class="pill pill--info">Next</span></div>
+              <p>Shared identity, roles, and multi-tenant wiring for parents and schools.</p>
+            </a>
+          </div>
+          <div class="tl-item" data-state="later">
+            <div class="tl-node">3</div>
+            <a class="tl-card" href="phase-3.html">
+              <div class="tl-card__top"><h3>Expo / React Native port</h3><span class="pill">Later</span></div>
+              <p>Native iOS and Android apps from a shared codebase.</p>
+            </a>
+          </div>
+          <div class="tl-item" data-state="later">
+            <div class="tl-node">4</div>
+            <a class="tl-card" href="phase-4.html">
+              <div class="tl-card__top"><h3>Lumi Plus (parent subscriptions)</h3><span class="pill">Later</span></div>
+              <p>Optional subscription that adds premium value — not required for Lumi Schools home access.</p>
+            </a>
+          </div>
+          <div class="tl-item" data-state="later">
+            <div class="tl-node">5</div>
+            <a class="tl-card" href="phase-5.html">
+              <div class="tl-card__top"><h3>Lumi Schools (school licences)</h3><span class="pill">Later</span></div>
+              <p>Annual tiers with teacher dashboards and home access for learners under the school's seat allocation.</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Now: MVP -->
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>Now: MVP</h2>
+          <p class="section__lead">Status: early access, gathering feedback.</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <span class="pill pill--ok">Done</span>
+            <ul class="feature-list" style="margin-top:0.75rem;">
+              <li><span>8 weeks Afrikaans reading (<em>Lees saam</em>)</span></li>
+              <li><span>Tap-to-hear, Speel (karaoke), Begin Lees (speech recognition)</span></li>
+              <li><span>Supabase sync, progress, stats</span></li>
+              <li><span>In-app feedback → Discord</span></li>
+              <li><span>TTS cache (IndexedDB)</span></li>
+              <li><span>Breadcrumb picker (Term › Week › Subject › Activity)</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="pill pill--warn">In progress / next</span>
+            <ul class="feature-list todo" style="margin-top:0.75rem;">
+              <li><span>Woorde flashcard section (<code>words.html</code> + <code>words.js</code>)</span></li>
+              <li><span>Stability and polish based on feedback</span></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Phase 1 -->
-    <section class="section">
-      <h2>Phase 1: MVP completion</h2>
-      <p><strong>Goal:</strong> Solid free tier before monetization.</p>
-      
-      <table class="data-table">
-        <thead>
-          <tr><th>Item</th><th>Notes</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Woorde flashcard section</td><td>Afrikaans word + TTS, flip for English, week selector</td></tr>
-          <tr><td>Unlock Term 2–4 content</td><td>As content is ready</td></tr>
-          <tr><td>English activities</td><td>When content is ready</td></tr>
-          <tr><td>Spell woorde</td><td>When content is ready</td></tr>
-          <tr><td>Bug fixes & UX polish</td><td>From user feedback</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Curriculum structure expansion</h3>
-      <p>Expand from Afrikaans reading only to full subject/activity structure:</p>
-      <pre class="code-block">Term 1 → Week 1 → Afrikaans
-  - Lees sinne (reading sentences) — CURRENT
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>Phase 1 · MVP completion</h2>
+          <p class="section__lead"><strong>Goal:</strong> a solid free tier before monetization. <a href="phase-1.html">Full detail →</a></p>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Item</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><b>Woorde flashcard section</b></td><td>Afrikaans word + TTS, flip for English, week selector</td></tr>
+              <tr><td><b>Unlock Term 2–4 content</b></td><td>As content is ready</td></tr>
+              <tr><td><b>English activities</b></td><td>When content is ready</td></tr>
+              <tr><td><b>Spell woorde</b></td><td>When content is ready</td></tr>
+              <tr><td><b>Bug fixes &amp; UX polish</b></td><td>From user feedback</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Curriculum structure expansion</h3>
+        <p class="section__lead" style="margin-bottom:1rem;">Expand from Afrikaans reading only to a full subject / activity structure:</p>
+        <pre class="code">Term 1 → Week 1 → Afrikaans
+  - Lees sinne (reading sentences) <span class="c-cur">— CURRENT</span>
   - Spell woorde (spelling words)
 
-Term 1 → Week 1 → English (locked)
+Term 1 → Week 1 → English <span class="c-lock">(locked)</span>
   - Reading sentences
   - Spelling words
 
-Term 1 → Week 1 → Maths/Wiskunde (locked)
+Term 1 → Week 1 → Maths/Wiskunde <span class="c-lock">(locked)</span>
   - Addition, subtraction, multiply, divide</pre>
-
-      <h4>Key decisions</h4>
-      <ul>
-        <li>Navigation: tab-based (subject row + activity row) vs card-based landing page</li>
-        <li>Data structure: nested CURRICULUM object (term > week > subject > activity)</li>
-        <li>Reuse: reading engine shared for Afrikaans & English (swap TTS voice + recognition lang)</li>
-        <li>Spelling: new interaction mode (reuse tap-to-hear)</li>
-        <li>Maths: new interaction type (problem cards, input/answer flow)</li>
-      </ul>
+        <h3>Key decisions</h3>
+        <div class="card">
+          <ul class="feature-list dots">
+            <li><span>Navigation: tab-based (subject row + activity row) vs card-based landing page.</span></li>
+            <li><span>Data structure: nested <code>CURRICULUM</code> object (term &gt; week &gt; subject &gt; activity).</span></li>
+            <li><span>Reuse: reading engine shared for Afrikaans &amp; English (swap TTS voice + recognition lang).</span></li>
+            <li><span>Spelling: new interaction mode (reuse tap-to-hear).</span></li>
+            <li><span>Maths: new interaction type (problem cards, input/answer flow).</span></li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- Phase 2 -->
-    <section class="section">
-      <h2>Phase 2: Auth & accounts foundation</h2>
-      <p><strong>Goal:</strong> Shared identity, roles, and multi-tenant wiring for parents and schools.</p>
-      
-      <table class="data-table">
-        <thead>
-          <tr><th>Item</th><th>Notes</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Supabase Auth</td><td>Email/password or magic link sign-in</td></tr>
-          <tr><td>Account model</td><td>Households, learners, schools, and roles</td></tr>
-          <tr><td>Multi-tenant wiring</td><td>Link users to schools/classes where needed</td></tr>
-        </tbody>
-      </table>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>Phase 2 · Auth &amp; accounts foundation</h2>
+          <p class="section__lead"><strong>Goal:</strong> shared identity, roles, and multi-tenant wiring for parents and schools. <a href="phase-2.html">Full detail →</a></p>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Item</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><b>Supabase Auth</b></td><td>Email/password or magic link sign-in</td></tr>
+              <tr><td><b>Account model</b></td><td>Households, learners, schools, and roles</td></tr>
+              <tr><td><b>Multi-tenant wiring</b></td><td>Link users to schools/classes where needed</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
     <!-- Phase 3 -->
-    <section class="section">
-      <h2>Phase 3: Lumi Plus (parent subscriptions)</h2>
-      <p><strong>Goal:</strong> Optional parent subscription that adds premium value (features/content), not required for Lumi Schools home access.</p>
-      
-      <table class="data-table">
-        <thead>
-          <tr><th>Item</th><th>Notes</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Subscription state</td><td>Stripe or RevenueCat integration</td></tr>
-          <tr><td>Paywall logic</td><td>Gate premium features behind subscription</td></tr>
-          <tr><td>Free vs Plus feature split</td><td>Define what stays free vs paid</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Lumi Plus features (from monetization strategy)</h3>
-      <ul>
-        <li>Full content library</li>
-        <li>iOS + Android native app</li>
-        <li>Offline mode (cached audio)</li>
-        <li>Progress dashboard</li>
-        <li>Priority feature access (annual)</li>
-        <li>Founding family badge (annual)</li>
-      </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>Phase 3 · Expo / React Native port</h2>
+          <p class="section__lead"><strong>Goal:</strong> native iOS and Android apps from a shared codebase. <a href="phase-3.html">Full detail →</a></p>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Item</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><b>Expo project setup</b></td><td><code>expo init</code> or <code>create-expo-app</code></td></tr>
+              <tr><td><b>Shared core</b></td><td>Extract TTS, speech, content, sync into shared modules</td></tr>
+              <tr><td><b>React Native Web</b></td><td>Keep web app in same repo if desired</td></tr>
+              <tr><td><b>Native TTS</b></td><td><code>expo-speech</code> or Azure Speech SDK</td></tr>
+              <tr><td><b>Native speech recognition</b></td><td>Fix iOS limitation (no Web Speech API)</td></tr>
+              <tr><td><b>Offline caching</b></td><td>Native storage for audio + content</td></tr>
+              <tr><td><b>Supabase client</b></td><td>Same backend, add auth + subscription checks</td></tr>
+              <tr><td><b>App Store / Play Store</b></td><td>Listing, screenshots, metadata</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
     <!-- Phase 4 -->
-    <section class="section">
-      <h2>Phase 4: Expo / React Native port</h2>
-      <p><strong>Goal:</strong> Native iOS and Android apps for Lumi Plus subscribers.</p>
-      
-      <table class="data-table">
-        <thead>
-          <tr><th>Item</th><th>Notes</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Expo project setup</td><td><code>expo init</code> or <code>create-expo-app</code></td></tr>
-          <tr><td>Shared core</td><td>Extract TTS, speech, content, sync into shared modules</td></tr>
-          <tr><td>React Native Web</td><td>Keep web app in same repo if desired</td></tr>
-          <tr><td>Native TTS</td><td><code>expo-speech</code> or Azure Speech SDK</td></tr>
-          <tr><td>Native speech recognition</td><td>Fix iOS limitation (no Web Speech API)</td></tr>
-          <tr><td>Offline caching</td><td>Native storage for audio + content</td></tr>
-          <tr><td>Supabase client</td><td>Same backend, add auth + subscription checks</td></tr>
-          <tr><td>App Store / Play Store</td><td>Listing, screenshots, metadata</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Why Expo</h3>
-      <ul>
-        <li>Single codebase for iOS + Android</li>
-        <li>Over-the-air updates</li>
-        <li>Easier native module integration</li>
-        <li>Good path from web to native</li>
-      </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>Phase 4 · Lumi Plus (parent subscriptions)</h2>
+          <p class="section__lead"><strong>Goal:</strong> optional parent subscription that adds premium value — not required for Lumi Schools home access. <a href="phase-4.html">Full detail →</a></p>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Item</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><b>Subscription state</b></td><td>Stripe or RevenueCat integration</td></tr>
+              <tr><td><b>Paywall logic</b></td><td>Gate premium features behind subscription</td></tr>
+              <tr><td><b>Free vs Plus feature split</b></td><td>Define what stays free vs paid</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Lumi Plus features</h3>
+        <div class="card">
+          <ul class="feature-list">
+            <li><span>Full content library</span></li>
+            <li><span>iOS + Android native app</span></li>
+            <li><span>Offline mode (cached audio)</span></li>
+            <li><span>Progress dashboard</span></li>
+            <li><span>Priority feature access (annual)</span></li>
+            <li><span>Founding family badge (annual)</span></li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- Phase 5 -->
-    <section class="section">
-      <h2>Phase 5: Lumi Schools (school licences)</h2>
-      <p><strong>Goal:</strong> Annual Lumi Schools tiers with teacher dashboard and home access for learners under the school’s seat allocation.</p>
-      
-      <table class="data-table">
-        <thead>
-          <tr><th>Item</th><th>Notes</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Multi-tenant model</td><td>Schools, classes, learners</td></tr>
-          <tr><td>Teacher admin dashboard</td><td>Beyond current admin; class/learner views</td></tr>
-          <tr><td>Per-learner progress</td><td>Already have sentence_results; add school/class linkage</td></tr>
-          <tr><td>Class-wide stats & exports</td><td>Medium tier</td></tr>
-          <tr><td>Grade-level reporting</td><td>Large tier</td></tr>
-          <tr><td>Onboarding sessions</td><td>Medium tier</td></tr>
-          <tr><td>Custom content requests</td><td>Large tier</td></tr>
-          <tr><td>Dedicated account manager</td><td>Large tier</td></tr>
-          <tr><td>SLA-backed uptime</td><td>Large tier</td></tr>
-        </tbody>
-      </table>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>Phase 5 · Lumi Schools (school licences)</h2>
+          <p class="section__lead"><strong>Goal:</strong> annual Lumi Schools tiers with teacher dashboard and home access for learners under the school's seat allocation. <a href="phase-5.html">Full detail →</a></p>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Item</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><b>Multi-tenant model</b></td><td>Schools, classes, learners</td></tr>
+              <tr><td><b>Teacher admin dashboard</b></td><td>Beyond current admin; class/learner views</td></tr>
+              <tr><td><b>Per-learner progress</b></td><td>Already have <code>sentence_results</code>; add school/class linkage</td></tr>
+              <tr><td><b>Class-wide stats &amp; exports</b></td><td>Medium tier</td></tr>
+              <tr><td><b>Grade-level reporting</b></td><td>Large tier</td></tr>
+              <tr><td><b>Onboarding sessions</b></td><td>Medium tier</td></tr>
+              <tr><td><b>Custom content requests</b></td><td>Large tier</td></tr>
+              <tr><td><b>Dedicated account manager</b></td><td>Large tier</td></tr>
+              <tr><td><b>SLA-backed uptime</b></td><td>Large tier</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
-    <!-- Monetization tiers (reference) -->
-    <section class="section">
-      <h2>Monetization tiers (reference)</h2>
-      
-      <h3>Lumi Schools – annual, per school</h3>
-      <table class="data-table">
-        <thead>
-          <tr><th>Tier</th><th>Price</th><th>Learners</th><th>Key features</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Small</td><td>R8,500/yr</td><td>Up to 100</td><td>CAPS content, Afrikaans + English, teacher dashboard, per-learner progress, email support</td></tr>
-          <tr><td>Medium</td><td>R16,000/yr</td><td>101–400</td><td>+ Multi-class, class stats/exports, priority support, onboarding</td></tr>
-          <tr><td>Large</td><td>R26,000/yr</td><td>401+</td><td>+ Grade-level reporting, custom content, dedicated account manager, SLA</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Parent subscription – Lumi Plus</h3>
-      <table class="data-table">
-        <thead>
-          <tr><th>Plan</th><th>Price</th><th>Key features</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Monthly</td><td>R79/mo</td><td>Full content, iOS + Android app, offline mode, progress dashboard</td></tr>
-          <tr><td>Annual</td><td>R599/yr</td><td>Same + priority feature access, founding family badge (≈ R49.90/mo, 37% savings)</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- Suggested timeline -->
-    <section class="section">
-      <h2>Suggested timeline (high level)</h2>
-      <pre class="code-block">MVP completion      →  Woorde, polish, more content
-       ↓
-Auth & accounts     →  Supabase Auth, roles, multi-tenant model
-       ↓
-Lumi Plus           →  Subscriptions, paywall, free vs Plus split
-       ↓
-Expo port           →  Native apps for Lumi Plus
-       ↓
-Lumi Schools        →  Multi-tenant, teacher dashboard, school tiers</pre>
-      
-      <div class="mermaid-wrap">
-        <pre class="mermaid">
-flowchart LR
-  A[MVP] --> B[MVP Complete]
-  B --> C[Auth & accounts]
-  C --> D[Lumi Plus]
-  D --> E[Expo / Native]
-  E --> F[Lumi Schools]
-        </pre>
+    <!-- Monetization reference -->
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>Monetization tiers (reference)</h2>
+          <p class="section__lead">Full detail on the <a href="monetization.html">Pricing</a> page.</p>
+        </div>
+        <h3>LekkeLeer Schools — annual licence</h3>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Tier</th><th>Price</th><th>Learners</th><th>Key features</th></tr></thead>
+            <tbody>
+              <tr><td><b>Small</b></td><td>R8,500/yr</td><td>Up to 100</td><td>CAPS content, Afrikaans + English, teacher dashboard, per-learner progress, email support</td></tr>
+              <tr><td><b>Medium</b></td><td>R16,000/yr</td><td>101–400</td><td>+ Multi-class, class stats/exports, priority support, onboarding</td></tr>
+              <tr><td><b>Large</b></td><td>R26,000/yr</td><td>401+</td><td>+ Grade-level reporting, custom content, dedicated account manager, SLA</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>LekkeLeer mobile app — subscription</h3>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Plan</th><th>Price</th><th>Key features</th></tr></thead>
+            <tbody>
+              <tr><td><b>Monthly</b></td><td>R79/mo</td><td>Full content, iOS + Android app, offline mode, progress dashboard</td></tr>
+              <tr><td><b>Annual</b></td><td>R599/yr</td><td>Same + priority feature access, founding family badge (≈ R49.90/mo, 37% savings)</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
     <!-- Open questions -->
-    <section class="section">
-      <h2>Open questions</h2>
-      <ul>
-        <li>[ ] Stripe vs RevenueCat for subscriptions?</li>
-        <li>[ ] Keep web app free forever, or freemium with limits?</li>
-        <li>[ ] School licence: separate app or same app with role-based access?</li>
-        <li>[ ] Content pipeline: who creates Term 2–4, English, Maths?</li>
-      </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>Open questions</h2></div>
+        <div class="callout callout--warn">
+          <span class="callout__ico">❓</span>
+          <div>
+            <ul class="feature-list todo" style="gap:0.45rem;">
+              <li><span>Stripe vs RevenueCat for subscriptions?</span></li>
+              <li><span>Keep the web app free forever, or freemium with limits?</span></li>
+              <li><span>School licence: separate app or same app with role-based access?</span></li>
+              <li><span>Content pipeline: who creates Term 2–4, English, and Maths?</span></li>
+            </ul>
+          </div>
+        </div>
+        <p class="section__lead" style="margin-top:1rem;">Source: <code>lekkeleer-lees/docs/ROADMAP.md</code></p>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>Source: <code>lekkeleer-lees/docs/ROADMAP.md</code>. Last updated: 2026-03-09</p>
-  </footer>
-
-  <script>mermaid.initialize({ startOnLoad: true, theme: 'neutral' });</script>
+  <div id="site-footer"></div>
+  <script src="js/site.js"></script>
 </body>
 </html>

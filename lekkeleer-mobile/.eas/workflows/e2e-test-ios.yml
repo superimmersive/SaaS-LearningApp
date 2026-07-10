@@ -1,0 +1,33 @@
+name: e2e-test-ios
+
+# Builds an iOS Simulator (.app) on EAS, boots it on a simulator in the cloud,
+# and runs the Maestro flows in .maestro/. This is the closest thing to a
+# real "does the app launch and work" test, and it runs entirely on EAS's
+# macOS runners (no local macOS/Xcode needed).
+#
+# Run it manually:
+#   npx eas-cli@latest workflow:run e2e-test-ios.yml
+#
+# The push trigger below only fires automatically when the repository is
+# connected to EAS through the GitHub app. This repo lives on Bitbucket, so
+# for now trigger the workflow manually with the command above.
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  build_ios_for_e2e:
+    type: build
+    params:
+      platform: ios
+      profile: e2e-test
+
+  maestro_test:
+    needs: [build_ios_for_e2e]
+    type: maestro
+    params:
+      build_id: ${{ needs.build_ios_for_e2e.outputs.build_id }}
+      flow_path:
+        - .maestro/home.yml
+        - .maestro/debug-native-modules.yml
+      record_screen: true

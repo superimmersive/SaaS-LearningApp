@@ -1,0 +1,21 @@
+# Navigates to the Debug screen and verifies every native module is linked
+# into the binary. The Debug screen renders "loaded ✓" / "NOT loaded ✗" per
+# module (expo-stream-audio mic module, expo-clipboard). If a native module
+# the JS references is missing from the build, this flow fails — either the
+# app crashes on launch, or "NOT loaded ✗" appears.
+#
+# Maestro matches the *entire* element text via regex, so substrings are
+# wrapped in .* on both sides.
+appId: io.superimmersive.lekkeleer
+---
+- launchApp
+- scrollUntilVisible:
+    element:
+      text: '.*Debug.*microphone.*'
+    direction: DOWN
+    timeout: 20000
+- tapOn: '.*Debug.*microphone.*'
+- assertVisible: 'Diagnostics'
+- assertVisible: 'Azure mic module'
+- assertVisible: 'Azure Cognitive Services'
+- assertNotVisible: '.*NOT loaded.*'

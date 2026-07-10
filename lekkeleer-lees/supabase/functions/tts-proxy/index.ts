@@ -3,7 +3,11 @@
  * Keeps the Azure API key server-side. Client sends SSML, receives audio.
  */
 
-const AZURE_REGION = "westeurope";
+// Region is configurable so TTS can move closer to users (e.g. "southafricanorth") to cut
+// latency. IMPORTANT: this must match the region of AZURE_SPEECH_KEY — Azure keys are
+// per-resource/per-region, so a key issued for one region is rejected by another region's
+// endpoint. Keep this in sync with the speech-token function (same AZURE_SPEECH_REGION secret).
+const AZURE_REGION = Deno.env.get("AZURE_SPEECH_REGION") ?? "westeurope";
 const AZURE_ENDPOINT = `https://${AZURE_REGION}.tts.speech.microsoft.com/cognitiveservices/v1`;
 const OUTPUT_FORMAT = "audio-24khz-96kbitrate-mono-mp3";
 

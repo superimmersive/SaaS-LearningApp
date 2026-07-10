@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LekkeLeer – Dev server QR</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #e8f4ff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: #1a3a5c;
+      text-align: center;
+    }
+    h1 { font-size: 1.4rem; margin-bottom: 8px; }
+    p { color: #475569; margin-bottom: 20px; max-width: 420px; line-height: 1.5; }
+    .qr-card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(26, 58, 92, 0.12);
+    }
+    #qr { display: block; }
+    code {
+      display: inline-block;
+      margin-top: 18px;
+      background: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #1a3a5c;
+      border: 1px solid #cbd5e1;
+    }
+    .hint { margin-top: 16px; font-size: 0.85rem; color: #64748b; }
+  </style>
+</head>
+<body>
+  <h1>📱 Skandeer met die LekkeLeer dev app</h1>
+  <p>Maak die <strong>LekkeLeer</strong> dev-app oop op jou foon → tik <strong>Scan QR code</strong> → wys na hierdie kode. Foon en rekenaar moet op dieselfde Wi-Fi wees.</p>
+  <div class="qr-card">
+    <canvas id="qr" width="320" height="320"></canvas>
+  </div>
+  <code id="urlText"></code>
+  <p class="hint">Dev-server URL (verander as jou IP of poort verander).</p>
+
+  <script type="module">
+    const DEV_SERVER_URL = 'exp://192.168.0.12:8082';
+    document.getElementById('urlText').textContent = DEV_SERVER_URL;
+    try {
+      const QRCode = await import('https://cdn.jsdelivr.net/npm/qrcode@1.5.4/+esm');
+      await QRCode.toCanvas(document.getElementById('qr'), DEV_SERVER_URL, {
+        width: 320,
+        margin: 2,
+        errorCorrectionLevel: 'M',
+        color: { dark: '#1a3a5c', light: '#ffffff' },
+      });
+    } catch (err) {
+      document.querySelector('.qr-card').innerHTML =
+        '<p>Kon nie QR wys nie. Tik die URL handmatig in:<br><strong>' + DEV_SERVER_URL + '</strong></p>';
+    }
+  </script>
+</body>
+</html>

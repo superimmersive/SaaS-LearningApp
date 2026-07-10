@@ -3,112 +3,188 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SaaS Learning App – Project Overview</title>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>LekkeLeer — Project Overview</title>
+  <meta name="description" content="A visual overview of LekkeLeer: a CAPS-based learning platform connecting classroom work, homework, and enrichment for Foundation Phase learners.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <script>(function(){try{var t=localStorage.getItem('ll-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
 </head>
-<body>
-  <nav class="site-nav">
-    <a href="index.html" class="nav-logo">Lekke<span>Leer</span></a>
-    <span class="nav-badge">Project Overview</span>
-    <div class="nav-links">
-      <a href="overview.html" class="nav-link">Overview</a>
-      <a href="roadmap.html" class="nav-link">Roadmap</a>
-      <a href="activity-lib.html" class="nav-link">Activity Lib</a>
-      <a href="phase-1.html" class="nav-link">Phase 1</a>
-      <a href="phase-2.html" class="nav-link">Phase 2</a>
-      <a href="phase-3.html" class="nav-link">Phase 3</a>
-      <a href="phase-4.html" class="nav-link">Phase 4</a>
-      <a href="phase-5.html" class="nav-link">Phase 5</a>
-      <a href="monetization.html" class="nav-link">Monetization</a>
-      <a href="proposals.html" class="nav-link">Proposals</a>
-    </div>
-  </nav>
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-nav"></div>
 
-  <header class="hero">
-    <div class="hero-content">
-      <h1>SaaS Learning App</h1>
-      <p class="hero-tagline">LekkeLeer – Afrikaans reading practice for Grade 1–3 learners</p>
-      <p class="hero-desc">Tap words to hear them, read aloud with speech recognition, track progress. CAPS-aligned, expanding to English, Maths & school licences.</p>
-      <div class="hero-status">
-        <span class="badge badge-live">MVP Live</span>
-        <span class="badge badge-progress">Early Access</span>
-      </div>
-    </div>
-  </header>
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <span class="eyebrow">CAPS-aligned learning platform</span>
+          <h1>Where <span class="hl">schoolwork</span> and <span class="hl">home practice</span> meet.</h1>
+          <p class="hero__lead">LekkeLeer connects the classroom, homework, and enrichment in one friendly place — starting with Afrikaans reading for Foundation Phase learners, and growing from there.</p>
+          <div class="hero__cta">
+            <a class="btn btn-primary" href="https://www.lekkeleer.co.za/dashboard.html" target="_blank" rel="noopener noreferrer">Try now in browser <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a>
+            <a class="btn btn-ghost btn-ghost--blue" href="mobile-app.html">
+              Try mobile app
+              <span class="btn__platforms" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.43 11.43 0 0 0-8.94 0L5.65 5.67a.643.643 0 0 0-.87-.2.617.617 0 0 0-.22.83l1.84 3.18C4.86 11.03 3.5 13.73 3.5 16.5h17c0-2.77-1.36-5.47-3.9-7.02zM7 14.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              </span>
+            </a>
+          </div>
+          <div class="hero__meta">
+            <span><span class="dot"></span> MVP live</span>
+            <span><span class="dot amber"></span> Early access</span>
+            <span>Built by SuperImmersive</span>
+          </div>
+        </div>
 
-  <main class="main">
-    <section class="section hub-section">
-      <h2>Overview</h2>
-      <p class="section-desc">Visual project overview for orientation, planning, funders, and collaborators.</p>
-      
-      <div class="hub-grid">
-        <a href="overview.html" class="hub-card">
-          <span class="hub-icon">✨</span>
-          <h3>Overview</h3>
-          <p>High-level picture of LekkeLeer – who it serves and what it’s for.</p>
-        </a>
-        <a href="roadmap.html" class="hub-card">
-          <span class="hub-icon">🗺️</span>
-          <h3>Roadmap</h3>
-          <p>Single-page phased plan from MVP to school licences.</p>
-        </a>
-        <a href="activity-lib.html" class="hub-card">
-          <span class="hub-icon">🧩</span>
-          <h3>Activity Lib</h3>
-          <p>Library of activities, tagged by availability, access, and platform.</p>
-        </a>
-        <a href="phase-1.html" class="hub-card">
-          <span class="hub-icon">1️⃣</span>
-          <h3>Phase 1 – MVP completion</h3>
-          <p>Deep dive on MVP completion: Woorde, more content, UX polish.</p>
-        </a>
-        <a href="phase-2.html" class="hub-card">
-          <span class="hub-icon">2️⃣</span>
-          <h3>Phase 2 – Auth & accounts</h3>
-          <p>Shared auth and account model for parents and schools.</p>
-        </a>
-        <a href="phase-3.html" class="hub-card">
-          <span class="hub-icon">3️⃣</span>
-          <h3>Phase 3 – Expo / Native</h3>
-          <p>React Native / Expo port and offline-first mobile apps.</p>
-        </a>
-        <a href="phase-4.html" class="hub-card">
-          <span class="hub-icon">4️⃣</span>
-          <h3>Phase 4 – Lumi Plus</h3>
-          <p>Lumi Plus parent subscriptions, paywall logic, and free vs Plus split.</p>
-        </a>
-        <a href="phase-5.html" class="hub-card">
-          <span class="hub-icon">5️⃣</span>
-          <h3>Phase 5 – Lumi Schools</h3>
-          <p>Lumi Schools tiers, teacher dashboards, and data model.</p>
-        </a>
-        <a href="monetization.html" class="hub-card">
-          <span class="hub-icon">💰</span>
-          <h3>Monetization</h3>
-          <p>Lumi Plus parent plans and annual school licence tiers.</p>
-        </a>
-        <a href="proposals.html" class="hub-card">
-          <span class="hub-icon">📋</span>
-          <h3>Proposals</h3>
-          <p>Funding proposals and how to use this overview in pitches.</p>
-        </a>
+        <aside class="hero__card" aria-label="At a glance">
+          <h3>At a glance</h3>
+          <div class="mini-stack">
+            <div class="mini"><span class="mini__ico">📖</span><span><b>Afrikaans reading is live</b><small>Term 1, Weeks 1–8 (Lees sinne)</small></span></div>
+            <div class="mini"><span class="mini__ico">🎒</span><span><b>Foundation Phase first</b><small>Grade 1–3 to start, not a hard limit</small></span></div>
+            <div class="mini"><span class="mini__ico">🗺️</span><span><b>A clear 5-phase plan</b><small>From MVP to schools &amp; native apps</small></span></div>
+            <div class="mini"><span class="mini__ico">💡</span><span><b>Two ways to access</b><small>LekkeLeer Schools &amp; mobile app subscription</small></span></div>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <section class="section section-compact">
-      <h2>Links</h2>
-      <div class="links-grid">
-        <a href="#" class="link-card">Live app (when deployed)</a>
-        <a href="#" class="link-card">Main repo (lekkeleer-lees)</a>
-        <a href="#" class="link-card">Proposals folder</a>
-        <a href="mailto:devon@superimmersive.io" class="link-card">Contact: devon@superimmersive.io</a>
+    <!-- Learning environments -->
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>One platform, every learning moment</h2>
+          <p class="section__lead">The same CAPS-based content follows the learner from the classroom to the kitchen table.</p>
+        </div>
+        <div class="grid grid-auto">
+          <div class="card">
+            <div class="tile__ico ico-blue">🏫</div>
+            <h3>In class</h3>
+            <p>Teachers run the week's activities and watch progress update in near real time.</p>
+          </div>
+          <div class="card">
+            <div class="tile__ico ico-green">🏠</div>
+            <h3>Homework</h3>
+            <p>The same week's homework is online — no more missed work when a paper page stays at school.</p>
+          </div>
+          <div class="card">
+            <div class="tile__ico ico-yellow">✨</div>
+            <h3>Enrichment</h3>
+            <p>Optional extra practice for learners who want to go further inside the CAPS structure.</p>
+          </div>
+          <div class="card">
+            <div class="tile__ico ico-purple">🎒</div>
+            <h3>Home schooling</h3>
+            <p>Schools can enrol home-schooled learners so they get the same weekly work.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore -->
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>Explore this overview</h2>
+          <p class="section__lead">Everything you need to understand the project, the plan, and the business model.</p>
+        </div>
+        <div class="grid grid-auto">
+          <a class="tile" href="overview.html">
+            <div class="tile__ico ico-blue">🧭</div>
+            <h3>Overview</h3>
+            <p>What LekkeLeer is, who it serves, and where it's headed.</p>
+            <span class="tile__more">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a class="tile" href="roadmap.html">
+            <div class="tile__ico ico-green">🗺️</div>
+            <h3>Roadmap</h3>
+            <p>A single-page, phased plan from MVP to school licences.</p>
+            <span class="tile__more">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a class="tile" href="activity-lib.html">
+            <div class="tile__ico ico-pink">🧩</div>
+            <h3>Activities</h3>
+            <p>The library of learning activities, filterable by access &amp; platform.</p>
+            <span class="tile__more">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a class="tile" href="monetization.html">
+            <div class="tile__ico ico-yellow">💳</div>
+            <h3>Pricing</h3>
+            <p>Mobile app subscriptions and annual LekkeLeer Schools licences.</p>
+            <span class="tile__more">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a class="tile" href="phase-1.html">
+            <div class="tile__ico ico-orange">📈</div>
+            <h3>The 5 phases</h3>
+            <p>Deep-dive pages for each step of the build, with scope &amp; risks.</p>
+            <span class="tile__more">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a class="tile" href="proposals.html">
+            <div class="tile__ico ico-navy">📋</div>
+            <h3>Proposals</h3>
+            <p>How this overview supports funding pitches and applications.</p>
+            <span class="tile__more">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey -->
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>The journey ahead</h2>
+          <p class="section__lead">Five focused phases take LekkeLeer from a polished free web app to schools and native apps.</p>
+        </div>
+        <div class="grid grid-auto-sm">
+          <a class="tile" href="phase-1.html">
+            <span class="pill pill--warn">Now</span>
+            <h3>1 · MVP completion</h3>
+            <p>A compelling free web app that pulls in parents and schools.</p>
+          </a>
+          <a class="tile" href="phase-2.html">
+            <span class="pill pill--info">Next</span>
+            <h3>2 · Auth &amp; accounts</h3>
+            <p>Shared identity and roles for parents and schools.</p>
+          </a>
+          <a class="tile" href="phase-3.html">
+            <span class="pill">Later</span>
+            <h3>3 · Expo / Native</h3>
+            <p>iOS &amp; Android apps from a shared codebase.</p>
+          </a>
+          <a class="tile" href="phase-4.html">
+            <span class="pill">Later</span>
+            <h3>4 · Mobile app subscription</h3>
+            <p>Optional parent subscription &amp; premium value.</p>
+          </a>
+          <a class="tile" href="phase-5.html">
+            <span class="pill">Later</span>
+            <h3>5 · LekkeLeer Schools</h3>
+            <p>Annual school licences &amp; teacher dashboards.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Links -->
+    <section class="section section--tight reveal">
+      <div class="container">
+        <div class="section__head"><h2>Quick links</h2></div>
+        <div class="linklist">
+          <a href="https://www.lekkeleer.co.za/dashboard.html" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg> Try in browser</a>
+          <a href="mobile-app.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg> Mobile app downloads</a>
+          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-1-2.6c3-.3 6-1.5 6-6.5a5 5 0 0 0-1.4-3.5 4.7 4.7 0 0 0-.1-3.5s-1.1-.3-3.5 1.3a12 12 0 0 0-6 0C6.6 1.7 5.5 2 5.5 2a4.7 4.7 0 0 0-.1 3.5A5 5 0 0 0 4 9c0 5 3 6.2 6 6.5a3.4 3.4 0 0 0-1 2.6V22"/></svg> Main repo (lekkeleer-lees)</a>
+          <a href="proposals.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> Proposals folder</a>
+          <a href="mailto:devon@superimmersive.io"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> devon@superimmersive.io</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>SaaS Learning App – LekkeLeer. SuperImmersive. Last updated: 2026-03-09</p>
-  </footer>
+  <div id="site-footer"></div>
+  <script src="js/site.js"></script>
 </body>
 </html>

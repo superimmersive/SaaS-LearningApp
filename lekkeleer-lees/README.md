@@ -14,8 +14,8 @@ python -m http.server 8080
 
 ```
 lekkeleer-lees/
-├── index.html, dashboard.html, words.html, about.html, stats.html, admin.html  # App pages
-├── app.js, dashboard.js, words.js, db.js, user.js, stats.js, admin.js         # Core logic
+├── index.html, dashboard.html, words.html, app.html, about.html, stats.html, admin.html  # App pages
+├── app.js, dashboard.js, words.js, mobile-app.js, mobile-config.js, db.js, user.js, stats.js, admin.js  # Core logic
 ├── ttsCache.js                                     # TTS audio cache
 ├── styles.css                                       # Shared styles
 ├── docs/                                            # Documentation
@@ -31,6 +31,18 @@ lekkeleer-lees/
 ├── supabase/                        # SQL migrations & Edge Functions
 └── package.json
 ```
+
+## Mobile (iOS + Android)
+
+Native apps live in **`../lekkeleer-mobile/`** (Expo). Same dashboard, Lees saam, and Spell woorde — store links on the website come later.
+
+```bash
+cd ../lekkeleer-mobile
+npm install
+npx expo start
+```
+
+See [lekkeleer-mobile/README.md](../lekkeleer-mobile/README.md) for EAS builds and env setup.
 
 ## Deploy
 

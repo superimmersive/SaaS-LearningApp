@@ -3,127 +3,149 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phase 5 – Lumi Schools (school licences)</title>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Phase 5 · Lumi Schools — LekkeLeer</title>
+  <meta name="description" content="Annual Lumi Schools tiers with teacher dashboards, per-learner progress, reporting, and home access for learners.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <script>(function(){try{var t=localStorage.getItem('ll-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
 </head>
-<body>
-  <nav class="site-nav">
-    <a href="index.html" class="nav-logo">Lekke<span>Leer</span></a>
-    <span class="nav-badge">Project Overview</span>
-    <div class="nav-links">
-      <a href="overview.html" class="nav-link">Overview</a>
-      <a href="roadmap.html" class="nav-link">Roadmap</a>
-      <a href="activity-lib.html" class="nav-link">Activity Lib</a>
-      <a href="phase-1.html" class="nav-link">Phase 1</a>
-      <a href="phase-2.html" class="nav-link">Phase 2</a>
-      <a href="phase-3.html" class="nav-link">Phase 3</a>
-      <a href="phase-4.html" class="nav-link">Phase 4</a>
-      <a href="phase-5.html" class="nav-link active">Phase 5</a>
-      <a href="monetization.html" class="nav-link">Monetization</a>
-      <a href="proposals.html" class="nav-link">Proposals</a>
-    </div>
-  </nav>
+<body data-page="phase5">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-nav"></div>
 
-  <header class="page-header">
-    <h1>Phase 5 – Lumi Schools (school licences)</h1>
-    <p class="page-desc">Annual Lumi Schools tiers with teacher dashboards, per-learner progress, and reporting.</p>
-  </header>
+  <main id="main">
+    <header class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> <span>/</span> <a href="roadmap.html">Roadmap</a> <span>/</span> <span>Phase 5</span></nav>
+        <div class="stepper">
+          <a href="phase-1.html"><span class="n">1</span><span class="lbl">MVP completion</span></a>
+          <a href="phase-2.html"><span class="n">2</span><span class="lbl">Auth &amp; accounts</span></a>
+          <a href="phase-3.html"><span class="n">3</span><span class="lbl">Expo / Native</span></a>
+          <a href="phase-4.html"><span class="n">4</span><span class="lbl">Lumi Plus</span></a>
+          <a href="phase-5.html" class="is-current"><span class="n">5</span><span class="lbl">Lumi Schools</span></a>
+        </div>
+        <span class="eyebrow">Phase 5 of 5 · School licences</span>
+        <h1>Lumi Schools</h1>
+        <p class="lead">Annual Lumi Schools tiers with teacher dashboards, per-learner progress, reporting, and home access for learners.</p>
+      </div>
+    </header>
 
-  <main class="main main-page">
-    <section class="section">
-      <h2>Goals</h2>
-      <div class="card">
-        <ul>
-          <li>Sell LekkeLeer as an annual licence per school instead of only to individual parents.</li>
-          <li>Include home access: learners can use their school-linked account at school or at home while the school licence is active.</li>
-          <li>Provide teachers with a dashboard for per-learner and class-wide progress.</li>
-          <li>Support multiple classes, grades, and reporting needs at different tiers.</li>
-        </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>Goals</h2></div>
+        <div class="card card--pad-lg">
+          <ul class="feature-list">
+            <li><span>Sell LekkeLeer as an annual licence per school instead of only to individual parents.</span></li>
+            <li><span><b>Home access included:</b> learners can use their school-linked account at school or at home while the school licence is active.</span></li>
+            <li><span>Provide teachers with a dashboard for per-learner and class-wide progress.</span></li>
+            <li><span>Support multiple classes, grades, and reporting needs at different tiers.</span></li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Scope (from Roadmap)</h2>
-      <table class="data-table">
-        <thead>
-          <tr><th>Item</th><th>Notes</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Multi-tenant model</td><td>Schools, classes, learners</td></tr>
-          <tr><td>Teacher admin dashboard</td><td>Beyond current admin; class/learner views</td></tr>
-          <tr><td>Per-learner progress</td><td>Already have sentence_results; add school/class linkage</td></tr>
-          <tr><td>Class-wide stats & exports</td><td>Medium tier</td></tr>
-          <tr><td>Grade-level reporting</td><td>Large tier</td></tr>
-          <tr><td>Onboarding sessions</td><td>Medium tier</td></tr>
-          <tr><td>Custom content requests</td><td>Large tier</td></tr>
-          <tr><td>Dedicated account manager</td><td>Large tier</td></tr>
-          <tr><td>SLA-backed uptime</td><td>Large tier</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="section">
-      <h2>Data model sketch</h2>
-      <div class="card">
-        <p><code>schools</code> → <code>classes</code> → <code>learners</code> (linked to existing <code>sentence_results</code>)</p>
-        <ul>
-          <li><strong>schools:</strong> name, licence tier, expiry, capacity.</li>
-          <li><strong>classes:</strong> class name, grade, school_id.</li>
-          <li><strong>school_users:</strong> links users (teachers) to schools.</li>
-          <li><strong>class_learners:</strong> links learners to classes.</li>
-        </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>Scope</h2><p class="section__lead">From the roadmap.</p></div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Item</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><b>Multi-tenant model</b></td><td>Schools, classes, learners</td></tr>
+              <tr><td><b>Teacher admin dashboard</b></td><td>Beyond current admin; class/learner views</td></tr>
+              <tr><td><b>Per-learner progress</b></td><td>Already have <code>sentence_results</code>; add school/class linkage</td></tr>
+              <tr><td><b>Class-wide stats &amp; exports</b></td><td>Medium tier</td></tr>
+              <tr><td><b>Grade-level reporting</b></td><td>Large tier</td></tr>
+              <tr><td><b>Onboarding sessions</b></td><td>Medium tier</td></tr>
+              <tr><td><b>Custom content requests</b></td><td>Large tier</td></tr>
+              <tr><td><b>Dedicated account manager</b></td><td>Large tier</td></tr>
+              <tr><td><b>SLA-backed uptime</b></td><td>Large tier</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>How Lumi Schools is used</h2>
-      <div class="card">
-        <h3>1. Buying & onboarding</h3>
-        <ul>
-          <li>A school chooses a Lumi Schools tier (Small/Medium/Large) and signs an annual agreement.</li>
-          <li>You create the school record, teacher accounts, and classes (e.g. Grade 1A, 1B, 2A).</li>
-          <li>Learners are added or imported and attached to classes under that school.</li>
-        </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>Data model sketch</h2></div>
+        <div class="card card--pad-lg">
+          <p><code>schools</code> → <code>classes</code> → <code>learners</code> (linked to existing <code>sentence_results</code>)</p>
+          <ul class="feature-list dots" style="margin-top:0.75rem;">
+            <li><span><b>schools:</b> name, licence tier, expiry, capacity.</span></li>
+            <li><span><b>classes:</b> class name, grade, school_id.</span></li>
+            <li><span><b>school_users:</b> links users (teachers) to schools.</span></li>
+            <li><span><b>class_learners:</b> links learners to classes.</span></li>
+          </ul>
+        </div>
       </div>
-      <div class="card">
-        <h3>2. Day-to-day classroom use</h3>
-        <ul>
-          <li>Teachers log into the Lumi Schools dashboard and pick the current term/week focus.</li>
-          <li>Learners use LekkeLeer during reading periods or in lab/tablet sessions.</li>
-          <li>All activity is automatically linked to each learner and class for reporting.</li>
-        </ul>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>How Lumi Schools is used</h2><p class="section__lead">From sign-up to day-to-day classroom use and reporting.</p></div>
+        <div class="grid grid-2">
+          <div class="card">
+            <span class="pill pill--info">1 · Buying &amp; onboarding</span>
+            <ul class="feature-list" style="margin-top:0.75rem;">
+              <li><span>A school chooses a tier (Small/Medium/Large) and signs an annual agreement.</span></li>
+              <li><span>You create the school record, teacher accounts, and classes (e.g. Grade 1A, 1B, 2A).</span></li>
+              <li><span>Learners are added or imported and attached to classes under that school.</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="pill pill--info">2 · Day-to-day use</span>
+            <ul class="feature-list" style="margin-top:0.75rem;">
+              <li><span>Teachers log in and pick the current term/week focus.</span></li>
+              <li><span>Learners use LekkeLeer during reading periods or lab/tablet sessions.</span></li>
+              <li><span>All activity is automatically linked to each learner and class for reporting.</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="pill pill--info">3 · Monitoring &amp; intervention</span>
+            <ul class="feature-list" style="margin-top:0.75rem;">
+              <li><span>Per-learner views show who is behind or struggling with specific content.</span></li>
+              <li><span>Class-level summaries highlight overall progress and problem areas.</span></li>
+              <li><span>Group learners for extra support and export CSV/Excel for reports.</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="pill pill--info">4 · School / district view</span>
+            <ul class="feature-list" style="margin-top:0.75rem;">
+              <li><span>Grade-level reporting for HODs and principals.</span></li>
+              <li><span>Custom content requests and curriculum tweaks for partner schools.</span></li>
+              <li><span>SLA and dedicated account management for training and rollout.</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top:1.1rem;">
+          <span class="callout__ico">🏠</span>
+          <div>
+            <h3 style="margin:0 0 0.35rem;">Home access (Option 1)</h3>
+            <ul class="feature-list" style="gap:0.45rem;">
+              <li><span>Learners can log in with their school-linked account from home or school.</span></li>
+              <li><span>Access stays active while the school's Lumi Schools licence is active and the learner is within the seat allocation.</span></li>
+              <li><span>Lumi Plus becomes additive value (extra features/content), not a requirement for home access.</span></li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <h3>Home access (Option 1)</h3>
-        <ul>
-          <li>Learners can log in with their school-linked account from home or school.</li>
-          <li>Access remains active as long as the school’s Lumi Schools licence is active and the learner is within the school’s seat allocation.</li>
-          <li>Lumi Plus becomes additive value for families (extra features/content), not a requirement for home access.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>3. Monitoring and intervention</h3>
-        <ul>
-          <li>Per-learner views show who is behind or struggling with specific content.</li>
-          <li>Class-level summaries highlight overall progress and problem areas.</li>
-          <li>Teachers can group learners for extra support and export CSV/Excel for reports.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>4. School / district-level view (higher tiers)</h3>
-        <ul>
-          <li>Grade-level reporting for HODs and principals.</li>
-          <li>Custom content requests and curriculum tweaks for partner schools.</li>
-          <li>SLA and dedicated account management for training and rollout.</li>
-        </ul>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <nav class="pager" aria-label="Phase navigation">
+          <a class="prev" href="phase-4.html"><small>Previous phase</small><b>← Phase 4 · Lumi Plus</b></a>
+          <a class="next" href="monetization.html"><small>Up next</small><b>Pricing &amp; monetization →</b></a>
+        </nav>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>Derived from <code>ROADMAP.md</code> Phase 4. Last updated: 2026-03-17</p>
-  </footer>
+  <div id="site-footer"></div>
+  <script src="js/site.js"></script>
 </body>
 </html>
-

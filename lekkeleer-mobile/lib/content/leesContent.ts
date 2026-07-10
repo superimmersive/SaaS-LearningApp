@@ -1,0 +1,107 @@
+export type LeesSentence = { af: string; en: string; emoji: string };
+export type LeesWeek = { term: number; week: number; sentences: LeesSentence[] };
+export const LEES_WEEKS: LeesWeek[] = [
+  {
+    term: 1,
+    week: 1,
+    sentences: [
+      { af: "Die kat sit.", en: "The cat sits.", emoji: "🐱" },
+      { af: "Die man staan.", en: "The man stands.", emoji: "🧍" },
+      { af: "Die kat sit langs die man.", en: "The cat sits next to the man.", emoji: "🐱🧍" },
+      { af: "Die kas is bruin.", en: "The cupboard is brown.", emoji: "🗄️" },
+      { af: "Die mat is voor die kas.", en: "The mat is in front of the cupboard.", emoji: "🟫" },
+      { af: "Die bad is vol.", en: "The bath is full.", emoji: "🛁" },
+      { af: "Die kat sit op die mat.", en: "The cat sits on the mat.", emoji: "🐱" },
+    ],
+  },
+  {
+    term: 1,
+    week: 2,
+    sentences: [
+      { af: "Ek hou van eet.", en: "I like eating.", emoji: "😊" },
+      { af: "Die emmer is vol.", en: "The bucket is full.", emoji: "🪣" },
+      { af: "Daar is elf bokke.", en: "There are eleven goats.", emoji: "🐐" },
+      { af: "Die hond slaap op die bed.", en: "The dog sleeps on the bed.", emoji: "🐶🛏️" },
+      { af: "Ek ken vir Ben.", en: "I know Ben.", emoji: "🧒" },
+      { af: "Die kat is vet.", en: "The cat is fat.", emoji: "🐱" },
+      { af: "Hy dra 'n blou pet.", en: "He wears a blue cap.", emoji: "🧢" },
+    ],
+  },
+  {
+    term: 1,
+    week: 3,
+    sentences: [
+      { af: "Die vis swem vinnig.", en: "The fish swims fast.", emoji: "🐟" },
+      { af: "Ek mis my ma.", en: "I miss my mom.", emoji: "👩" },
+      { af: "Sy sit op die stoel.", en: "She sits on the chair.", emoji: "🪑" },
+      { af: "Die ink is swart.", en: "The ink is black.", emoji: "🖊️" },
+      { af: "Die kos is min.", en: "The food is little.", emoji: "🍽️" },
+      { af: "Dit klink na pret.", en: "That sounds like fun.", emoji: "🎉" },
+      { af: "Hulle hou van sing.", en: "They like singing.", emoji: "🎵" },
+    ],
+  },
+  {
+    term: 1,
+    week: 4,
+    sentences: [
+      { af: "Die pot is vol.", en: "The pot is full.", emoji: "🍲" },
+      { af: "Daar is kos in die bord.", en: "There is food on the plate.", emoji: "🍽️" },
+      { af: "My maag is vol.", en: "My tummy is full.", emoji: "😊" },
+      { af: "Daar vlieg 'n mot.", en: "A moth is flying.", emoji: "🦋" },
+      { af: "Die appel is vrot.", en: "The apple is rotten.", emoji: "🍎" },
+      { af: "Sy naam is Tom.", en: "His name is Tom.", emoji: "🧒" },
+      { af: "Ek hou van die rooi blom.", en: "I like the red flower.", emoji: "🌺" },
+    ],
+  },
+  {
+    term: 1,
+    week: 5,
+    sentences: [
+      { af: "Ons ry in die bus.", en: "We ride in the bus.", emoji: "🚌" },
+      { af: "Hy is baie fluks.", en: "He is very hard-working.", emoji: "💪" },
+      { af: "Ek is lus vir koeldrank.", en: "I feel like a cooldrink.", emoji: "🥤" },
+      { af: "Ek het twee susters.", en: "I have two sisters.", emoji: "👧👧" },
+      { af: "Sy dra 'n rooi mus.", en: "She wears a red beanie.", emoji: "🧣" },
+      { af: "Hy blus die vuur.", en: "He puts out the fire.", emoji: "🚒" },
+    ],
+  },
+  {
+    term: 1,
+    week: 6,
+    sentences: [
+      { af: "Hy lees 'n boek.", en: "He reads a book.", emoji: "📖" },
+      { af: "Ben het vir Piet gaan soek.", en: "Ben went to look for Piet.", emoji: "🕵️" },
+      { af: "My voet is seer.", en: "My foot is sore.", emoji: "🦶" },
+      { af: "Ek dra geel skoene.", en: "I wear yellow shoes.", emoji: "🟡👟" },
+      { af: "Hy is baie soet.", en: "He is very sweet/well-behaved.", emoji: "😊" },
+      { af: "My boet speel buite.", en: "My brother plays outside.", emoji: "🏃" },
+      { af: "Ons moet swem.", en: "We must swim.", emoji: "🏊" },
+    ],
+  },
+  {
+    term: 1,
+    week: 7,
+    sentences: [
+      { af: "Hy spring oor die muur.", en: "He jumps over the wall.", emoji: "🤸" },
+      { af: "Die vuur is warm.", en: "The fire is warm.", emoji: "🔥" },
+      { af: "Die suurlemoen is suur.", en: "The lemon is sour.", emoji: "🍋" },
+      { af: "Daar is mense wat die huis huur.", en: "There are people who rent the house.", emoji: "🏠" },
+      { af: "Die rok is baie duur.", en: "The dress is very expensive.", emoji: "👗" },
+      { af: "Die man sit langs die vuur.", en: "The man sits next to the fire.", emoji: "🧍🔥" },
+      { af: "Die motor is duur.", en: "The car is expensive.", emoji: "🚗" },
+    ],
+  },
+  {
+    term: 1,
+    week: 8,
+    sentences: [
+      { af: "Die deur is bruin.", en: "The door is brown.", emoji: "🚪" },
+      { af: "Die kos het 'n lekker geur.", en: "The food has a nice smell.", emoji: "😋" },
+      { af: "Ek wonder wat gaan gebeur.", en: "I wonder what will happen.", emoji: "🤔" },
+      { af: "Sy loop deur die huis.", en: "She walks through the house.", emoji: "🚶‍♀️" },
+      { af: "My neus jeuk.", en: "My nose itches.", emoji: "👃" },
+      { af: "Hy hou van neute.", en: "He likes nuts.", emoji: "🥜" },
+      { af: "Water loop deur die geut.", en: "Water runs through the gutter.", emoji: "💧" },
+    ],
+  },
+];

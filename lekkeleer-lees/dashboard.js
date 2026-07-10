@@ -55,8 +55,8 @@ function initBreadcrumb() {
 }
 
 const ACTIVITY_URLS = {
-  lees: "./index.html",
-  spell: "./words.html",
+  lees: "./days.html?activity=lees",
+  spell: "./days.html?activity=spell",
 };
 
 function bindActivityLinks() {
@@ -68,7 +68,7 @@ function bindActivityLinks() {
     card.addEventListener("click", (e) => {
       e.preventDefault();
       const week = state.currentWeek + 1;
-      window.location.href = `${baseUrl}?week=${week}`;
+      window.location.href = `${baseUrl}&week=${week}`;
     });
   });
 }

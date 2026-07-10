@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LekkeLeer – Laai die app af</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="app-download-page">
+  <header>
+    <a href="./dashboard.html" class="logo">Lekke<span>Leer</span></a>
+    <span class="early-access">Early access</span>
+    <div class="header-badge">📱 App</div>
+  </header>
+
+  <main class="about-main app-download-main">
+    <a href="./dashboard.html" class="stats-back">← Terug na Dashboard</a>
+
+    <section class="about-hero">
+      <div class="about-hero-emoji">📱</div>
+      <h1>Laai die app af</h1>
+      <p>Gebruik LekkeLeer op jou foon. Expo Go is vinnig om te toets; die development build gee volledige mikrofoon-ondersteuning vir Begin Lees.</p>
+    </section>
+
+    <section class="about-section app-qr-section hidden" id="devBuildSection">
+      <h2><span class="about-icon">🧪</span> Development build (Begin Lees)</h2>
+      <p class="app-qr-prereq"><strong>Vir Begin Lees:</strong> skandeer die QR vir jou foon om die LekkeLeer development app te installeer. Expo Go ondersteun nie die mikrofoon-module nie.</p>
+      <div class="dev-build-grid">
+        <div class="dev-build-card">
+          <h3 class="dev-build-title">🍎 iPhone</h3>
+          <div class="app-qr-wrap app-qr-wrap--dev" id="iosDevBuildQrWrap">
+            <canvas id="iosDevBuildQr" class="app-qr-canvas" aria-label="QR-kode vir iOS development build"></canvas>
+          </div>
+          <p class="app-qr-hint">Werk net op toestelle wat in Apple Developer geregistreer is.</p>
+          <a href="#" id="iosDevBuildLink" class="app-expo-btn app-expo-btn--dev" target="_blank" rel="noopener noreferrer">Open iOS dev build</a>
+        </div>
+        <div class="dev-build-card" id="androidDevBuildCard">
+          <h3 class="dev-build-title">🤖 Android</h3>
+          <div class="app-qr-wrap app-qr-wrap--dev" id="androidDevBuildQrWrap">
+            <canvas id="androidDevBuildQr" class="app-qr-canvas" aria-label="QR-kode vir Android APK"></canvas>
+          </div>
+          <p class="app-qr-hint">Geen rekening nodig. Skandeer met jou Android-kamera → <strong>Install</strong> → laat &quot;Onbekende bronne&quot; toe indien gevra.</p>
+          <a href="#" id="androidDevBuildLink" class="app-expo-btn app-expo-btn--dev" target="_blank" rel="noopener noreferrer">Laai Android APK af</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section app-qr-section" id="userTestingSection">
+      <h2><span class="about-icon">👥</span> User testing (Android)</h2>
+      <p class="app-qr-prereq">
+        <strong>Interne toetsers:</strong> skandeer hierdie QR op Android om die APK uit ons Google Drive
+        toetsmap af te laai. Geen Expo-rekening nodig nie.
+      </p>
+      <div class="app-user-testing-layout">
+        <div class="app-qr-wrap app-qr-wrap--testing" id="userTestingQrWrap">
+          <canvas id="userTestingQr" class="app-qr-canvas" aria-label="QR-kode vir Android user testing APK"></canvas>
+        </div>
+        <div class="app-user-testing-copy">
+          <p class="app-qr-hint">
+            1. Skandeer met jou Android-kamera<br>
+            2. Open die Google Drive map<br>
+            3. Laai die APK af en installeer<br>
+            4. Laat &quot;Onbekende bronne&quot; toe indien Android vra
+          </p>
+          <a
+            href="#"
+            id="userTestingLink"
+            class="app-expo-btn app-expo-btn--testing"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Open Android testing folder</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section app-qr-section" id="expoSection">
+      <h2><span class="about-icon">📷</span> Vinnige toets met Expo Go</h2>
+      <p class="app-qr-prereq"><strong>Eerste:</strong> laai <a href="https://apps.apple.com/app/expo-go/id982107779" target="_blank" rel="noopener noreferrer">Expo Go</a> af uit die App Store (SDK 54).</p>
+      <div class="app-qr-wrap" id="appQrWrap">
+        <canvas id="appQr" class="app-qr-canvas" aria-label="QR-kode vir Expo Go"></canvas>
+      </div>
+      <p class="app-qr-hint"><strong>iPhone:</strong> open die <strong>Expo Go</strong>-app → tik <strong>Scan QR code</strong> → wys na die kode hier bo.<br>Expo Go werk vir Speel en flitskaarte; Begin Lees benodig die development build hier bo.</p>
+      <a href="#" id="appOpenBtn" class="app-expo-btn">Open in Expo Go</a>
+      <a href="#" id="appOpenLink" class="app-open-link"></a>
+    </section>
+
+    <section class="about-section hidden" id="appComingSoon">
+      <h2><span class="about-icon">🚧</span> Binnekort beskikbaar</h2>
+      <p>Die mobiele app word nog opgestel. Kom later terug, of gebruik die webweergawe op jou rekenaar of tablet.</p>
+      <p><a href="./dashboard.html">Gaan na Dashboard →</a></p>
+    </section>
+
+    <section class="about-section">
+      <h2><span class="about-icon">📲</span> Hoe om te begin</h2>
+      <ol class="about-steps">
+        <li>
+          <span class="step-num">1</span>
+          <div><strong>Kies jou opsie</strong><br>
+            iPhone development build vir Begin Lees, of Expo Go vir vinnige toets.
+          </div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div><strong>Skandeer die regte QR</strong><br>
+            Development build: skandeer die iPhone- of Android-QR op <strong>Laai die app af</strong>. Expo Go: gebruik die Expo Go scanner.
+          </div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div><strong>Installeer indien nodig</strong><br>
+            <a href="https://apps.apple.com/app/expo-go/id982107779" target="_blank" rel="noopener noreferrer">Expo Go in die App Store</a>
+            ·
+            <a href="https://play.google.com/store/apps/details?id=host.exp.exponent" target="_blank" rel="noopener noreferrer">Google Play (Android)</a>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">4</span>
+          <div><strong>Begin leer</strong><br>Die app wys dieselfde dashboard, Lees saam en Spell woorde as die webweergawe.</div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="about-section hidden" id="storeSection">
+      <h2><span class="about-icon">🏪</span> App Store &amp; Google Play</h2>
+      <p class="app-store-intro">Laai die volledige app af (geen Expo Go nodig nie):</p>
+      <div class="app-store-buttons">
+        <a href="#" id="appStoreBtn" class="app-store-btn app-store-btn--apple hidden" target="_blank" rel="noopener noreferrer">
+          <span class="app-store-btn-label">Download on the</span>
+          <span class="app-store-btn-name">App Store</span>
+        </a>
+        <a href="#" id="playStoreBtn" class="app-store-btn app-store-btn--google hidden" target="_blank" rel="noopener noreferrer">
+          <span class="app-store-btn-label">Get it on</span>
+          <span class="app-store-btn-name">Google Play</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="about-section about-tech">
+      <h2><span class="about-icon">✨</span> Waarom die app?</h2>
+      <div class="about-tech-grid">
+        <div class="tech-card">
+          <span class="tech-emoji">🎤</span>
+          <strong>Begin Lees</strong>
+          <span>Werk op iPhone &amp; Android</span>
+        </div>
+        <div class="tech-card">
+          <span class="tech-emoji">📖</span>
+          <strong>Dieselfde inhoud</strong>
+          <span>Week 1–8, Lees &amp; Spell</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <a href="./dashboard.html" class="feedback-link">Dashboard</a>
+    <span class="footer-sep">|</span>
+    <a href="./about.html" class="feedback-link" target="_blank" rel="noopener">ℹ️ About</a>
+    <span class="footer-sep">|</span>
+    <a href="./stats.html" class="feedback-link">📊 Progress</a>
+  </footer>
+
+  <script type="module" src="./mobile-app.js"></script>
+</body>
+</html>

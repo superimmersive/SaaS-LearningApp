@@ -3,58 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proposals – SaaS Learning App</title>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Proposals — LekkeLeer</title>
+  <meta name="description" content="Funding proposals and how to use this Project Overview as supporting material in pitches.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <script>(function(){try{var t=localStorage.getItem('ll-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
 </head>
-<body>
-  <nav class="site-nav">
-    <a href="index.html" class="nav-logo">Lekke<span>Leer</span></a>
-    <span class="nav-badge">Project Overview</span>
-    <div class="nav-links">
-      <a href="overview.html" class="nav-link">Overview</a>
-      <a href="roadmap.html" class="nav-link">Roadmap</a>
-      <a href="activity-lib.html" class="nav-link">Activity Lib</a>
-      <a href="phase-1.html" class="nav-link">Phase 1</a>
-      <a href="phase-2.html" class="nav-link">Phase 2</a>
-      <a href="phase-3.html" class="nav-link">Phase 3</a>
-      <a href="phase-4.html" class="nav-link">Phase 4</a>
-      <a href="phase-5.html" class="nav-link">Phase 5</a>
-      <a href="monetization.html" class="nav-link">Monetization</a>
-      <a href="proposals.html" class="nav-link active">Proposals</a>
-    </div>
-  </nav>
+<body data-page="proposals">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-nav"></div>
 
-  <header class="page-header">
-    <h1>Proposals</h1>
-    <p class="page-desc">Funding proposals and applications.</p>
-  </header>
+  <main id="main">
+    <header class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Proposals</span></nav>
+        <span class="eyebrow">Funding</span>
+        <h1>Proposals</h1>
+        <p class="lead">Funding proposals and applications, plus how to use this overview as supporting material.</p>
+      </div>
+    </header>
 
-  <main class="main main-page">
-    <section class="section">
-      <div class="card">
-        <p>Proposal documents live in <strong>SaaS_LearningApp/Proposals/</strong> in the main repo.</p>
-        <p>Use this Project Overview site as supporting material for funder pitches – Roadmap, the Phase 1–5 pages, and Monetization provide the holistic picture.</p>
+    <section class="section reveal">
+      <div class="container">
+        <div class="callout">
+          <span class="callout__ico">📁</span>
+          <p>Proposal documents live in <strong>SaaS_LearningApp/Proposals/</strong> in the main repo. This Project Overview site is the supporting material — share it alongside a proposal for the full picture.</p>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Links</h2>
-      <div class="links-grid">
-        <a href="roadmap.html" class="link-card">Roadmap</a>
-        <a href="phase-1.html" class="link-card">Phase 1 – MVP completion</a>
-        <a href="phase-2.html" class="link-card">Phase 2 – Auth & accounts</a>
-        <a href="phase-3.html" class="link-card">Phase 3 – Expo / Native</a>
-        <a href="phase-4.html" class="link-card">Phase 4 – Lumi Plus</a>
-        <a href="phase-5.html" class="link-card">Phase 5 – Lumi Schools</a>
-        <a href="monetization.html" class="link-card">Monetization</a>
-        <a href="mailto:devon@superimmersive.io" class="link-card">Contact: devon@superimmersive.io</a>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>Use this overview in a pitch</h2>
+          <p class="section__lead">Three pages tell the whole story for a funder.</p>
+        </div>
+        <div class="grid grid-3">
+          <a class="tile" href="overview.html">
+            <div class="tile__ico ico-blue">🧭</div>
+            <h3>The problem &amp; product</h3>
+            <p>The Overview frames who LekkeLeer serves and why it matters.</p>
+            <span class="tile__more">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a class="tile" href="roadmap.html">
+            <div class="tile__ico ico-green">🗺️</div>
+            <h3>The plan</h3>
+            <p>The Roadmap and Phase 1–5 pages show a credible path to delivery.</p>
+            <span class="tile__more">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a class="tile" href="monetization.html">
+            <div class="tile__ico ico-yellow">💳</div>
+            <h3>The business model</h3>
+            <p>Pricing shows how the project becomes sustainable.</p>
+            <span class="tile__more">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight reveal">
+      <div class="container">
+        <div class="section__head"><h2>Quick links</h2></div>
+        <div class="linklist">
+          <a href="roadmap.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg> Roadmap</a>
+          <a href="phase-1.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg> Phase 1 · MVP completion</a>
+          <a href="phase-5.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg> Phase 5 · Lumi Schools</a>
+          <a href="monetization.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg> Pricing</a>
+          <a href="mailto:devon@superimmersive.io"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> devon@superimmersive.io</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>Last updated: 2026-03-09</p>
-  </footer>
+  <div id="site-footer"></div>
+  <script src="js/site.js"></script>
 </body>
 </html>

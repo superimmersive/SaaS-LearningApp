@@ -3,63 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phase 2 – Auth & accounts foundation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Phase 2 · Auth &amp; accounts — LekkeLeer</title>
+  <meta name="description" content="Phase 2: shared auth and account rails for parents and schools — multi-tenant identity, roles, and access.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <script>(function(){try{var t=localStorage.getItem('ll-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
 </head>
-<body>
-  <nav class="site-nav">
-    <a href="index.html" class="nav-logo">Lekke<span>Leer</span></a>
-    <span class="nav-badge">Project Overview</span>
-    <div class="nav-links">
-      <a href="overview.html" class="nav-link">Overview</a>
-      <a href="roadmap.html" class="nav-link">Roadmap</a>
-      <a href="activity-lib.html" class="nav-link">Activity Lib</a>
-      <a href="phase-1.html" class="nav-link">Phase 1</a>
-      <a href="phase-2.html" class="nav-link active">Phase 2</a>
-      <a href="phase-3.html" class="nav-link">Phase 3</a>
-      <a href="phase-4.html" class="nav-link">Phase 4</a>
-      <a href="phase-5.html" class="nav-link">Phase 5</a>
-      <a href="monetization.html" class="nav-link">Monetization</a>
-      <a href="proposals.html" class="nav-link">Proposals</a>
-    </div>
-  </nav>
+<body data-page="phase2">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-nav"></div>
 
-  <header class="page-header">
-    <h1>Phase 2 – Auth & accounts foundation</h1>
-    <p class="page-desc">Lay down shared auth and account rails for parents and schools – multi-tenant identity, roles, and access.</p>
-  </header>
+  <main id="main">
+    <header class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> <span>/</span> <a href="roadmap.html">Roadmap</a> <span>/</span> <span>Phase 2</span></nav>
+        <div class="stepper">
+          <a href="phase-1.html"><span class="n">1</span><span class="lbl">MVP completion</span></a>
+          <a href="phase-2.html" class="is-current"><span class="n">2</span><span class="lbl">Auth &amp; accounts</span></a>
+          <a href="phase-3.html"><span class="n">3</span><span class="lbl">Expo / Native</span></a>
+          <a href="phase-4.html"><span class="n">4</span><span class="lbl">Lumi Plus</span></a>
+          <a href="phase-5.html"><span class="n">5</span><span class="lbl">Lumi Schools</span></a>
+        </div>
+        <span class="eyebrow">Phase 2 of 5 · Next</span>
+        <h1>Auth &amp; accounts foundation</h1>
+        <p class="lead">Lay down shared auth and account rails for parents and schools — multi-tenant identity, roles, and access.</p>
+      </div>
+    </header>
 
-  <main class="main main-page">
-    <section class="section">
-      <h2>Goals</h2>
-      <div class="card">
-        <ul>
-          <li>Add authentication so each household and school can have its own accounts and roles.</li>
-          <li>Establish a shared account and organisation model (parents, learners, teachers, schools).</li>
-          <li>Prepare clean integration points for subscriptions and billing without turning on a full paywall yet.</li>
-        </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>Goals</h2></div>
+        <div class="card card--pad-lg">
+          <ul class="feature-list">
+            <li><span>Add authentication so each household and school can have its own accounts and roles.</span></li>
+            <li><span>Establish a shared account and organisation model (parents, learners, teachers, schools).</span></li>
+            <li><span>Prepare clean integration points for subscriptions and billing without turning on a full paywall yet.</span></li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Scope (from Roadmap)</h2>
-      <table class="data-table">
-        <thead>
-          <tr><th>Item</th><th>Notes</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Supabase Auth</td><td>Email/password or magic link sign-in</td></tr>
-          <tr><td>Account model</td><td>Households, learners, schools, and roles</td></tr>
-          <tr><td>Multi-tenant wiring</td><td>Link users to schools/classes where needed</td></tr>
-        </tbody>
-      </table>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>Scope</h2><p class="section__lead">From the roadmap.</p></div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Item</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><b>Supabase Auth</b></td><td>Email/password or magic link sign-in</td></tr>
+              <tr><td><b>Account model</b></td><td>Households, learners, schools, and roles</td></tr>
+              <tr><td><b>Multi-tenant wiring</b></td><td>Link users to schools/classes where needed</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <div class="callout">
+          <span class="callout__ico">🔑</span>
+          <p>This phase is intentionally plumbing-first: it makes LekkeLeer <strong>plug-and-play for both parents and schools</strong> from the start, so Lumi Plus and Lumi Schools can switch on cleanly later.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <nav class="pager" aria-label="Phase navigation">
+          <a class="prev" href="phase-1.html"><small>Previous phase</small><b>← Phase 1 · MVP completion</b></a>
+          <a class="next" href="phase-3.html"><small>Next phase</small><b>Phase 3 · Expo / Native →</b></a>
+        </nav>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>Derived from <code>ROADMAP.md</code> Phase 2. Last updated: 2026-03-17</p>
-  </footer>
+  <div id="site-footer"></div>
+  <script src="js/site.js"></script>
 </body>
 </html>
-

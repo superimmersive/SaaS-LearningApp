@@ -1563,6 +1563,24 @@ button.dot {
   flex-direction: column;
   gap: 24px;
 }
+.admin-portal-note {
+  margin: -8px 0 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(59, 158, 212, 0.1);
+  border: 1px solid rgba(59, 158, 212, 0.25);
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.45;
+}
+.admin-portal-note a {
+  color: var(--blue);
+  font-weight: 800;
+  text-decoration: none;
+}
+.admin-portal-note a:hover {
+  text-decoration: underline;
+}
 .admin-content {
   display: flex;
   flex-direction: column;
@@ -1893,6 +1911,196 @@ button.dot {
   }
 }
 
+/* ── Download app page ───────────────────────────────────────────────────── */
+.app-download-page {
+  padding-bottom: 56px;
+}
+.app-download-main {
+  padding-bottom: 24px;
+}
+.app-qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.app-qr-prereq {
+  font-size: 0.92rem;
+  color: #334155;
+  margin: 0 0 12px;
+  max-width: 340px;
+  line-height: 1.5;
+}
+.app-qr-prereq a {
+  color: var(--blue);
+  font-weight: 700;
+}
+.app-qr-wrap {
+  padding: 16px;
+  background: #fff;
+  border-radius: 16px;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(26, 58, 92, 0.08);
+  margin: 8px 0 12px;
+}
+.app-qr-wrap--dev {
+  border-color: rgba(46, 204, 113, 0.45);
+  box-shadow: 0 6px 24px rgba(46, 204, 113, 0.14);
+}
+.app-qr-wrap--testing {
+  border-color: rgba(255, 140, 66, 0.45);
+  box-shadow: 0 6px 24px rgba(255, 140, 66, 0.14);
+}
+.app-user-testing-layout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 520px;
+}
+.app-user-testing-copy {
+  flex: 1 1 220px;
+  max-width: 280px;
+  text-align: left;
+}
+.app-user-testing-copy .app-qr-hint {
+  text-align: left;
+  margin-bottom: 12px;
+}
+.app-expo-btn--testing {
+  background: var(--orange);
+  box-shadow: 0 4px 14px rgba(255, 140, 66, 0.35);
+}
+.app-expo-btn--testing:hover {
+  box-shadow: 0 6px 18px rgba(255, 140, 66, 0.45);
+}
+.dev-build-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 640px;
+  margin-top: 8px;
+}
+.dev-build-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.dev-build-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0 0 10px;
+}
+.app-qr-canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.app-qr-image {
+  display: block;
+  width: 260px;
+  height: 260px;
+  max-width: 100%;
+}
+.app-qr-hint {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0 0 8px;
+  max-width: 320px;
+}
+.app-open-link {
+  font-size: 0.85rem;
+  color: var(--blue);
+  font-weight: 700;
+  word-break: break-all;
+  text-decoration: none;
+}
+.app-open-link:hover {
+  text-decoration: underline;
+}
+.app-expo-btn {
+  display: inline-block;
+  margin: 12px 0 8px;
+  padding: 14px 28px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(59, 158, 212, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.app-expo-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(59, 158, 212, 0.45);
+}
+.app-expo-btn--dev {
+  background: var(--green);
+  box-shadow: 0 4px 14px rgba(46, 204, 113, 0.35);
+}
+.app-expo-btn--dev:hover {
+  box-shadow: 0 6px 18px rgba(46, 204, 113, 0.45);
+}
+.app-qr-fallback {
+  font-size: 0.9rem;
+  color: #475569;
+  margin: 0;
+}
+.app-store-intro {
+  font-size: 0.93rem;
+  color: #475569;
+  margin: 0 0 16px;
+  text-align: center;
+}
+.app-store-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.app-store-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  min-width: 160px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.app-store-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+.app-store-btn-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.9;
+}
+.app-store-btn-name {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.app-store-btn--apple {
+  background: #000;
+  color: #fff;
+}
+.app-store-btn--google {
+  background: #1a3a5c;
+  color: #fff;
+}
+
 /* ── Dashboard (week activities) ────────────────────────────────────────────── */
 .dashboard-page {
   padding-bottom: 32px;
@@ -2180,3 +2388,281 @@ button.dot {
     padding: 26px 18px;
   }
 }
+
+/* ── Homework day picker (days.html) ─────────────────────────────────────── */
+.days-page {
+  background: linear-gradient(165deg, #e8f4ff 0%, #f0f9ff 45%, #fff8e8 100%);
+  min-height: 100vh;
+}
+
+.days-main {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 8px 16px 32px;
+}
+
+.days-intro {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 32px rgba(26, 58, 92, 0.08);
+  border: 2px solid rgba(59, 158, 212, 0.12);
+}
+
+.days-school {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 0 0 4px;
+}
+
+.days-title {
+  font-family: "Baloo 2", cursive;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0 0 4px;
+}
+
+.days-dates {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  margin: 0 0 10px;
+}
+
+.days-reminder {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 8px;
+}
+
+.days-daily-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.82rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.days-pick-hint {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  text-align: center;
+  margin: 0 0 12px;
+}
+
+.day-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.day-card {
+  background: var(--white);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(26, 58, 92, 0.08);
+  border: 2px solid #e2e8f0;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.day-card--open {
+  border-color: rgba(46, 204, 113, 0.45);
+  box-shadow: 0 10px 36px rgba(46, 204, 113, 0.12);
+}
+
+.day-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 18px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.day-card-header:hover {
+  background: rgba(59, 158, 212, 0.04);
+}
+
+.day-card-emoji {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+}
+
+.day-card-headings {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.day-card-label {
+  font-family: "Baloo 2", cursive;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.day-card-label-en {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.day-card-summary {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.day-card-chevron {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.day-card-body {
+  padding: 0 18px 18px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.day-card-body.hidden {
+  display: none;
+}
+
+.day-task-list {
+  list-style: none;
+  margin: 14px 0 16px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.day-task {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.day-task--lees {
+  background: rgba(59, 158, 212, 0.08);
+  border-color: rgba(59, 158, 212, 0.2);
+}
+
+.day-task--spell {
+  background: rgba(255, 217, 61, 0.15);
+  border-color: rgba(255, 193, 7, 0.35);
+}
+
+.day-task-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.day-task-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.82rem;
+  color: #475569;
+  line-height: 1.45;
+}
+
+.day-task-body strong {
+  font-size: 0.88rem;
+  color: var(--navy);
+}
+
+.day-task-items {
+  margin: 4px 0 0;
+  padding-left: 1rem;
+  font-size: 0.8rem;
+}
+
+.day-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.day-action-btn {
+  flex: 1;
+  min-width: 140px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 99px;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.day-action-btn:hover {
+  transform: translateY(-2px);
+}
+
+.day-action-btn--primary {
+  background: var(--green);
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(46, 204, 113, 0.35);
+}
+
+.day-action-btn--secondary {
+  background: var(--white);
+  color: var(--navy);
+  border: 2px solid #e2e8f0;
+}
+
+.day-context-chip {
+  display: inline-block;
+  margin: 0 auto 8px;
+  padding: 6px 14px;
+  border-radius: 99px;
+  background: rgba(46, 204, 113, 0.12);
+  border: 2px solid rgba(46, 204, 113, 0.25);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--navy);
+  text-align: center;
+}
+
+.card-wrap .day-context-wrap {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.card-wrap .day-context-wrap a {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.card-wrap .day-context-wrap a:hover {
+  text-decoration: underline;
+}
+

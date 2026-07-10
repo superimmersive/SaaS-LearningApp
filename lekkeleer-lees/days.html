@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LekkeLeer – Huiswerk dae</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="days-page">
+  <header>
+    <a href="./dashboard.html" class="logo">Lekke<span>Leer</span></a>
+    <span class="early-access">Early access</span>
+    <div class="header-badge" id="headerBadge">📅 Huiswerk</div>
+  </header>
+
+  <div class="breadcrumb-picker" id="breadcrumbPicker">
+    <div class="breadcrumb-segment">
+      <button type="button" class="breadcrumb-trigger" disabled>Term 1</button>
+    </div>
+    <span class="breadcrumb-sep">›</span>
+    <div class="breadcrumb-segment">
+      <button type="button" class="breadcrumb-trigger" data-picker="week" aria-haspopup="listbox" aria-expanded="false">Week 1</button>
+      <div class="breadcrumb-dropdown hidden" role="listbox">
+        <button type="button" role="option" data-week-index="0">Week 1</button>
+        <button type="button" role="option" data-week-index="1">Week 2</button>
+        <button type="button" role="option" data-week-index="2">Week 3</button>
+        <button type="button" role="option" data-week-index="3">Week 4</button>
+        <button type="button" role="option" data-week-index="4">Week 5</button>
+        <button type="button" role="option" data-week-index="5">Week 6</button>
+        <button type="button" role="option" data-week-index="6">Week 7</button>
+        <button type="button" role="option" data-week-index="7">Week 8</button>
+      </div>
+    </div>
+    <span class="breadcrumb-sep">›</span>
+    <div class="breadcrumb-segment">
+      <button type="button" class="breadcrumb-trigger" disabled id="activityCrumb">Lees saam</button>
+    </div>
+  </div>
+
+  <main class="days-main">
+    <div class="days-intro" id="daysIntro">
+      <p class="days-school" id="daysSchool"></p>
+      <h2 class="days-title" id="daysTitle">Week 1 huiswerk</h2>
+      <p class="days-dates" id="daysDates"></p>
+      <p class="days-reminder" id="daysReminder"></p>
+      <ul class="days-daily-list" id="daysDailyList"></ul>
+    </div>
+
+    <p class="days-pick-hint">Kies 'n dag om die huiswerk te sien:</p>
+
+    <div class="day-cards" id="dayCards" aria-live="polite"></div>
+  </main>
+
+  <footer class="app-footer">
+    <a href="./dashboard.html" class="feedback-link">Dashboard</a>
+    <span class="footer-sep">|</span>
+    <a href="./app.html" class="feedback-link">📱 Download app</a>
+    <span class="footer-sep">|</span>
+    <a href="./teacher/dashboard.html" class="feedback-link">👩‍🏫 Teacher dashboard</a>
+    <span class="footer-sep">|</span>
+    <a href="./about.html" class="feedback-link" target="_blank" rel="noopener">ℹ️ About</a>
+  </footer>
+
+  <script type="module" src="./days.js"></script>
+</body>
+</html>

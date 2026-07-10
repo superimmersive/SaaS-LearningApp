@@ -1,0 +1,33 @@
+diff --git a/node_modules/expo-stream-audio/ios/ExpoStreamAudioModule.swift b/node_modules/expo-stream-audio/ios/ExpoStreamAudioModule.swift
+index 50753e4..361158a 100644
+--- a/node_modules/expo-stream-audio/ios/ExpoStreamAudioModule.swift
++++ b/node_modules/expo-stream-audio/ios/ExpoStreamAudioModule.swift
+@@ -267,7 +267,11 @@ public class ExpoStreamAudioModule: Module {
+ 
+   private func startRecordingInternal(options: [String: Any]) async throws {
+     do {
+-      try audioSession.setCategory(.record, mode: .voiceChat, options: [])
++      // Use `.playAndRecord` (NOT `.record`) so the very same active session can play TTS
++      // afterwards with no deactivate/reactivate handoff — that handoff was the root cause of
++      // TTS going silent after STT. `.defaultToSpeaker` keeps playback on the loud speaker.
++      // `.default` mode (not `.voiceChat`) avoids the OSStatus -50 BadParam seen with `.record`.
++      try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .allowBluetooth])
+ 
+       if let requestedSampleRate = options["sampleRate"] as? Double {
+         try? audioSession.setPreferredSampleRate(requestedSampleRate)
+@@ -321,8 +325,13 @@ public class ExpoStreamAudioModule: Module {
+     isRecording = false
+     audioEngine.inputNode.removeTap(onBus: 0)
+     audioEngine.stop()
+-    try? audioSession.setActive(false)
+-
++    // Reset clears stale node/HW state so reusing the engine across many record/playback
++    // cycles can't accumulate into a wedged audio route.
++    audioEngine.reset()
++    // CRITICAL: do NOT deactivate the shared AVAudioSession here. Deactivating after recording
++    // is what left the output route dead so TTS came back silent (and worsened each cycle).
++    // We keep the session active and let expo-av switch the category to `.playback` for TTS —
++    // there is no fragile deactivate/reactivate handoff anymore.
+     bufferQueue.async {
+       self.finalizeCurrentSegmentIfNeeded()
+     }

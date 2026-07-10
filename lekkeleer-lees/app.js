@@ -1,6 +1,7 @@
 import { initUser, getUser, setDisplayName } from './user.js';
 import { initDB, startSession, endSession, recordSentenceResult, fetchCompletionForWeek, fetchUserStats, COMPLETED_KEY, submitFeedback, updateDisplayName, SUPABASE_URL, SUPABASE_ANON_KEY } from './db.js';
 import * as ttsCache from './ttsCache.js';
+import { getHomeworkDay } from './homeworkData.js';
 
 const CONTENT = [
   {
@@ -503,6 +504,17 @@ const recognitionService = {
   },
 };
 
+function showDayContext(dayId) {
+  const day = getHomeworkDay(state.unitIndex, dayId);
+  const wrap = document.getElementById("dayContextWrap");
+  const chip = document.getElementById("dayContextChip");
+  const back = document.getElementById("dayContextBack");
+  if (!day || !wrap || !chip || !back) return;
+  chip.textContent = `${day.label} · ${day.labelEn}`;
+  back.href = `./days.html?activity=lees&week=${state.unitIndex + 1}&day=${dayId}`;
+  wrap.classList.remove("hidden");
+}
+
 async function init() {
   initUser();
   await initDB().catch(console.warn);
@@ -515,6 +527,8 @@ async function init() {
       state.unitIndex = w - 1;
     }
   }
+  const dayParam = params.get("day");
+  if (dayParam) showDayContext(dayParam);
 
   state.completed = await loadCompletedForWeekWithSync(state.unitIndex);
   state.idbKeys = await ttsCache.keys().catch(() => new Set());

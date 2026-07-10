@@ -3,78 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phase 3 – Expo / React Native port</title>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Phase 3 · Expo / React Native — LekkeLeer</title>
+  <meta name="description" content="Phase 3: move from web-only to native iOS and Android apps while reusing as much logic as possible.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <script>(function(){try{var t=localStorage.getItem('ll-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
 </head>
-<body>
-  <nav class="site-nav">
-    <a href="index.html" class="nav-logo">Lekke<span>Leer</span></a>
-    <span class="nav-badge">Project Overview</span>
-    <div class="nav-links">
-      <a href="overview.html" class="nav-link">Overview</a>
-      <a href="roadmap.html" class="nav-link">Roadmap</a>
-      <a href="activity-lib.html" class="nav-link">Activity Lib</a>
-      <a href="phase-1.html" class="nav-link">Phase 1</a>
-      <a href="phase-2.html" class="nav-link">Phase 2</a>
-      <a href="phase-3.html" class="nav-link active">Phase 3</a>
-      <a href="phase-4.html" class="nav-link">Phase 4</a>
-      <a href="phase-5.html" class="nav-link">Phase 5</a>
-      <a href="monetization.html" class="nav-link">Monetization</a>
-      <a href="proposals.html" class="nav-link">Proposals</a>
-    </div>
-  </nav>
+<body data-page="phase3">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-nav"></div>
 
-  <header class="page-header">
-    <h1>Phase 3 – Expo / React Native port</h1>
-    <p class="page-desc">Move from web-only to native iOS and Android apps while reusing as much logic as possible.</p>
-  </header>
+  <main id="main">
+    <header class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> <span>/</span> <a href="roadmap.html">Roadmap</a> <span>/</span> <span>Phase 3</span></nav>
+        <div class="stepper">
+          <a href="phase-1.html"><span class="n">1</span><span class="lbl">MVP completion</span></a>
+          <a href="phase-2.html"><span class="n">2</span><span class="lbl">Auth &amp; accounts</span></a>
+          <a href="phase-3.html" class="is-current"><span class="n">3</span><span class="lbl">Expo / Native</span></a>
+          <a href="phase-4.html"><span class="n">4</span><span class="lbl">Lumi Plus</span></a>
+          <a href="phase-5.html"><span class="n">5</span><span class="lbl">Lumi Schools</span></a>
+        </div>
+        <span class="eyebrow">Phase 3 of 5</span>
+        <h1>Expo / React Native port</h1>
+        <p class="lead">Move from web-only to native iOS and Android apps while reusing as much logic as possible.</p>
+      </div>
+    </header>
 
-  <main class="main main-page">
-    <section class="section">
-      <h2>Goals</h2>
-      <div class="card">
-        <ul>
-          <li>Provide a high-quality native app experience for Lumi Plus families.</li>
-          <li>Reuse the reading engine, content, and sync logic between web and native.</li>
-          <li>Unlock offline-first usage on phones and tablets.</li>
-        </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>Goals</h2></div>
+        <div class="card card--pad-lg">
+          <ul class="feature-list">
+            <li><span>Provide a high-quality native app experience for Lumi Plus families.</span></li>
+            <li><span>Reuse the reading engine, content, and sync logic between web and native.</span></li>
+            <li><span>Unlock offline-first usage on phones and tablets.</span></li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Scope (from Roadmap)</h2>
-      <table class="data-table">
-        <thead>
-          <tr><th>Item</th><th>Notes</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Expo project setup</td><td><code>expo init</code> or <code>create-expo-app</code></td></tr>
-          <tr><td>Shared core</td><td>Extract TTS, speech, content, sync into shared modules</td></tr>
-          <tr><td>React Native Web</td><td>Keep web app in same repo if desired</td></tr>
-          <tr><td>Native TTS</td><td><code>expo-speech</code> or Azure Speech SDK</td></tr>
-          <tr><td>Native speech recognition</td><td>Fix iOS limitation (no Web Speech API)</td></tr>
-          <tr><td>Offline caching</td><td>Native storage for audio + content</td></tr>
-          <tr><td>Supabase client</td><td>Same backend, add auth + subscription checks</td></tr>
-          <tr><td>App Store / Play Store</td><td>Listing, screenshots, metadata</td></tr>
-        </tbody>
-      </table>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>Scope</h2><p class="section__lead">From the roadmap.</p></div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Item</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><b>Expo project setup</b></td><td><code>expo init</code> or <code>create-expo-app</code></td></tr>
+              <tr><td><b>Shared core</b></td><td>Extract TTS, speech, content, sync into shared modules</td></tr>
+              <tr><td><b>React Native Web</b></td><td>Keep web app in same repo if desired</td></tr>
+              <tr><td><b>Native TTS</b></td><td><code>expo-speech</code> or Azure Speech SDK</td></tr>
+              <tr><td><b>Native speech recognition</b></td><td>Fix iOS limitation (no Web Speech API)</td></tr>
+              <tr><td><b>Offline caching</b></td><td>Native storage for audio + content</td></tr>
+              <tr><td><b>Supabase client</b></td><td>Same backend, add auth + subscription checks</td></tr>
+              <tr><td><b>App Store / Play Store</b></td><td>Listing, screenshots, metadata</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
-    <section class="section">
-      <h2>Why Expo</h2>
-      <ul>
-        <li>Single codebase for iOS + Android.</li>
-        <li>Over-the-air updates.</li>
-        <li>Easier native module integration.</li>
-        <li>Good path from existing web app to native.</li>
-      </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head"><h2>Why Expo</h2></div>
+        <div class="grid grid-2">
+          <div class="card"><div class="tile__ico ico-blue">📱</div><h3>One codebase</h3><p>A single codebase for iOS + Android.</p></div>
+          <div class="card"><div class="tile__ico ico-green">⚡</div><h3>OTA updates</h3><p>Ship over-the-air updates without full store releases.</p></div>
+          <div class="card"><div class="tile__ico ico-orange">🧩</div><h3>Native modules</h3><p>Easier native module integration for speech and audio.</p></div>
+          <div class="card"><div class="tile__ico ico-purple">🌉</div><h3>Smooth path</h3><p>A good path from the existing web app to native.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <nav class="pager" aria-label="Phase navigation">
+          <a class="prev" href="phase-2.html"><small>Previous phase</small><b>← Phase 2 · Auth &amp; accounts</b></a>
+          <a class="next" href="phase-4.html"><small>Next phase</small><b>Phase 4 · Lumi Plus →</b></a>
+        </nav>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>Derived from <code>ROADMAP.md</code> Phase 3. Last updated: 2026-03-17</p>
-  </footer>
+  <div id="site-footer"></div>
+  <script src="js/site.js"></script>
 </body>
 </html>
-

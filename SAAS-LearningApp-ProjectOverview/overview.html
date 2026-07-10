@@ -3,103 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Overview – SaaS Learning App</title>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Overview — LekkeLeer</title>
+  <meta name="description" content="What LekkeLeer is, who it serves, where it is now, and how the pieces fit together.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <script>(function(){try{var t=localStorage.getItem('ll-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
 </head>
-<body>
-  <nav class="site-nav">
-    <a href="index.html" class="nav-logo">Lekke<span>Leer</span></a>
-    <span class="nav-badge">Project Overview</span>
-    <div class="nav-links">
-      <a href="overview.html" class="nav-link active">Overview</a>
-      <a href="roadmap.html" class="nav-link">Roadmap</a>
-      <a href="activity-lib.html" class="nav-link">Activity Lib</a>
-      <a href="phase-1.html" class="nav-link">Phase 1</a>
-      <a href="phase-2.html" class="nav-link">Phase 2</a>
-      <a href="phase-3.html" class="nav-link">Phase 3</a>
-      <a href="phase-4.html" class="nav-link">Phase 4</a>
-      <a href="phase-5.html" class="nav-link">Phase 5</a>
-      <a href="monetization.html" class="nav-link">Monetization</a>
-      <a href="proposals.html" class="nav-link">Proposals</a>
-    </div>
-  </nav>
+<body data-page="overview">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-nav"></div>
 
-  <header class="page-header">
-    <h1>Overview</h1>
-    <p class="page-desc">High-level picture of LekkeLeer – what it is, who it serves, and where it is going.</p>
-  </header>
+  <main id="main">
+    <header class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Overview</span></nav>
+        <span class="eyebrow">The big picture</span>
+        <h1>A learning platform that follows the child</h1>
+        <p class="lead">LekkeLeer connects schoolwork and home practice in one place — what it is, who it serves, and where it's going.</p>
+      </div>
+    </header>
 
-  <main class="main main-page">
-    <section class="section">
-      <h2>What LekkeLeer is</h2>
-      <div class="card">
-        <p><strong>LekkeLeer</strong> is a CAPS-based learning platform that connects schoolwork and home practice in one place.</p>
-        <ul>
-          <li><strong>In-class schoolwork (Lumi Schools):</strong> teachers run weekly activities in class and see progress in near real time.</li>
-          <li><strong>Homework (Lumi Schools):</strong> the same week’s homework is available online at home, so learners don’t miss work when a paper page is forgotten.</li>
-          <li><strong>Supplementary enrichment (Lumi Plus):</strong> optional extra practice and enrichment for learners who want to go further within the CAPS structure.</li>
-          <li><strong>Home schooling (Lumi Schools):</strong> schools can enroll home-schooled learners into their Lumi ecosystem so they receive the same weekly work and activities.</li>
-        </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>What LekkeLeer is</h2>
+          <p class="section__lead">A CAPS-based platform that ties classroom work, homework, and enrichment together.</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="tile__ico ico-blue">🏫</div>
+            <h3>In-class schoolwork</h3>
+            <p>Teachers run weekly activities in class and see progress in near real time.</p>
+          </div>
+          <div class="card">
+            <div class="tile__ico ico-green">🏠</div>
+            <h3>Homework</h3>
+            <p>The same week's homework is available online at home, so learners don't miss work when a paper page is forgotten.</p>
+          </div>
+          <div class="card">
+            <div class="tile__ico ico-yellow">✨</div>
+            <h3>Supplementary enrichment</h3>
+            <p>Optional extra practice and enrichment for learners who want to go further within the CAPS structure.</p>
+          </div>
+          <div class="card">
+            <div class="tile__ico ico-purple">🎒</div>
+            <h3>Home schooling</h3>
+            <p>Schools can enrol home-schooled learners into their LekkeLeer ecosystem so they receive the same weekly work and activities.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Who this overview is for</h2>
-      <div class="card">
-        <ul>
-          <li><strong>Parents & learners:</strong> understand what to do in class, at home, and for extra enrichment.</li>
-          <li><strong>Funders & partners:</strong> understand roadmap, impact, and monetization.</li>
-          <li><strong>Schools:</strong> see how school licences and teacher dashboards will work.</li>
-          <li><strong>Collaborators:</strong> quickly grasp tech stack, content pipeline, and phases.</li>
-          <li><strong>Future you:</strong> a static reference for decisions and long-term plan.</li>
-        </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>Who this overview is for</h2>
+        </div>
+        <div class="card card--pad-lg">
+          <ul class="feature-list">
+            <li><span><b>Parents &amp; learners</b> — understand what to do in class, at home, and for extra enrichment.</span></li>
+            <li><span><b>Funders &amp; partners</b> — understand the roadmap, impact, and monetization.</span></li>
+            <li><span><b>Schools</b> — see how school licences and teacher dashboards will work.</span></li>
+            <li><span><b>Collaborators</b> — quickly grasp the tech stack, content pipeline, and phases.</span></li>
+            <li><span><b>Future you</b> — a static reference for decisions and the long-term plan.</span></li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Where we are now</h2>
-      <div class="card">
-        <ul>
-          <li><strong>Status:</strong> MVP live, early access, gathering feedback.</li>
-          <li><strong>Content:</strong> Term 1, Weeks 1–8 Afrikaans reading sentences (Lees sinne).</li>
-          <li><strong>Core features:</strong> tap-to-hear, karaoke-style highlighting, read-aloud with speech recognition, progress saving.</li>
-          <li><strong>Platform:</strong> Web app, with a path to Expo / React Native for iOS and Android.</li>
-        </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>Where we are now</h2>
+          <p class="section__lead">MVP live, in early access, gathering feedback.</p>
+        </div>
+        <div class="grid grid-auto">
+          <div class="card">
+            <span class="pill pill--ok">Status</span>
+            <h3>Early access</h3>
+            <p>The MVP is live and we're actively gathering feedback from families and teachers.</p>
+          </div>
+          <div class="card">
+            <span class="pill pill--info">Content</span>
+            <h3>Afrikaans reading</h3>
+            <p>Term 1, Weeks 1–8 reading sentences (<em>Lees sinne</em>), with more terms and subjects on the way.</p>
+          </div>
+          <div class="card">
+            <span class="pill pill--info">Features</span>
+            <h3>Read, hear, track</h3>
+            <p>Tap-to-hear, karaoke-style highlighting, read-aloud with speech recognition, and progress saving.</p>
+          </div>
+          <div class="card">
+            <span class="pill">Platform</span>
+            <h3>Web today, native next</h3>
+            <p>A web app now, with a clear path to Expo / React Native for iOS and Android.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>How the pieces fit together</h2>
-      <div class="card">
-        <ul>
-          <li><strong>Roadmap:</strong> phased plan from MVP to Lumi Plus subscriptions and Lumi Schools. See <a href="roadmap.html">Roadmap</a>.</li>
-          <li><strong>Phase 1–5 pages:</strong> deeper detail on each roadmap phase (scope, decisions, and risks).</li>
-          <li><strong>Monetization:</strong> Lumi Schools (annual school licences with home access) plus an optional parent subscription (Lumi Plus). See <a href="monetization.html">Monetization</a>.</li>
-          <li><strong>Proposals:</strong> funding docs that reference this overview site. See <a href="proposals.html">Proposals</a>.</li>
-        </ul>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section__head">
+          <h2>How the pieces fit together</h2>
+        </div>
+        <div class="card card--pad-lg">
+          <ul class="feature-list dots">
+            <li><span><b>Roadmap</b> — a phased plan from MVP to mobile app subscriptions and LekkeLeer Schools. See the <a href="roadmap.html">Roadmap</a>.</span></li>
+            <li><span><b>Phase 1–5 pages</b> — deeper detail on each roadmap phase (scope, decisions, and risks).</span></li>
+            <li><span><b>Monetization</b> — LekkeLeer Schools (annual licences with home access) plus an optional mobile app subscription. See <a href="monetization.html">Pricing</a>.</span></li>
+            <li><span><b>Proposals</b> — funding docs that reference this overview site. See <a href="proposals.html">Proposals</a>.</span></li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="section section-compact">
-      <h2>Quick links</h2>
-      <div class="links-grid">
-        <a href="roadmap.html" class="link-card">Roadmap</a>
-        <a href="phase-1.html" class="link-card">Phase 1 – MVP completion</a>
-        <a href="phase-2.html" class="link-card">Phase 2 – Auth & accounts</a>
-        <a href="phase-3.html" class="link-card">Phase 3 – Expo / Native</a>
-        <a href="phase-4.html" class="link-card">Phase 4 – Lumi Plus</a>
-        <a href="phase-5.html" class="link-card">Phase 5 – Lumi Schools</a>
-        <a href="monetization.html" class="link-card">Monetization</a>
-        <a href="proposals.html" class="link-card">Proposals</a>
-        <a href="mailto:devon@superimmersive.io" class="link-card">Contact: devon@superimmersive.io</a>
+    <section class="section section--tight reveal">
+      <div class="container">
+        <div class="section__head"><h2>Quick links</h2></div>
+        <div class="linklist">
+          <a href="roadmap.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg> Roadmap</a>
+          <a href="activity-lib.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg> Activities</a>
+          <a href="monetization.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg> Pricing</a>
+          <a href="proposals.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg> Proposals</a>
+          <a href="mailto:devon@superimmersive.io"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> devon@superimmersive.io</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>SaaS Learning App – LekkeLeer Project Overview. Last updated: 2026-03-17</p>
-  </footer>
+  <div id="site-footer"></div>
+  <script src="js/site.js"></script>
 </body>
 </html>
-

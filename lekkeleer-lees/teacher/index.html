@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Dashboard – Wireframes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="wireframe.css">
+  <style>
+    .wireframe-index { padding: 40px 20px; max-width: 480px; margin: 0 auto; }
+    .wireframe-index h1 { font-size: 1.5rem; color: var(--navy); margin-bottom: 8px; }
+    .wireframe-index p { color: #64748b; margin-bottom: 24px; font-size: 0.95rem; }
+    .wireframe-links { display: flex; flex-direction: column; gap: 12px; }
+    .wireframe-links a {
+      display: block;
+      padding: 16px 20px;
+      background: var(--white);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 700;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .wireframe-links a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+    .wireframe-links a span { display: block; font-size: 0.85rem; font-weight: 400; color: #64748b; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <div class="wireframe-index">
+    <h1>Teacher Dashboard – Wireframes</h1>
+    <p>Lumi Schools · HTML mockups for design review</p>
+
+    <div class="wireframe-links">
+      <a href="dashboard.html">
+        Dashboard
+        <span>Main landing: overview cards, this week's homework, quick actions</span>
+      </a>
+      <a href="homework-picker.html">
+        Set homework
+        <span>Weekly activities + daily exercises (tab per day), save & publish</span>
+      </a>
+      <a href="schoolwork-picker.html">
+        Set schoolwork
+        <span>In-class activities for the week</span>
+      </a>
+      <a href="progress.html">
+        Progress
+        <span>Learner table: sentences, stars, time, status (on track / behind)</span>
+      </a>
+    </div>
+
+    <p class="td-wireframe-note" style="margin-top: 32px;">
+      Open in browser. Homework picker has interactive day tabs. Styling matches lekkeleer-lees admin patterns.
+    </p>
+  </div>
+</body>
+</html>

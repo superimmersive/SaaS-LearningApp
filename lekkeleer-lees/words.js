@@ -7,6 +7,7 @@
 import { initUser, getUser, setDisplayName } from './user.js';
 import { SUPABASE_URL, SUPABASE_ANON_KEY, submitFeedback, updateDisplayName } from './db.js';
 import * as ttsCache from './ttsCache.js';
+import { getHomeworkDay } from './homeworkData.js';
 
 const AZURE_VOICES = {
   Adri: "af-ZA-AdriNeural",
@@ -628,6 +629,17 @@ function bindEvents() {
   document.getElementById("debugModal")?.querySelector(".version-modal-backdrop")?.addEventListener("click", closeDebugModal);
 }
 
+function showDayContext(dayId) {
+  const day = getHomeworkDay(state.currentWeek, dayId);
+  const wrap = document.getElementById("dayContextWrap");
+  const chip = document.getElementById("dayContextChip");
+  const back = document.getElementById("dayContextBack");
+  if (!day || !wrap || !chip || !back) return;
+  chip.textContent = `${day.label} · ${day.labelEn}`;
+  back.href = `./days.html?activity=spell&week=${state.currentWeek + 1}&day=${dayId}`;
+  wrap.classList.remove("hidden");
+}
+
 // Init
 (async () => {
   await initUser();
@@ -642,6 +654,9 @@ function bindEvents() {
       if (trigger) trigger.textContent = WEEKS[state.currentWeek].label;
     }
   }
+
+  const dayParam = params.get("day");
+  if (dayParam) showDayContext(dayParam);
 
   document.querySelector(".voice-btn[data-voice='Adri']")?.classList.add("active");
   bindBreadcrumbPicker();

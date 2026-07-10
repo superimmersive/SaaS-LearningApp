@@ -1,0 +1,11 @@
+# Smoke test: the app launches and the dashboard actually renders.
+# Catches white-screen / boot crashes — e.g. a missing native module that is
+# referenced at startup (this is the class of bug behind the RNGestureHandler
+# "could not be found" crash, which bundled fine but crashed on launch).
+appId: io.superimmersive.lekkeleer
+---
+- launchApp:
+    clearState: true
+- assertVisible: 'Aktiwiteite vir hierdie week'
+- assertVisible: 'Lees saam'
+- assertVisible: 'Spell woorde'
